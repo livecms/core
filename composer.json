@@ -17,6 +17,7 @@
         "symfony/css-selector": "2.8.*|3.0.*",
         "symfony/dom-crawler": "2.8.*|3.0.*",
         "roketid/imagemax": "dev-master",
+        "livecms/support": "dev-master",
         "mrofi/videoinfo": "dev-master"
     },
     "require-dev": {
@@ -26,6 +27,5 @@
         "psr-4": {
             "LiveCMS\\": "src/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
