@@ -28,6 +28,9 @@
             "LiveCMS\\": "src/"
         }
     },
+    "suggest": {
+        "barryvdh/laravel-debugbar": "PHP Debugbar integration for Laravel"
+    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }
