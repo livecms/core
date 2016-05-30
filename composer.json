@@ -1,0 +1,32 @@
+{
+    "name": "livecms/core",
+    "description": "Live CMS Core",
+    "homepage": "https://github.com/livecms/core",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mokhamad Rofiudin",
+            "email": "mokh.rofiudin@gmail.com"
+        }
+    ],
+    "require": {
+        "laravel/laravel": "5.2.*",
+        "yajra/laravel-datatables-oracle": "^6.0",
+        "laravelcollective/html": "^5.2",
+        "uxweb/sweet-alert": "^1.1",
+        "symfony/css-selector": "2.8.*|3.0.*",
+        "symfony/dom-crawler": "2.8.*|3.0.*",
+        "livecms/support": "dev-master",
+        "roketid/imagemax": "dev-master",
+        "mrofi/videoinfo": "dev-master"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "LiveCMS\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
