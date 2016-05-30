@@ -54,11 +54,4 @@ liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) {
         $router->get('{arg0?}/{arg1?}/{arg2?}/{arg3?}/{arg4?}/{arg5?}', 'PageController@routes');
     });
 
-        // AUTH
-    $router->auth();
-
-    $router->get('register', function () {
-        return redirect()->route('user.home');
-    });
-
 });
