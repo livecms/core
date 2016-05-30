@@ -16,20 +16,15 @@
         "uxweb/sweet-alert": "^1.1",
         "symfony/css-selector": "2.8.*|3.0.*",
         "symfony/dom-crawler": "2.8.*|3.0.*",
+        "barryvdh/laravel-debugbar": "^2.1",
         "roketid/imagemax": "dev-master",
         "livecms/support": "dev-master",
         "mrofi/videoinfo": "dev-master"
-    },
-    "require-dev": {
-        "barryvdh/laravel-debugbar": "^2.1"
     },
     "autoload": {
         "psr-4": {
             "LiveCMS\\": "src/"
         }
-    },
-    "suggest": {
-        "barryvdh/laravel-debugbar": "PHP Debugbar integration for Laravel"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
