@@ -16,9 +16,9 @@
         "uxweb/sweet-alert": "^1.1",
         "symfony/css-selector": "2.8.*|3.0.*",
         "symfony/dom-crawler": "2.8.*|3.0.*",
-        "roketid/imagemax": "dev-master",
-        "livecms/support": "dev-master",
-        "mrofi/videoinfo": "dev-master"
+        "roketid/imagemax": "@dev",
+        "livecms/support": "@dev",
+        "mrofi/videoinfo": "@dev"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^2.1"
@@ -28,5 +28,6 @@
             "LiveCMS\\": "src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
