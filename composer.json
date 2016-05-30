@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "laravel/laravel": "5.2.*",
+        "laravel/framework": "5.2.*",
         "yajra/laravel-datatables-oracle": "^6.0",
         "laravelcollective/html": "^5.2",
         "uxweb/sweet-alert": "^1.1",
