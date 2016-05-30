@@ -71,6 +71,10 @@ class LiveCMSServiceProvider extends ServiceProvider
         // EXTEND ROUTER
 
         $this->app['router']->group(['namespace' => 'LiveCMS\Controllers'], function ($router) {
+            require $this->baseDir.'/routebases.php';
+        });
+
+        $this->app['router']->group(['namespace' => 'App\Controllers'], function ($router) {
             require $this->baseDir.'/routes.php';
         });
 
