@@ -1,1 +1,1 @@
-@extends('backend')
+@extends('livecms::backend')

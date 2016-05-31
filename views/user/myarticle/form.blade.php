@@ -1,16 +1,16 @@
-@extends('user')
+@extends('livecms::user')
 
 @section('content')
 <div class="row">
     <div class="col-sm-12">
-        @include('partials.error')
+        @include('livecms::partials.error')
     </div>
     <div class="col-lg-10 col-lg-offset-1">
     {!! Form::model($myarticle, ['method' => !isset($params['id']) ? 'post' : 'put', 'url' => action($baseClass.'@'.$action, !isset($params) ? [] : $params), 'files' => true, 'id' => $base.'form', 'class' => 'form-horizontal']) !!}
         <div class="col-md-9">
             <div class="row form-group">
                 <div class="col-sm-12">
-                    {!!Form::text('title', $myarticle->title, ['class' => 'form-control input-lg input-myarticle', 'placeholder' => trans('livecms.title'), 'autofocus' => 'autofocus'])!!}            
+                    {!!Form::text('title', $myarticle->title, ['class' => 'form-control input-lg input-myarticle', 'placeholder' => trans('livecms::livecms.title'), 'autofocus' => 'autofocus'])!!}            
                 </div>
             </div>
             <div class="row form-group">
@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-3">
                 <div class="box-body">
-                    {!! Form::label('picture', trans('livecms.picture'), ['class' => 'control-label']) !!}
+                    {!! Form::label('picture', trans('livecms::livecms.picture'), ['class' => 'control-label']) !!}
                     @if ($picture = $myarticle->picture)
                     <div class="row">
                         <div class="col-sm-6 col-md-12">
@@ -36,18 +36,18 @@
                     <div class="row">
                         <div class="col-sm-12">
                         @if ($picture = $myarticle->picture)
-                            <strong>{{trans('backend.ifwanttochangepicture')}}</strong>
+                            <strong>{{trans('livecms::backend.ifwanttochangepicture')}}</strong>
                         @endif
                             {!! Form::file('picture', null, ['class' => 'form-control']) !!}
                         </div>
                     </div>
                 </div>
                 <div class="box-body">
-                    {!! Form::label('category', trans('livecms.category'), ['class' => 'control-label']) !!}
+                    {!! Form::label('category', trans('livecms::livecms.category'), ['class' => 'control-label']) !!}
                     {!! Form::select('categories[]', $categories, $myarticle->categories->pluck('id')->all(), ['class' => 'form-control', 'multiple' => true, 'data-tags' => true]) !!}
                 </div>
                 <div class="box-body">
-                    {!! Form::label('tag', trans('livecms.tag'), ['class' => 'control-label']) !!}
+                    {!! Form::label('tag', trans('livecms::livecms.tag'), ['class' => 'control-label']) !!}
                     {!! Form::select('tags[]', $tags, $myarticle->tags->pluck('id')->all(), ['class' => 'form-control', 'multiple' => true, 'data-tags' => true]) !!}
                 </div>
                 <div class="box-footer">

@@ -1,12 +1,12 @@
-@extends('backend')
+@extends('livecms::backend')
 
 @section('form')
-	@include('partials.error')
-	@include('partials.postableForm', ['model' => $staticpage])
+	@include('livecms::partials.error')
+	@include('livecms::partials.postableForm', ['model' => $staticpage])
 
 	<div class="row form-group">
         <div class="col-md-2">
-            {!! Form::label('parent', trans('livecms.parent'), ['class' => 'control-label']) !!}
+            {!! Form::label('parent', trans('livecms::livecms.parent'), ['class' => 'control-label']) !!}
         </div>
 
         <div class="col-md-10">
@@ -17,5 +17,5 @@
 @stop
 
 @section('content')
-@include('partials.form', ['width' => '12', 'files' => true])
+@include('livecms::partials.form', ['width' => '12', 'files' => true])
 @stop

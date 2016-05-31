@@ -8,7 +8,7 @@
     </div>
     <div class="col-sm-10">
         <span class="text-muted"> 
-        {{trans('backend.clicktoupdate')}}
+        {{trans('livecms::backend.clicktoupdate')}}
         </span>
     </div>
 </div>

@@ -217,7 +217,7 @@ desired effect
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
       @section('sidebarmenus')
-        @include('partials.adminmenus')
+        @include('livecms::partials.adminmenus')
       @stop
       @yield('sidebarmenus')
       </ul>
@@ -464,13 +464,13 @@ desired effect
 
       swal.withFormAsync({
         title: title,
-        text: '{{trans('backend.needyourpasswordtocontinue')}}',
+        text: '{{trans('livecms::backend.needyourpasswordtocontinue')}}',
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
         confirmButtonText: button,
         closeOnConfirm: true,
         formFields: [
-          { id: field, name: field, type: 'password', placeholder: '{{trans('livecms.password')}}' }
+          { id: field, name: field, type: 'password', placeholder: '{{trans('livecms::livecms.password')}}' }
         ]
       }).then(function (context) {
         
@@ -480,10 +480,10 @@ desired effect
 
           $.post(action, obj, function (data) {
             table.draw(true);
-            swal('{{trans('livecms.success')}}', '', 'success');
+            swal('{{trans('livecms::livecms.success')}}', '', 'success');
           }, 'json').error(function (data) {
             error = $.parseJSON(data.responseText)[field][0];
-            swal('{{trans('livecms.failed')}}', error.charAt(0).toUpperCase() + error.slice(1), 'error');
+            swal('{{trans('livecms::livecms.failed')}}', error.charAt(0).toUpperCase() + error.slice(1), 'error');
           });
         }
       })

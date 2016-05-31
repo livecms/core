@@ -1,4 +1,4 @@
-@extends('user')
+@extends('livecms::user')
 
 @section('content')
 <div class="row">
@@ -6,7 +6,7 @@
     @if(isset($withoutAddButton))
     @else
         <p>
-        <a href="{{ action($baseClass.'@create', request()->query()) }}" class="btn btn-danger">Tambah</a> &nbsp;<span>Klik untuk menambah {{ trans('livecms.'.$base) }}.</span>
+        <a href="{{ action($baseClass.'@create', request()->query()) }}" class="btn btn-danger">Tambah</a> &nbsp;<span>Klik untuk menambah {{ trans('livecms::livecms.'.$base) }}.</span>
         </p>
     @endif
     </div>
@@ -20,7 +20,7 @@
         <table class="table datatables display responsive no-wrap">
             <thead>
             @foreach(array_values($fields) as $field)
-                <th>{{ trans('livecms.'.strtolower($field)) }}</th>
+                <th>{{ trans('livecms::livecms.'.strtolower($field)) }}</th>
             @endforeach
                 <th>Menu</th>
             </thead>

@@ -1,1 +1,1 @@
-@extends('themes.adminLTE.login')
+@extends('livecms::themes.adminLTE.login')

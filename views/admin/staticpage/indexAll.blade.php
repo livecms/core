@@ -1,3 +1,3 @@
-@extends('partials.appIndex')
+@extends('livecms::partials.appIndex')
 
-@include('admin.staticpage.submenu')
+@include('livecms::admin.staticpage.submenu')

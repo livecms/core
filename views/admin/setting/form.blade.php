@@ -1,8 +1,8 @@
-@extends('backend')
+@extends('livecms::backend')
 
 @section('form')
 	
-	@include('partials.error')
+	@include('livecms::partials.error')
 	<div class="row form-group">
 		<div class="col-md-3">
 			{!! Form::label('key', 'Key', ['class' => 'control-label']) !!}
@@ -24,5 +24,5 @@
 @stop
 
 @section('content')
-@include('partials.form')
+@include('livecms::partials.form')
 @stop

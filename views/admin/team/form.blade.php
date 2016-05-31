@@ -1,11 +1,11 @@
-@extends('backend')
+@extends('livecms::backend')
 
 @section('form')
-    @include('partials.error')
+    @include('livecms::partials.error')
 
     <div class="row form-group">
         <div class="col-md-2">
-            {!! Form::label('name', trans('livecms.name'), ['class' => 'control-label']) !!}
+            {!! Form::label('name', trans('livecms::livecms.name'), ['class' => 'control-label']) !!}
         </div>
         <div class="col-md-10">
             {!! Form::text('name', $team->name, ['class' => 'form-control']) !!}
@@ -14,7 +14,7 @@
 
     <div class="row form-group">
         <div class="col-md-2">
-            {!! Form::label('role', trans('livecms.role'), ['class' => 'control-label']) !!}
+            {!! Form::label('role', trans('livecms::livecms.role'), ['class' => 'control-label']) !!}
         </div>
         <div class="col-md-10">
             {!! Form::text('role', $team->role, ['class' => 'form-control']) !!}
@@ -23,7 +23,7 @@
 
     <div class="row form-group">
         <div class="col-md-2">
-            {!! Form::label('slug', trans('livecms.slug'), ['class' => 'control-label']) !!}
+            {!! Form::label('slug', trans('livecms::livecms.slug'), ['class' => 'control-label']) !!}
         </div>
         <div class="col-md-10">
             {!! Form::text('slug', $team->slug, ['class' => 'form-control']) !!}
@@ -32,7 +32,7 @@
 
     <div class="row form-group">
         <div class="col-md-2">
-            {!! Form::label('url', trans('livecms.url'), ['class' => 'control-label']) !!}
+            {!! Form::label('url', trans('livecms::livecms.url'), ['class' => 'control-label']) !!}
         </div>
         <div class="col-md-10">
             <p class="form-static"><a href="{{$url = $team->url}}">{{$url}}</a></p>
@@ -41,7 +41,7 @@
 
     <div class="row form-group">
         <div class="col-md-2">
-            {!! Form::label('permalink', trans('livecms.permalink'), ['class' => 'control-label']) !!}
+            {!! Form::label('permalink', trans('livecms::livecms.permalink'), ['class' => 'control-label']) !!}
         </div>
         <div class="col-md-10">
             {!! Form::text('permalink', $team->permalink ? $team->permalink->permalink : '', ['class' => 'form-control', 'placeholder' => url('path/sebagai/permalink')]) !!}
@@ -50,7 +50,7 @@
 
     <div class="row form-group">
         <div class="col-md-2">
-            {!! Form::label('description', trans('livecms.description'), ['class' => 'control-label']) !!}
+            {!! Form::label('description', trans('livecms::livecms.description'), ['class' => 'control-label']) !!}
         </div>
         <div class="col-md-10">
             {!! Form::textarea('description', $team->description, ['class' => 'form-control']) !!}
@@ -59,7 +59,7 @@
 
     <div class="row form-group">
         <div class="col-md-2">
-            {!! Form::label('picture', trans('livecms.picture'), ['class' => 'control-label']) !!}
+            {!! Form::label('picture', trans('livecms::livecms.picture'), ['class' => 'control-label']) !!}
         </div>
         <div class="col-md-10">
             @if ($picture = $team->picture)
@@ -76,7 +76,7 @@
             <div class="row">
                 <div class="col-sm-12">
                 @if ($picture = $team->picture)
-                    <strong>{{trans('backend.ifwanttochangepicture')}}</strong>
+                    <strong>{{trans('livecms::backend.ifwanttochangepicture')}}</strong>
                 @endif
                     {!! Form::file('picture', null, ['class' => 'form-control']) !!}
                 </div>
@@ -86,7 +86,7 @@
 
     <hr>
     <div class="row form-group">
-        {!! Form::label('mediasocial', trans('livecms.mediasocial'), ['class' => 'col-md-2 control-label']) !!}
+        {!! Form::label('mediasocial', trans('livecms::livecms.mediasocial'), ['class' => 'col-md-2 control-label']) !!}
         <div class="col-md-10">
             @foreach ($socials as $social => $socialTitle)
             <div class="row form-group">
@@ -94,7 +94,7 @@
                     <a href="javascript:;" class="btn btn-sm btn-social-icon btn-{{$social == 'google-plus' ? 'google' : $social}}"><i class="fa fa-{{$social}}"></i></a>
                 </label>
                 <div class="col-sm-8">
-                    {!! Form::text('socials['.$social.']', ($socialInfo = $team->socials()->where('social', $social)->first()) ? $socialInfo->url : '', ['class' => 'form-control', 'placeholder' => title_case($social).' '.trans('livecms.url')]) !!}
+                    {!! Form::text('socials['.$social.']', ($socialInfo = $team->socials()->where('social', $social)->first()) ? $socialInfo->url : '', ['class' => 'form-control', 'placeholder' => title_case($social).' '.trans('livecms::livecms.url')]) !!}
                 </div>
             </div>
             @endforeach
@@ -103,5 +103,5 @@
 @stop
 
 @section('content')
-@include('partials.form', ['width' => '12', 'files' => true])
+@include('livecms::partials.form', ['width' => '12', 'files' => true])
 @stop

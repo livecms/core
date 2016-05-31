@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="block">
-                            <h2>{{trans('livecms.article')}}</h2>
+                            <h2>{{trans('livecms::livecms.article')}}</h2>
                             <ol class="breadcrumb">
                                 <li>
                                     <a href="index.html">
@@ -18,7 +18,7 @@
                                         Home
                                     </a>
                                 </li>
-                                <li class="active">{{ trans('livecms.article') }}</li>
+                                <li class="active">{{ trans('livecms::livecms.article') }}</li>
                             </ol>
                         </div>
                     </div>

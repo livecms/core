@@ -32,7 +32,7 @@ class StaticPageController extends PostableController
 
         $this->view->share();
 
-        return view('admin.staticpage.index'. ($request->has('hierarchy') ? 'Hierarchy' : 'All'));
+        return view('livecms::admin.staticpage.index'. ($request->has('hierarchy') ? 'Hierarchy' : 'All'));
     }
 
     protected function beforeDatatables($datas)

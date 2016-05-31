@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('livecms::layouts.app')
 
 <!-- Main Content -->
 @section('content')

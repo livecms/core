@@ -1,12 +1,12 @@
-@extends('backend')
+@extends('livecms::backend')
 
 @section('form')
-	@include('partials.error')
-	@include('partials.postableForm', ['model' => $article])
+	@include('livecms::partials.error')
+	@include('livecms::partials.postableForm', ['model' => $article])
 
 	<div class="row form-group">
 		<div class="col-md-2">
-			{!! Form::label('category', trans('livecms.category'), ['class' => 'control-label']) !!}
+			{!! Form::label('category', trans('livecms::livecms.category'), ['class' => 'control-label']) !!}
 		</div>
 		<div class="col-md-10">
 			{!! Form::select('categories[]', $categories, $article->categories->pluck('id')->all(), ['class' => 'form-control', 'multiple' => true, 'data-tags' => true]) !!}
@@ -24,5 +24,5 @@
 @stop
 
 @section('content')
-@include('partials.form', ['width' => '12', 'files' => true])
+@include('livecms::partials.form', ['width' => '12', 'files' => true])
 @stop

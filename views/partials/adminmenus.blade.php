@@ -12,28 +12,28 @@ $projectCategorySlug    = globalParams('slug_projectcategory', config('livecms.s
 $contactSlug            = globalParams('slug_contact', config('livecms.slugs.contact'));
 
 $menus = [
-    [   'title' => trans('livecms.post'), 'icon' => 'pencil',
+    [   'title' => trans('livecms::livecms.post'), 'icon' => 'pencil',
         'uri' => [
-            ['uri' => $articleSlug, 'title' => trans('livecms.article'), 'icon' => 'files-o'],
-            ['uri' => $categorySlug, 'title' => trans('livecms.category'), 'icon' => 'list'],
-            ['uri' => $tagSlug, 'title' => trans('livecms.tag'), 'icon' => 'tag'],
+            ['uri' => $articleSlug, 'title' => trans('livecms::livecms.article'), 'icon' => 'files-o'],
+            ['uri' => $categorySlug, 'title' => trans('livecms::livecms.category'), 'icon' => 'list'],
+            ['uri' => $tagSlug, 'title' => trans('livecms::livecms.tag'), 'icon' => 'tag'],
         ],
     ],
-    [   'title' => trans('livecms.clientandproject'), 'icon' => 'briefcase',
+    [   'title' => trans('livecms::livecms.clientandproject'), 'icon' => 'briefcase',
         'uri' => [
-            ['uri' => $clientSlug, 'title' => trans('livecms.client'), 'icon' => 'users'],
-            ['uri' => $projectCategorySlug, 'title' => trans('livecms.projectcategory'), 'icon' => 'list'],
-            ['uri' => $projectSlug, 'title' => trans('livecms.project'), 'icon' => 'briefcase'],
+            ['uri' => $clientSlug, 'title' => trans('livecms::livecms.client'), 'icon' => 'users'],
+            ['uri' => $projectCategorySlug, 'title' => trans('livecms::livecms.projectcategory'), 'icon' => 'list'],
+            ['uri' => $projectSlug, 'title' => trans('livecms::livecms.project'), 'icon' => 'briefcase'],
         ],
     ],
-    ['uri' => $staticpageSlug, 'title' => trans('livecms.staticpage'), 'icon' => 'file-o'],
+    ['uri' => $staticpageSlug, 'title' => trans('livecms::livecms.staticpage'), 'icon' => 'file-o'],
     ['uri' => 'permalink', 'title' => 'Permalink', 'icon' => 'link'],
-    ['uri' => $teamSlug, 'title' => trans('livecms.team'), 'icon' => 'user-plus'],
-    ['uri' => $gallerySlug, 'title' => trans('livecms.gallery'), 'icon' => 'image'],
-    ['uri' => 'user', 'title' => trans('livecms.user'), 'icon' => 'users'],
-    ['uri' => $contactSlug, 'title' => trans('livecms.contact'), 'icon' => 'phone'],
+    ['uri' => $teamSlug, 'title' => trans('livecms::livecms.team'), 'icon' => 'user-plus'],
+    ['uri' => $gallerySlug, 'title' => trans('livecms::livecms.gallery'), 'icon' => 'image'],
+    ['uri' => 'user', 'title' => trans('livecms::livecms.user'), 'icon' => 'users'],
+    ['uri' => $contactSlug, 'title' => trans('livecms::livecms.contact'), 'icon' => 'phone'],
     ['uri' => 'setting', 'title' => 'Setting', 'icon' => 'cog'],
-    ['uri' => 'site', 'title' => trans('livecms.site'), 'icon' => 'globe'],
+    ['uri' => 'site', 'title' => trans('livecms::livecms.site'), 'icon' => 'globe'],
 ];
 ?>
 

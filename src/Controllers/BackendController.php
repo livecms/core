@@ -83,7 +83,7 @@ class BackendController extends BaseController
 
         $this->view->share();
 
-        return view('partials.appIndex');
+        return view('livecms::partials.appIndex');
     }
 
     protected function getDataFields()

@@ -77,7 +77,7 @@ class UserController extends BackendController
         $this->view->share();
         
         $this->loadFormClasses($model);
-        return view('admin.user.password', compact(camel_case($this->base)));
+        return view('livecms::admin.user.password', compact(camel_case($this->base)));
     }
 
     public function destroy(Request $request, $id)

@@ -1,4 +1,4 @@
-@extends('themes.adminLTE.template')
+@extends('livecms::themes.adminLTE.template')
 
 <?php
 $title = 'Login';

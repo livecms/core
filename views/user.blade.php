@@ -1,5 +1,5 @@
 @extends(theme('admin'))
 
 @section('sidebarmenus')
-    @include('user.partials.sidebarmenus')
+    @include('livecms::user.partials.sidebarmenus')
 @stop

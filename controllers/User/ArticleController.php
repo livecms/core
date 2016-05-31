@@ -24,7 +24,7 @@ class ArticleController extends Senior
     public function index(Request $request)
     {
         parent::index($request);
-        return view('user.myarticle.home', compact(camel_case($this->base)));
+        return view('livecms::user.myarticle.home', compact(camel_case($this->base)));
     }
 
     public function create(Request $request)

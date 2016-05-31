@@ -13,7 +13,7 @@
 liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) {
 
     $router->get('coming-soon', ['as' => 'coming-soon', function () {
-        return view('coming-soon');
+        return view('livecms::coming-soon');
     }]);
 
     $router->get('redirect', ['as' => 'redirect', function () {
@@ -28,7 +28,7 @@ liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) {
         $router->get('/', ['as' => 'user.home', function () {
             $bodyClass        = 'skin-blue sidebar-mini sidebar-collapse';
 
-            return view('user', compact('bodyClass'));
+            return view('livecms::user', compact('bodyClass'));
         }]);
 
         $router->resource('profile', 'ProfileController');
@@ -39,7 +39,7 @@ liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) {
     $router->group(['prefix' => $adminSlug, 'namespace' => 'Backend', 'middleware' => 'auth'], function ($router) {
         
         $router->get('/', ['as' => 'admin.home', function () {
-            return view('admin.home');
+            return view('livecms::admin.home');
         }]);
 
         $router->resource('permalink', 'PermalinkController');

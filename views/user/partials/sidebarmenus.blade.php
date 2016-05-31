@@ -3,8 +3,8 @@ $userSlug               = globalParams('slug_userhome', config('livecms.slugs.us
 $profileSlug            = globalParams('slug_profile', config('livecms.slugs.profile'));
 $articleSlug            = globalParams('slug_article', config('livecms.slugs.article'));
 $menus = [
-    ['uri' => $profileSlug, 'title' => trans('livecms.profile'), 'icon' => 'user'],
-    ['uri' => $articleSlug, 'title' => trans('livecms.article'), 'icon' => 'pencil'],
+    ['uri' => $profileSlug, 'title' => trans('livecms::livecms.profile'), 'icon' => 'user'],
+    ['uri' => $articleSlug, 'title' => trans('livecms::livecms.article'), 'icon' => 'pencil'],
 ];
 ?>
 
@@ -43,5 +43,5 @@ $subfolderPrefix = $subfolderPrefix ? $subfolderPrefix.'.' : $subfolderPrefix;
 @endforeach
 
 @if (auth()->user()->is_administer)
-<li class="@if(isInCurrentRoute('admin.home'))active @endif"><a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i> <span>{{trans('livecms.dashboard')}}</span></a></li>
+<li class="@if(isInCurrentRoute('admin.home'))active @endif"><a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i> <span>{{trans('livecms::livecms.dashboard')}}</span></a></li>
 @endif

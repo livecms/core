@@ -1,11 +1,11 @@
-@extends('backend')
+@extends('livecms::backend')
 
 @section('form')
-    @include('partials.error')
+    @include('livecms::partials.error')
 
     <div class="row form-group">
         <div class="col-md-2">
-            {!! Form::label('name', trans('livecms.name'), ['class' => 'control-label']) !!}
+            {!! Form::label('name', trans('livecms::livecms.name'), ['class' => 'control-label']) !!}
         </div>
         <div class="col-md-10">
             {!! Form::text('name', $client->name, ['class' => 'form-control']) !!}
@@ -14,7 +14,7 @@
 
     <div class="row form-group">
         <div class="col-md-2">
-            {!! Form::label('slug', trans('livecms.slug'), ['class' => 'control-label']) !!}
+            {!! Form::label('slug', trans('livecms::livecms.slug'), ['class' => 'control-label']) !!}
         </div>
         <div class="col-md-10">
             {!! Form::text('slug', $client->slug, ['class' => 'form-control']) !!}
@@ -23,7 +23,7 @@
 
     <div class="row form-group">
         <div class="col-md-2">
-            {!! Form::label('url', trans('livecms.url'), ['class' => 'control-label']) !!}
+            {!! Form::label('url', trans('livecms::livecms.url'), ['class' => 'control-label']) !!}
         </div>
         <div class="col-md-10">
             <p class="form-static"><a href="{{$url = $client->url}}">{{$url}}</a></p>
@@ -32,7 +32,7 @@
 
     <div class="row form-group">
         <div class="col-md-2">
-            {!! Form::label('permalink', trans('livecms.permalink'), ['class' => 'control-label']) !!}
+            {!! Form::label('permalink', trans('livecms::livecms.permalink'), ['class' => 'control-label']) !!}
         </div>
         <div class="col-md-10">
             {!! Form::text('permalink', $client->permalink ? $client->permalink->permalink : '', ['class' => 'form-control', 'placeholder' => url('path/sebagai/permalink')]) !!}
@@ -41,7 +41,7 @@
 
     <div class="row form-group">
         <div class="col-md-2">
-            {!! Form::label('description', trans('livecms.description'), ['class' => 'control-label']) !!}
+            {!! Form::label('description', trans('livecms::livecms.description'), ['class' => 'control-label']) !!}
         </div>
         <div class="col-md-10">
             {!! Form::textarea('description', $client->description, ['class' => 'form-control']) !!}
@@ -50,7 +50,7 @@
 
     <div class="row form-group">
         <div class="col-md-2">
-            {!! Form::label('picture', trans('livecms.picture'), ['class' => 'control-label']) !!}
+            {!! Form::label('picture', trans('livecms::livecms.picture'), ['class' => 'control-label']) !!}
         </div>
         <div class="col-md-10">
             @if ($picture = $client->picture)
@@ -67,7 +67,7 @@
             <div class="row">
                 <div class="col-sm-12">
                 @if ($picture = $client->picture)
-                    <strong>{{trans('backend.ifwanttochangepicture')}}</strong>
+                    <strong>{{trans('livecms::backend.ifwanttochangepicture')}}</strong>
                 @endif
                     {!! Form::file('picture', null, ['class' => 'form-control']) !!}
                 </div>
@@ -78,5 +78,5 @@
 @stop
 
 @section('content')
-@include('partials.form', ['width' => '12', 'files' => true])
+@include('livecms::partials.form', ['width' => '12', 'files' => true])
 @stop

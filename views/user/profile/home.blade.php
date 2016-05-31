@@ -1,4 +1,4 @@
-@extends('user')
+@extends('livecms::user')
 
 @section('content')
 <div class="row">
@@ -34,7 +34,7 @@
             <div class="col-xs-6 border-right">
               <div class="description-block">
                 <h5 class="description-header">3,200</h5>
-                <span class="description-text">{{trans('livecms.article')}}</span>
+                <span class="description-text">{{trans('livecms::livecms.article')}}</span>
               </div>
               <!-- /.description-block -->
             </div>
@@ -42,7 +42,7 @@
             <div class="col-xs-6 border-right">
               <div class="description-block">
                 <h5 class="description-header">13,000</h5>
-                <span class="description-text">{{trans('livecms.viewed')}}</span>
+                <span class="description-text">{{trans('livecms::livecms.viewed')}}</span>
               </div>
               <!-- /.description-block -->
             </div>
@@ -63,7 +63,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <strong><i class="fa fa-pencil margin-r-5"></i>{{trans('livecms.aboutme')}}</strong>
+          <strong><i class="fa fa-pencil margin-r-5"></i>{{trans('livecms::livecms.aboutme')}}</strong>
           <p class="text-muted">
             {{$profile->about}}
           </p>
@@ -77,13 +77,13 @@
     <div class="col-md-8">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#profiles" data-toggle="tab">{{trans('backend.changeprofile')}}</a></li>
-          <li><a href="#avatars" data-toggle="tab">{{trans('backend.changeavatar')}}</a></li>
-          <li><a href="#credentials" data-toggle="tab">{{trans('backend.changecredential')}}</a></li>
+          <li class="active"><a href="#profiles" data-toggle="tab">{{trans('livecms::backend.changeprofile')}}</a></li>
+          <li><a href="#avatars" data-toggle="tab">{{trans('livecms::backend.changeavatar')}}</a></li>
+          <li><a href="#credentials" data-toggle="tab">{{trans('livecms::backend.changecredential')}}</a></li>
         </ul>
         <div class="tab-content">
 
-          @include('user.profile.form')
+          @include('livecms::user.profile.form')
           <div class="tab-pane active" id="profiles">
             @yield('profile.form')
           </div>
