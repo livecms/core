@@ -145,7 +145,8 @@
     1. Admin :
         email : admin@livecms.org
         password : admin
-    2. Admin :
+
+    2. Super Admin :
         email : super@livecms.org
         password : admin
 
