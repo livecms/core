@@ -152,7 +152,7 @@ class BackendController extends BaseController
 
         $this->loadFormClasses($model);
 
-        return view("admin.".camel_case($this->base).".form", compact(camel_case($this->base)));
+        return view("livecms::admin.".camel_case($this->base).".form", compact(camel_case($this->base)));
     }
 
     /**
@@ -201,7 +201,7 @@ class BackendController extends BaseController
         
         $this->loadFormClasses($model);
 
-        return view("admin.".camel_case($this->base).".form", compact(camel_case($this->base)));
+        return view("livecms::admin.".camel_case($this->base).".form", compact(camel_case($this->base)));
     }
 
     /**
