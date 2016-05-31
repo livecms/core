@@ -54,7 +54,7 @@
                     
                     <!-- logo -->
                     <div class="navbar-brand">
-                        <a href="/frontend/timer/index.html" >
+                        <a href="{{url('/')}}" >
                             <h2 class="logo">Live CMS</h2>
                             <!-- <img src="/frontend/timer/images/logo.png" alt=""> -->
                         </a>
