@@ -13,9 +13,10 @@
         "config": {
             "preferred-install": "dist"
         }
-        ````
+    ````
 
     with :
+    
     ````
         "minimum-stability": "dev",
         "prefer-stable": true
