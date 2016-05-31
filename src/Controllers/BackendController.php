@@ -30,7 +30,7 @@ class BackendController extends BaseController
         $this->baseClass = '\\'.$reflection->getName();
 
         $this->fields           = $this->model->getFields();
-        $this->breadcrumb2      = title_case(trans('livecms.'.$this->base));
+        $this->breadcrumb2      = title_case(trans('livecms::livecms.'.$this->base));
         // $this->breadcrumb2Url   = route($this->baseClass.'.index');
         
         $this->view->share();
@@ -76,9 +76,9 @@ class BackendController extends BaseController
 
     public function index(Request $request)
     {
-        $this->title        = title_case(trans('livecms.'.$this->base));
-        $this->description  = trans('backend.alllist', ['list' => title_case(trans('livecms.'.$this->base))]);
-        $this->breadcrumb3  = trans('backend.seeall');
+        $this->title        = title_case(trans('livecms::livecms.'.$this->base));
+        $this->description  = trans('livecms::backend.alllist', ['list' => title_case(trans('livecms::livecms.'.$this->base))]);
+        $this->breadcrumb3  = trans('livecms::backend.seeall');
         $this->params       = array_merge($request->query() ? $request->query() : []);
 
         $this->view->share();
@@ -107,7 +107,7 @@ class BackendController extends BaseController
             Form::open(['style' => 'display: inline!important', 'method' => 'delete',
                 'action' => [$this->baseClass.'@destroy', $data->{$this->model->getKeyName()}]
             ]).
-            '  <button type="submit" onClick="return confirm(\''.trans('backend.deleteconfirmation').'\');" 
+            '  <button type="submit" onClick="return confirm(\''.trans('livecms::backend.deleteconfirmation').'\');" 
                 class="btn btn-small btn-link">
                     <i class="fa fa-xs fa-trash-o"></i> 
                     Delete
@@ -142,9 +142,9 @@ class BackendController extends BaseController
         $model = $this->model;
         ${camel_case($this->base)} = $model;
 
-        $this->title        = trans('backend.adddata', ['data' => title_case(trans('livecms.'.$this->base))]);
-        $this->description  = trans('backend.addingdata', ['data' => trans('livecms.'.$this->base)]);
-        $this->breadcrumb3  = trans('backend.add');
+        $this->title        = trans('livecms::backend.adddata', ['data' => title_case(trans('livecms::livecms.'.$this->base))]);
+        $this->description  = trans('livecms::backend.addingdata', ['data' => trans('livecms::livecms.'.$this->base)]);
+        $this->breadcrumb3  = trans('livecms::backend.add');
         $this->action       = 'store';
         $this->params       = array_merge($request->query() ? $request->query() : []);
 
@@ -191,9 +191,9 @@ class BackendController extends BaseController
         $model = $this->model->findOrFail($id);
         ${camel_case($this->base)} = $model;
 
-        $this->title        = trans('backend.editdata', ['data' => title_case(trans('livecms.'.$this->base))]);
-        $this->description  = trans('backend.editingdata', ['data' => trans('livecms.'.$this->base)]);
-        $this->breadcrumb3  = trans('backend.edit');
+        $this->title        = trans('livecms::backend.editdata', ['data' => title_case(trans('livecms::livecms.'.$this->base))]);
+        $this->description  = trans('livecms::backend.editingdata', ['data' => trans('livecms::livecms.'.$this->base)]);
+        $this->breadcrumb3  = trans('livecms::backend.edit');
         $this->action       = 'update';
         $this->params       = array_merge($request->query() ? $request->query() : [], compact('id'));
         

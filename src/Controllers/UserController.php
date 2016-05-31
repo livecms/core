@@ -18,10 +18,10 @@ class UserController extends BackendController
 
         $this->bodyClass        = 'skin-blue sidebar-mini sidebar-collapse';
 
-        $this->breadcrumb1      = title_case(trans('livecms.home'));
+        $this->breadcrumb1      = title_case(trans('livecms::livecms.home'));
         $this->breadcrumb1Icon  = 'home fa-lg';
 
-        $this->breadcrumb2      = title_case(trans('livecms.'.$this->base));
+        $this->breadcrumb2      = title_case(trans('livecms::livecms.'.$this->base));
         // $this->breadcrumb2Url   = route($this->baseClass.'.index');
         
         $this->view->share();

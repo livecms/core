@@ -34,7 +34,7 @@ class PermalinkController extends BackendController
                 return '<a target="_blank"  href="'.$url.'">'.$url.'</a>';
             })
             ->editColumn('postable_type', function ($data) {
-                $type = trans('livecms.'.strtolower($data->type));
+                $type = trans('livecms::livecms.'.strtolower($data->type));
                 return $type;
             })
             ->addColumn('title', function ($data) {

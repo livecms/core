@@ -174,7 +174,7 @@ trait BaseModelTrait
 
         if (! \Hash::check($privilege, auth()->user()->password)) {
 
-            $userPasswordField = trans('livecms.yourpassword');
+            $userPasswordField = trans('livecms::livecms.yourpassword');
 
             $privilege = [$userPasswordField => ''];
 

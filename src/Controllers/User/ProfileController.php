@@ -22,9 +22,9 @@ class ProfileController extends UserController
         $model = $this->model->find(auth()->user()->id);
         ${camel_case($this->base)} = $model;
 
-        $this->title        = title_case(trans('livecms.'.$this->base));
-        $this->description  = trans('backend.homeprofile');
-        $this->breadcrumb3  = trans('backend.myprofile');
+        $this->title        = title_case(trans('livecms::livecms.'.$this->base));
+        $this->description  = trans('livecms::backend.homeprofile');
+        $this->breadcrumb3  = trans('livecms::backend.myprofile');
         $this->params       = array_merge($request->query() ? $request->query() : []);
         $this->action       = 'store';
 
@@ -88,11 +88,11 @@ class ProfileController extends UserController
 
         if ($request->has('credentials')) {
 
-            alert()->success(trans('backend.updatecredentialsuccess'), trans('backend.updatesuccess'));
+            alert()->success(trans('livecms::backend.updatecredentialsuccess'), trans('livecms::backend.updatesuccess'));
 
         } else {
 
-            alert()->success(trans('backend.updateprofilesuccess'), trans('backend.updatesuccess'));
+            alert()->success(trans('livecms::backend.updateprofilesuccess'), trans('livecms::backend.updatesuccess'));
         }
 
 
