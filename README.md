@@ -3,7 +3,9 @@
 # How To Install :
 
 1. Create Laravel Project (5.2.*)
-```` composer create-project laravel/laravel liveCMS --prefer-dist 
+````
+     composer create-project laravel/laravel liveCMS --prefer-dist 
+````
 
 2. Edit composer.json
 Change  :
@@ -11,16 +13,20 @@ Change  :
     "config": {
         "preferred-install": "dist"
     }
+````
 
 with :
 ````
     "minimum-stability": "dev",
     "prefer-stable": true
+````
 
 
 3. After finish, add livecms core in your project
-```` cd liveCMS 
+````
+     cd liveCMS 
      composer require livecms/core "dev-master"
+````
 
 4. open file config/app.php
 Change :
@@ -29,6 +35,7 @@ Change :
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+````
 
 with :
 ````
@@ -44,9 +51,12 @@ with :
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         LiveCMS\Support\Thumbnailer\ThumbnailerServiceProvider::class,
         RoketId\ImageMax\ImageMaxServiceProvider::class,
+````
 
 4. Publish vendor :
-```` php artisan vendor:publish --force
+````
+     php artisan vendor:publish --force
+````
 
 5. Open app/Http/Kernel.php and edit :
 
@@ -58,6 +68,7 @@ add this line to :
         \LiveCMS\Middleware\GlobalParamsMiddleware::class,
         \LiveCMS\Middleware\HttpsMiddleware::class,
     ];
+````
 
 change :
 ````
@@ -73,6 +84,7 @@ change :
         add this line :
         'model' => \LiveCMS\Middleware\ModelMiddleware::class,
     ];
+````
 
 6. Open config/auth.php
 Edit :
@@ -93,12 +105,14 @@ Edit :
             'expire' => 60,
         ],
     ],
+````
 
 
 7. Update your .env
 add based on what your domain url:
 ````
     APP_DOMAIN=yourdomain.com
+````
 
 
 Visit https://github.com/livecms/LiveCMS for more info.
