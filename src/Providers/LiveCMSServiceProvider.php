@@ -21,7 +21,7 @@ class LiveCMSServiceProvider extends ServiceProvider
 
         // Language
         $this->loadTranslationsFrom($this->baseDir.'/lang', 'livecms');
-        $this->publishes([$this->baseDir.'/lang' => base_path('resources/lang')], 'lang');
+        $this->publishes([$this->baseDir.'/lang' => base_path('resources/lang/vendor/livecms')], 'lang');
 
         // Config
         $this->mergeConfigFrom($this->baseDir.'/config/livecms.php', 'livecms');

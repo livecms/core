@@ -107,7 +107,7 @@ if (! function_exists('theme')) {
 
     function theme($type, $location = 'template')
     {
-        $types = 'themes.'.config('livecms.themes.'.$type);
+        $types = 'livecms::themes.'.config('livecms.themes.'.$type);
         $location = '.'.$location;
 
         if (view()->exists($view = $type.$location)) {
