@@ -32,26 +32,26 @@
 4. open file config/app.php
     Change :
     ````
-            App\Providers\AppServiceProvider::class,
-            App\Providers\AuthServiceProvider::class,
-            App\Providers\EventServiceProvider::class,
-            App\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
     ````
 
     with :
     ````
-            App\Providers\AppServiceProvider::class,
-            LiveCMS\Providers\LiveCMSServiceProvider::class,
-            Barryvdh\Debugbar\ServiceProvider::class,
-            App\Providers\AuthServiceProvider::class,
-            App\Providers\EventServiceProvider::class,
-            App\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        LiveCMS\Providers\LiveCMSServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
-            Yajra\Datatables\DatatablesServiceProvider::class,
-            LiveCMS\Collective\Html\HtmlServiceProvider::class,
-            UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-            LiveCMS\Support\Thumbnailer\ThumbnailerServiceProvider::class,
-            RoketId\ImageMax\ImageMaxServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
+        LiveCMS\Collective\Html\HtmlServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        LiveCMS\Support\Thumbnailer\ThumbnailerServiceProvider::class,
+        RoketId\ImageMax\ImageMaxServiceProvider::class,
     ````
     Add to 'aliases'
     ````
@@ -69,7 +69,14 @@
          php artisan vendor:publish --force
     ````
 
-5. Open app/Http/Kernel.php and edit :
+5. Set folder permissions :
+    ````
+        chmod +w -R public/files/
+        chmod +w -R public/uploads/
+        chmod +w -R public/users/
+    ````
+
+6. Open app/Http/Kernel.php and edit :
 
     add this line to :
     ```` 
@@ -97,7 +104,7 @@
         ];
     ````
 
-6. Open config/auth.php
+7. Open config/auth.php
     Edit :
     ````
         'providers' => [
@@ -119,16 +126,28 @@
     ````
 
 
-7. Update your .env
+8. Update your .env
     add based on what your domain url:
     ````
         APP_DOMAIN=yourdomain.com
     ````
 
-8. Do Migrate
+9. Do Migrate
     ````
         php artisan migrate --seed
     ````
+
+10. Login
+    visit : http://yourdomain/login
+
+    default username / password 
+    
+    1. Admin :
+        email : admin@livecms.org
+        password : admin
+    2. Admin :
+        email : super@livecms.org
+        password : admin
 
 Visit https://github.com/livecms/LiveCMS for more info.
 
