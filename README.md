@@ -53,6 +53,16 @@
             LiveCMS\Support\Thumbnailer\ThumbnailerServiceProvider::class,
             RoketId\ImageMax\ImageMaxServiceProvider::class,
     ````
+    Add to 'aliases'
+    ````
+        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
+        'Datatables'=> Yajra\Datatables\Datatables::class,
+        'Form'      => Collective\Html\FormFacade::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
+        'Alert'     => UxWeb\SweetAlert\SweetAlert::class,
+        'Thumb'     => LiveCMS\Support\Thumbnailer\Facades\Thumbnailer::class,
+        'ImageMax'  => RoketId\ImageMax\ImageMaxFacade::class,
+    ````
 
 4. Publish vendor :
     ````
