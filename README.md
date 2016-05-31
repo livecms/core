@@ -125,6 +125,10 @@
         APP_DOMAIN=yourdomain.com
     ````
 
+8. Do Migrate
+    ````
+        php artisan migrate --seed
+    ````
 
 Visit https://github.com/livecms/LiveCMS for more info.
 
