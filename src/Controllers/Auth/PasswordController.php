@@ -21,6 +21,16 @@ class PasswordController extends Controller
     use ResetsPasswords;
 
     /**
+     * add linkRequestView
+     */
+    protected $linkRequestView = 'livecms::auth.passwords.email';
+
+    /**
+     * add resetView
+     */
+    protected $resetView = 'livecms::auth.passwords.reset';
+
+    /**
      * Create a new password controller instance.
      *
      * @return void

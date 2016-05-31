@@ -45,5 +45,40 @@ with :
         LiveCMS\Support\Thumbnailer\ThumbnailerServiceProvider::class,
         RoketId\ImageMax\ImageMaxServiceProvider::class,
 
+4. Publish vendor :
+```` php artisan vendor:publish --force
+
+5. Open app/Http/Kernel.php and edit :
+
+add this line to :
+```` 
+    protected $middleware = [
+        ...
+
+        \LiveCMS\Middleware\GlobalParamsMiddleware::class,
+        \LiveCMS\Middleware\HttpsMiddleware::class,
+    ];
+
+change :
+````
+    protected $routeMiddleware = [
+        'auth' => \App\Http\Middleware\Authenticate::class,
+        change to :
+        'auth' => \LiveCMS\Middleware\Authenticate::class,
+
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        change to :
+        'guest' => \LiveCMS\Middleware\RedirectIfAuthenticated::class,
+
+        add this line :
+        'model' => \LiveCMS\Middleware\ModelMiddleware::class,
+    ];
+
+6. Update your .env
+add based on what your domain url:
+````
+    APP_DOMAIN=yourdomain.com
+
+
 Visit https://github.com/livecms/LiveCMS for more info.
 

@@ -68,16 +68,6 @@ class LiveCMSServiceProvider extends ServiceProvider
             return $registrar;
         });
 
-        // EXTEND ROUTER
-
-        $this->app['router']->group(['namespace' => 'LiveCMS\Controllers'], function ($router) {
-            require $this->baseDir.'/routebases.php';
-        });
-
-        $this->app['router']->group(['namespace' => 'App\Http\Controllers'], function ($router) {
-            require $this->baseDir.'/routes.php';
-        });
-
         // DEBUG BAR
         $routeConfig = [
             'namespace' => 'Barryvdh\Debugbar\Controllers',
@@ -104,6 +94,16 @@ class LiveCMSServiceProvider extends ServiceProvider
                 'uses' => 'AssetController@js',
                 'as' => 'debugbar.assets.js',
             ]);
+        });
+
+        // EXTEND ROUTER
+        
+        $this->app['router']->group(['namespace' => 'LiveCMS\Controllers'], function ($router) {
+            require $this->baseDir.'/routebases.php';
+        });
+
+        $this->app['router']->group(['namespace' => 'App\Http\Controllers'], function ($router) {
+            require $this->baseDir.'/routes.php';
         });
     }
 

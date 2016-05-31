@@ -33,6 +33,16 @@ class AuthController extends Controller
     protected $redirectTo = '/';
 
     /**
+     * Add login view
+     */
+    protected $loginView  = 'livecms::auth.login';
+
+    /**
+     * Add register view
+     */
+    protected $registerView  = 'livecms::auth.register';
+
+    /**
      * Create a new authentication controller instance.
      *
      * @return void

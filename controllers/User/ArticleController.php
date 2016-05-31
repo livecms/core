@@ -32,7 +32,7 @@ class ArticleController extends Senior
         $model = $this->model;
         ${camel_case($this->base)} = $model;
 
-        $this->title        = trans('backend.newarticle');
+        $this->title        = trans('livecms::backend.newarticle');
         $this->action       = 'store';
         $this->params       = array_merge($request->query() ? $request->query() : []);
 
@@ -47,9 +47,9 @@ class ArticleController extends Senior
         $model = $this->model->findOrFail($id);
         ${camel_case($this->base)} = $model;
 
-        $this->title        = trans('backend.editdata', ['data' => title_case(trans('livecms.'.$this->base))]);
-        $this->description  = trans('backend.editingdata', ['data' => trans('livecms.'.$this->base)]);
-        $this->breadcrumb3  = trans('backend.edit');
+        $this->title        = trans('livecms::backend.editdata', ['data' => title_case(trans('livecms::livecms.'.$this->base))]);
+        $this->description  = trans('livecms::backend.editingdata', ['data' => trans('livecms::livecms.'.$this->base)]);
+        $this->breadcrumb3  = trans('livecms::backend.edit');
         $this->action       = 'update';
         $this->params       = array_merge($request->query() ? $request->query() : [], compact('id'));
         
