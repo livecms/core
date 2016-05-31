@@ -74,7 +74,28 @@ change :
         'model' => \LiveCMS\Middleware\ModelMiddleware::class,
     ];
 
-6. Update your .env
+6. Open config/auth.php
+Edit :
+````
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => LiveCMS\Models\Users\User::class,
+        ],
+
+    .......
+
+    'passwords' => [
+        'users' => [
+            'provider' => 'users',
+            'email' => 'livecms::auth.emails.password',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+    ],
+
+
+7. Update your .env
 add based on what your domain url:
 ````
     APP_DOMAIN=yourdomain.com
