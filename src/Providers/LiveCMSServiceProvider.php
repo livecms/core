@@ -11,34 +11,37 @@ use LiveCMS\Models\Site;
 
 class LiveCMSServiceProvider extends ServiceProvider
 {
-    protected $baseDir = __DIR__.'/../..';
+    protected function baseDir()
+    {
+        return __DIR__ . '/../..';
+    }
 
     protected function bootPublish()
     {
         // View
-        $this->loadViewsFrom($this->baseDir.'/views', 'livecms');
-        $this->publishes([$this->baseDir.'/views' => base_path('resources/views/vendor/livecms')], 'view');
+        $this->loadViewsFrom($this->baseDir().'/views', 'livecms');
+        $this->publishes([$this->baseDir().'/views' => base_path('resources/views/vendor/livecms')], 'view');
 
         // Language
-        $this->loadTranslationsFrom($this->baseDir.'/lang', 'livecms');
-        $this->publishes([$this->baseDir.'/lang' => base_path('resources/lang/vendor/livecms')], 'lang');
+        $this->loadTranslationsFrom($this->baseDir().'/lang', 'livecms');
+        $this->publishes([$this->baseDir().'/lang' => base_path('resources/lang/vendor/livecms')], 'lang');
 
         // Config
-        $this->mergeConfigFrom($this->baseDir.'/config/livecms.php', 'livecms');
-        $this->publishes([$this->baseDir.'/config/livecms.php' => config_path('livecms.php')], 'config');
+        $this->mergeConfigFrom($this->baseDir().'/config/livecms.php', 'livecms');
+        $this->publishes([$this->baseDir().'/config/livecms.php' => config_path('livecms.php')], 'config');
 
         // Model
-        $this->publishes([$this->baseDir.'/models' => app_path('Models')], 'model');
+        $this->publishes([$this->baseDir().'/models' => app_path('Models')], 'model');
         
         // Controller
-        $this->publishes([$this->baseDir.'/controllers' => app_path('Http/Controllers')], 'controller');
+        $this->publishes([$this->baseDir().'/controllers' => app_path('Http/Controllers')], 'controller');
 
         // Migration
-        $this->publishes([$this->baseDir.'/database' => base_path('database')], 'database');
+        $this->publishes([$this->baseDir().'/database' => base_path('database')], 'database');
         
         
         // Public Asset
-        $this->publishes([$this->baseDir.'/public' => public_path('/')], 'public');
+        $this->publishes([$this->baseDir().'/public' => public_path('/')], 'public');
     }
 
     /**
@@ -99,11 +102,11 @@ class LiveCMSServiceProvider extends ServiceProvider
         // EXTEND ROUTER
         
         $this->app['router']->group(['namespace' => 'LiveCMS\Controllers'], function ($router) {
-            require $this->baseDir.'/routebases.php';
+            require $this->baseDir().'/routebases.php';
         });
 
         $this->app['router']->group(['namespace' => 'App\Http\Controllers'], function ($router) {
-            require $this->baseDir.'/routes.php';
+            require $this->baseDir().'/routes.php';
         });
     }
 
@@ -114,6 +117,6 @@ class LiveCMSServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        require $this->baseDir.'/helpers.php';
+        require $this->baseDir().'/helpers.php';
     }
 }
