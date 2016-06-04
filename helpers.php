@@ -9,14 +9,21 @@ if (! function_exists('globalParams')) {
 
     function globalParams($key = null, $default = false)
     {
-        $params = Cache::rememberForever('global_params', function () {
-            if (!Schema::hasTable('settings')) {
-                return collect();
-            };
-     
-            return Setting::get();
-        });
-        $params = $params->groupBy('site_id')->toArray();
+        $params = [];
+        try {
+            
+            $params = Cache::rememberForever('global_params', function () {
+                if (!Schema::hasTable('settings')) {
+                    return collect();
+                };
+         
+                return Setting::get();
+            });
+            $params = $params->groupBy('site_id')->toArray();
+            
+        } catch (\Exception $e) {
+            
+        }
         
         $siteId = site()->id;
         $params = isset($params[$siteId]) ? collect($params[$siteId])->pluck('value', 'key') : [];

@@ -23,9 +23,15 @@ class Site extends Model
 
     public static function init()
     {
-        if (!Schema::hasTable('sites')) {
+        try {
+            
+            if (!Schema::hasTable('sites')) {
+                return static::setCurrent(new Site);
+            };
+
+        } catch (\Exception $e) {
             return static::setCurrent(new Site);
-        };
+        }
         
         static::$domain = $domain = rtrim(config('livecms.domain'), '/');
 
