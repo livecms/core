@@ -29,6 +29,63 @@ if (! function_exists('globalParams')) {
     }
 }
 
+if (! function_exists('getSlug')) {
+
+    function getSlug($name)
+    {
+        return globalParams('slug_'.$name, config('livecms.slugs.'.$name, $name));
+    }
+}
+
+if (! function_exists('getMenus')) {
+
+    function getMenus($prefixSlug, array $menus = [])
+    {
+        $view = '';
+        $subfolderPrefix = site()->subfolder;
+        $subfolderPrefix = $subfolderPrefix ? $subfolderPrefix.'.' : $subfolderPrefix;
+
+        foreach ($menus as $menu) {
+
+            if (is_array($uri = $menu['uri'])) {
+
+                $activeMenu = false;
+                $canReadMenu = false;
+                foreach (collect($uri)->pluck('uri')->toArray() as $uri) {
+                    $activeMenu = $activeMenu || isInCurrentRoute($subfolderPrefix.$prefixSlug.'.'.$uri.'.');
+                    $canReadMenu = $canReadMenu || canRead($subfolderPrefix.$prefixSlug.'.'.$uri.'.index');
+                }
+
+                if ($canReadMenu) {
+
+                    $view .= '<li class="'.$activeMenu ? 'active' : ''.' treeview">
+                        <a href="#"><i class="fa fa-'.$menu['icon'].'"></i> <span>'.$menu['title'].'</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">';
+
+                    foreach ($menu['uri'] as $subMenu) {
+
+                        if (canRead($menuUrl = ($menuLink = $subfolderPrefix.$prefixSlug.'.'.$subMenu['uri'].'.').'index')) {
+
+                            $view .= '<li class="'. isInCurrentRoute($menuLink) ? 'active' : ''.'"><a href="'. route($menuUrl) .'"><i class="fa fa-'.$subMenu['icon'].'"></i> <span>'.$subMenu['title'].'</span></a></li>';
+                        }
+                    }
+
+                    $view .= '</ul> ';
+                }
+
+            } else {
+                
+                if (canRead($menuUrl = ($menuLink = $subfolderPrefix.$prefixSlug.'.'.$menu['uri'].'.').'index')) {
+
+                    $view .= '<li class="'.isInCurrentRoute($menuLink) ? 'active' : ''.'"><a href="'. route($menuUrl) .'"><i class="fa fa-'.$menu['icon'].'"></i> <span>'.$menu['title'].'</span></a></li>';
+                }
+            }
+        }
+
+        return $view;
+    }
+}
+
 if (! function_exists('isInCurrentRoute')) {
 
     function isInCurrentRoute($part)
