@@ -15,37 +15,25 @@ liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) {
     // ADMIN AREA
     $router->group(['prefix' => $adminSlug, 'namespace' => 'Backend', 'middleware' => 'auth'], function ($router) {
         
-        $articleSlug            = globalParams('slug_article', config('livecms.slugs.article'));
-        $categorySlug           = globalParams('slug_category', config('livecms.slugs.category'));
-        $tagSlug                = globalParams('slug_tag', config('livecms.slugs.tag'));
-        $staticpageSlug         = globalParams('slug_staticpage', config('livecms.slugs.staticpage'));
-        $teamSlug               = globalParams('slug_team', config('livecms.slugs.team'));
-        $projectSlug            = globalParams('slug_project', config('livecms.slugs.project'));
-        $clientSlug             = globalParams('slug_client', config('livecms.slugs.client'));
-        $projectCategorySlug    = globalParams('slug_projectcategory', config('livecms.slugs.projectcategory'));
-        $gallerySlug            = globalParams('slug_gallery', config('livecms.slugs.gallery'));
-        $contactSlug            = globalParams('slug_contact', config('livecms.slugs.contact'));
-
-        $router->resource($categorySlug, 'CategoryController');
-        $router->resource($tagSlug, 'TagController');
-        $router->resource($articleSlug, 'ArticleController');
-        $router->resource($staticpageSlug, 'StaticPageController');
-        $router->resource($teamSlug, 'TeamController');
-        $router->resource($projectSlug, 'ProjectController');
-        $router->resource($projectCategorySlug, 'ProjectCategoryController');
-        $router->resource($clientSlug, 'ClientController');
-        $router->resource($gallerySlug, 'GalleryController');
-        $router->resource($contactSlug, 'ContactController');
+        $router->resource(getSlug('category'), 'CategoryController');
+        $router->resource(getSlug('tag'), 'TagController');
+        $router->resource(getSlug('article'), 'ArticleController');
+        $router->resource(getSlug('staticpage'), 'StaticPageController');
+        $router->resource(getSlug('team'), 'TeamController');
+        $router->resource(getSlug('project'), 'ProjectController');
+        $router->resource(getSlug('projectcategory'), 'ProjectCategoryController');
+        $router->resource(getSlug('client'), 'ClientController');
+        $router->resource(getSlug('gallery'), 'GalleryController');
+        $router->resource(getSlug('contact'), 'ContactController');
 
     });
 
     // PROFILE AREA
 
-    $userSlug = globalParams('slug_userhome', config('livecms.slugs.userhome'));
+    $userSlug = getSlug('userhome');
 
     $router->group(['prefix' => $userSlug, 'namespace' => 'User', 'middleware' => 'auth'], function ($router) {
-        $articleSlug = globalParams('slug_article', config('livecms.slugs.article'));
-        $router->resource($articleSlug, 'ArticleController');
+        $router->resource(getSlug('article'), 'ArticleController');
     });
 
 });

@@ -22,7 +22,7 @@ liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) {
 
     // PROFILE AREA
 
-    $userSlug = globalParams('slug_userhome', config('livecms.slugs.userhome'));
+    $userSlug = getSlug('userhome');
     $router->group(['prefix' => $userSlug, 'namespace' => 'User', 'middleware' => 'auth'], function ($router) {
 
         $router->get('/', ['as' => 'user.home', function () {
