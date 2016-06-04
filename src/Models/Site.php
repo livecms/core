@@ -87,7 +87,7 @@ class Site extends Model
 
     public static function setCurrent($current)
     {
-        static::$current = $current;
+        return static::$current = $current;
     }
 
     public function getCurrent()
