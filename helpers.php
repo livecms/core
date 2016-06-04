@@ -58,7 +58,7 @@ if (! function_exists('getMenus')) {
 
                 if ($canReadMenu) {
 
-                    $view .= '<li class="'.$activeMenu ? 'active' : ''.' treeview">
+                    $view .= '<li class="'.($activeMenu ? 'active' : '').' treeview">
                         <a href="#"><i class="fa fa-'.$menu['icon'].'"></i> <span>'.trans('livecms::livecms.'.$menu['title']).'</span> <i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">';
 
@@ -66,7 +66,7 @@ if (! function_exists('getMenus')) {
 
                         if (canRead($menuUrl = ($menuLink = $subfolderPrefix.$prefixSlug.'.'.$subMenu['uri'].'.').'index')) {
 
-                            $view .= '<li class="'. isInCurrentRoute($menuLink) ? 'active' : ''.'"><a href="'. route($menuUrl) .'"><i class="fa fa-'.$subMenu['icon'].'"></i> <span>'.trans('livecms::livecms.'.$subMenu['title']).'</span></a></li>';
+                            $view .= '<li class="'. (isInCurrentRoute($menuLink) ? 'active' : '').'"><a href="'. route($menuUrl) .'"><i class="fa fa-'.$subMenu['icon'].'"></i> <span>'.trans('livecms::livecms.'.$subMenu['title']).'</span></a></li>';
                         }
                     }
 
@@ -77,7 +77,7 @@ if (! function_exists('getMenus')) {
                 
                 if (canRead($menuUrl = ($menuLink = $subfolderPrefix.$prefixSlug.'.'.$menu['uri'].'.').'index')) {
 
-                    $view .= '<li class="'.isInCurrentRoute($menuLink) ? 'active' : ''.'"><a href="'. route($menuUrl) .'"><i class="fa fa-'.$menu['icon'].'"></i> <span>'.trans('livecms::livecms.'.$menu['title']).'</span></a></li>';
+                    $view .= '<li class="'.(isInCurrentRoute($menuLink) ? 'active' : '').'"><a href="'. route($menuUrl) .'"><i class="fa fa-'.$menu['icon'].'"></i> <span>'.trans('livecms::livecms.'.$menu['title']).'</span></a></li>';
                 }
             }
         }
