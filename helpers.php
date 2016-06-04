@@ -52,8 +52,9 @@ if (! function_exists('getMenus')) {
                 $activeMenu = false;
                 $canReadMenu = false;
                 foreach (collect($uri)->pluck('uri')->toArray() as $uri) {
-                    $activeMenu = $activeMenu || isInCurrentRoute($subfolderPrefix.$prefixSlug.'.'.$uri.'.');
-                    $canReadMenu = $canReadMenu || canRead($subfolderPrefix.$prefixSlug.'.'.$uri.'.index');
+                    $slug = getSlug($uri);
+                    $activeMenu = $activeMenu || isInCurrentRoute($subfolderPrefix.$prefixSlug.'.'.$slug.'.');
+                    $canReadMenu = $canReadMenu || canRead($subfolderPrefix.$prefixSlug.'.'.$slug.'.index');
                 }
 
                 if ($canReadMenu) {
@@ -64,7 +65,7 @@ if (! function_exists('getMenus')) {
 
                     foreach ($menu['uri'] as $subMenu) {
 
-                        if (canRead($menuUrl = ($menuLink = $subfolderPrefix.$prefixSlug.'.'.$subMenu['uri'].'.').'index')) {
+                        if (canRead($menuUrl = ($menuLink = $subfolderPrefix.$prefixSlug.'.'.getSlug($subMenu['uri']).'.').'index')) {
 
                             $view .= '<li class="'. (isInCurrentRoute($menuLink) ? 'active' : '').'"><a href="'. route($menuUrl) .'"><i class="fa fa-'.$subMenu['icon'].'"></i> <span>'.trans('livecms::livecms.'.$subMenu['title']).'</span></a></li>';
                         }
@@ -75,7 +76,7 @@ if (! function_exists('getMenus')) {
 
             } else {
                 
-                if (canRead($menuUrl = ($menuLink = $subfolderPrefix.$prefixSlug.'.'.$menu['uri'].'.').'index')) {
+                if (canRead($menuUrl = ($menuLink = $subfolderPrefix.$prefixSlug.'.'.getSlug($menu['uri']).'.').'index')) {
 
                     $view .= '<li class="'.(isInCurrentRoute($menuLink) ? 'active' : '').'"><a href="'. route($menuUrl) .'"><i class="fa fa-'.$menu['icon'].'"></i> <span>'.trans('livecms::livecms.'.$menu['title']).'</span></a></li>';
                 }
