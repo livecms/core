@@ -44,14 +44,8 @@ liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) {
     $userSlug = globalParams('slug_userhome', config('livecms.slugs.userhome'));
 
     $router->group(['prefix' => $userSlug, 'namespace' => 'User', 'middleware' => 'auth'], function ($router) {
-        $articleSlug            = globalParams('slug_article', config('livecms.slugs.article'));
+        $articleSlug = globalParams('slug_article', config('livecms.slugs.article'));
         $router->resource($articleSlug, 'ArticleController');
-    });
-
-    // FRONTEND
-    $router->group(['namespace' => 'Frontend'], function ($router) {
-        $router->get('/', ['as' => 'home', 'uses' => 'PageController@home']);
-        $router->get('{arg0?}/{arg1?}/{arg2?}/{arg3?}/{arg4?}/{arg5?}', 'PageController@routes');
     });
 
 });
