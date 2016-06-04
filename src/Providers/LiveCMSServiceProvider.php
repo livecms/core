@@ -53,8 +53,6 @@ class LiveCMSServiceProvider extends ServiceProvider
     {
         $this->bootPublish();
 
-        Site::init();
-
         // Extends Url Generator
         $url = new UrlGenerator(
             app()->make('router')->getRoutes(),
@@ -71,43 +69,51 @@ class LiveCMSServiceProvider extends ServiceProvider
             return $registrar;
         });
 
-        // DEBUG BAR
-        $routeConfig = [
-            'namespace' => 'Barryvdh\Debugbar\Controllers',
-            'prefix' => site()->getCurrent()->subfolder.'/'.$this->app['config']->get('debugbar.route_prefix'),
-        ];
+        try {
 
-        $this->app['router']->group($routeConfig, function ($router) {
-            $router->get('open', [
-                'uses' => 'OpenHandlerController@handle',
-                'as' => 'debugbar.openhandler',
-            ]);
+            Site::init();
+            // DEBUG BAR
+            $routeConfig = [
+                'namespace' => 'Barryvdh\Debugbar\Controllers',
+                'prefix' => site()->getCurrent()->subfolder.'/'.$this->app['config']->get('debugbar.route_prefix'),
+            ];
 
-            $router->get('clockwork/{id}', [
-                'uses' => 'OpenHandlerController@clockwork',
-                'as' => 'debugbar.clockwork',
-            ]);
+            $this->app['router']->group($routeConfig, function ($router) {
+                $router->get('open', [
+                    'uses' => 'OpenHandlerController@handle',
+                    'as' => 'debugbar.openhandler',
+                ]);
 
-            $router->get('assets/stylesheets', [
-                'uses' => 'AssetController@css',
-                'as' => 'debugbar.assets.css',
-            ]);
+                $router->get('clockwork/{id}', [
+                    'uses' => 'OpenHandlerController@clockwork',
+                    'as' => 'debugbar.clockwork',
+                ]);
 
-            $router->get('assets/javascript', [
-                'uses' => 'AssetController@js',
-                'as' => 'debugbar.assets.js',
-            ]);
-        });
+                $router->get('assets/stylesheets', [
+                    'uses' => 'AssetController@css',
+                    'as' => 'debugbar.assets.css',
+                ]);
 
-        // EXTEND ROUTER
-        
-        $this->app['router']->group(['namespace' => 'LiveCMS\Controllers'], function ($router) {
-            require $this->baseDir().'/routebases.php';
-        });
+                $router->get('assets/javascript', [
+                    'uses' => 'AssetController@js',
+                    'as' => 'debugbar.assets.js',
+                ]);
+            });
 
-        $this->app['router']->group(['namespace' => 'App\Http\Controllers'], function ($router) {
-            require $this->baseDir().'/routes.php';
-        });
+            // EXTEND ROUTER
+            
+            $this->app['router']->group(['namespace' => 'LiveCMS\Controllers'], function ($router) {
+                require $this->baseDir().'/routebases.php';
+            });
+
+            $this->app['router']->group(['namespace' => 'App\Http\Controllers'], function ($router) {
+                require $this->baseDir().'/routes.php';
+            });
+            
+        } catch (\Exception $e) {
+            
+        }
+
     }
 
     /**
