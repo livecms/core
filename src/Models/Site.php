@@ -92,7 +92,7 @@ class Site extends Model
 
     public function getCurrent()
     {
-        return static::$current;
+        return static::$current ?: static::init();
     }
 
     public function getHost()
