@@ -22,9 +22,9 @@ class StaticPageController extends PostableController
 
     public function index(Request $request)
     {
-        $this->title        = title_case(trans('livecms::livecms.'.$this->base));
-        $this->description  = trans('livecms::backend.alllist', ['list' => title_case(trans('livecms::livecms.'.$this->base))]);
-        $this->breadcrumb3  = trans('livecms::backend.seeall');
+        $this->title        = title_case($this->getTrans($this->base));
+        $this->description  = $this->getTrans('alllist', ['list' => title_case($this->getTrans($this->base))]);
+        $this->breadcrumb3  = $this->getTrans('seeall');
 
         if (isset($this->query['hierarchy'])) {
             $this->fields = array_except($this->fields, ['parent']);
@@ -76,7 +76,7 @@ class StaticPageController extends PostableController
                         Form::open(['style' => 'display: inline!important', 'method' => 'delete',
                             'action' => [$this->baseClass.'@destroy', $data->{$this->model->getKeyName()}]
                         ]).
-                        '  <button type="submit" onClick="return confirm(\''.trans('livecms::backend.deleteconfirmation').'\');" 
+                        '  <button type="submit" onClick="return confirm(\''.$this->getTrans('deleteconfirmation').'\');" 
                             class="btn btn-small btn-link">
                                 <i class="fa fa-xs fa-trash-o"></i> 
                                 Delete
@@ -107,7 +107,7 @@ class StaticPageController extends PostableController
             $parents = $parents->where('id', '<>', $model->id);
         }
         
-        $this->parents = [null => trans('livecms::backend.choose')] + $parents->pluck('title', 'id')->toArray();
+        $this->parents = [null => $this->getTrans('choose')] + $parents->pluck('title', 'id')->toArray();
 
         parent::loadFormClasses($model);
     }

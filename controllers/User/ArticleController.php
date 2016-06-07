@@ -10,6 +10,8 @@ use App\Models\Tag;
 
 class ArticleController extends Senior
 {
+    protected $groupName = 'user';
+
     public function __construct(Model $model, Category $category, Tag $tag, $base = 'myarticle')
     {
         parent::__construct($model, $category, $tag, $base);
@@ -19,43 +21,5 @@ class ArticleController extends Senior
 
         $this->withoutHeader = true;
         // $this->model = $this->model->setAllSites(false);
-    }
-
-    public function index(Request $request)
-    {
-        parent::index($request);
-        return view('livecms::user.myarticle.home', compact(camel_case($this->base)));
-    }
-
-    public function create(Request $request)
-    {
-        $model = $this->model;
-        ${camel_case($this->base)} = $model;
-
-        $this->title        = trans('livecms::backend.newarticle');
-        $this->action       = 'store';
-        $this->params       = array_merge($request->query() ? $request->query() : []);
-
-        $this->view->share();
-
-        $this->loadFormClasses($model);
-        return view("user.".camel_case($this->base).".form", compact(camel_case($this->base)));
-    }
-
-    public function edit(Request $request, $id)
-    {
-        $model = $this->model->findOrFail($id);
-        ${camel_case($this->base)} = $model;
-
-        $this->title        = trans('livecms::backend.editdata', ['data' => title_case(trans('livecms::livecms.'.$this->base))]);
-        $this->description  = trans('livecms::backend.editingdata', ['data' => trans('livecms::livecms.'.$this->base)]);
-        $this->breadcrumb3  = trans('livecms::backend.edit');
-        $this->action       = 'update';
-        $this->params       = array_merge($request->query() ? $request->query() : [], compact('id'));
-        
-        $this->view->share();
-        
-        $this->loadFormClasses($model);
-        return view("user.".camel_case($this->base).".form", compact(camel_case($this->base)));
     }
 }

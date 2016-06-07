@@ -70,6 +70,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
     .dark .user-label {
         background-color: #545353;
     }
+    
+    .dataTables_length {
+        display: none;
+    }
+
+    .dataTables_info {
+        display: none;
+    }
+
+    .dataTables_paginate {
+    }
+
+    .sticky-wrap {
+        overflow-x: hidden;
+    }
 
   </style>
 
