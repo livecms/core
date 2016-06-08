@@ -101,6 +101,6 @@ return array(
     |
     */
 
-    'attributes' => require(__DIR__.'/livecms.php'),
+    'attributes' => require(base_path('resources/lang/vendor/livecms/id/livecms.php')),
 
 );
