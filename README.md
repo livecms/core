@@ -125,19 +125,24 @@
         ],
     ````
 
+8. Update resources/lang/id/validation.php
+    Edit :
+    ````
+        'attributes' => require(base_path('resources/lang/vendor/livecms/id/livecms.php')),
+    ````
 
-8. Update your .env
+9. Update your .env
     add based on what your domain url:
     ````
         APP_DOMAIN=yourdomain.com
     ````
 
-9. Do Migrate
+10. Do Migrate
     ````
         php artisan migrate --seed
     ````
 
-10. Login
+11. Login
     visit : http://yourdomain/login
 
     default username / password 
