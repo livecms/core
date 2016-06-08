@@ -17,7 +17,7 @@ class BackendController extends BaseController
     protected $base;
     protected $baseClass;
 
-    protected $groupName;
+    protected $groupName = 'admin';
 
     public function __construct(Model $model, $base = 'base')
     {
@@ -37,9 +37,9 @@ class BackendController extends BaseController
         $this->view->share();
     }
 
-    public function getTrans($word)
+    protected function getTrans($word, $clues = [])
     {
-        return trans('livecms::'.($this->groupName ?: 'livecms').'.'.$word);
+        return trans('livecms::'.($this->groupName ?: 'livecms').'.'.$word, $clues);
     }
 
     public function getControllerModel()
@@ -89,7 +89,7 @@ class BackendController extends BaseController
 
         $this->view->share();
 
-        return view('livecms::'.$this->groupName.'partials.appIndex');
+        return view('livecms::'.$this->groupName.'.partials.appIndex');
     }
 
     protected function getDataFields()
@@ -158,7 +158,7 @@ class BackendController extends BaseController
 
         $this->loadFormClasses($model);
 
-        return view("livecms::'.$this->groupName.".camel_case($this->base).".form", compact(camel_case($this->base)));
+        return view('livecms::'.$this->groupName.'.'.camel_case($this->base).'.form', compact(camel_case($this->base)));
     }
 
     /**
@@ -207,7 +207,7 @@ class BackendController extends BaseController
         
         $this->loadFormClasses($model);
 
-        return view("livecms::'.$this->groupName.".camel_case($this->base).".form", compact(camel_case($this->base)));
+        return view('livecms::'.$this->groupName.'.'.camel_case($this->base).'.form', compact(camel_case($this->base)));
     }
 
     /**
