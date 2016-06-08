@@ -1,7 +1,7 @@
 @extends('livecms::backend')
 
 @section('form')
-    @include('livecms::partials.error')
+    @include('livecms::admin.partials.error')
 
     @foreach($contact->getFillable() as $attribute)
     <div class="row form-group">
@@ -18,5 +18,5 @@
 @stop
 
 @section('content')
-@include('livecms::partials.form', ['width' => '12', 'files' => true])
+@include('livecms::admin.partials.form', ['width' => '12', 'files' => true])
 @stop

@@ -1,8 +1,8 @@
 @extends('livecms::backend')
 
 @section('form')
-	@include('livecms::partials.error')
-	@include('livecms::partials.postableForm', ['model' => $project])
+	@include('livecms::admin.partials.error')
+	@include('livecms::admin.partials.postableForm', ['model' => $project])
 
 	<div class="row form-group">
 		<div class="col-md-2">
@@ -24,5 +24,5 @@
 @stop
 
 @section('content')
-@include('livecms::partials.form', ['width' => '12', 'files' => true])
+@include('livecms::admin.partials.form', ['width' => '12', 'files' => true])
 @stop

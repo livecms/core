@@ -1,5 +1,5 @@
 @section('form')
-    @include('livecms::partials.error', ['hasOnly' => 'profiles', 'passwordprivilege' => 'password'])
+    @include('livecms::user.partials.error', ['hasOnly' => 'profiles', 'passwordprivilege' => 'password'])
     
     {!!Form::hidden('profiles', true)!!}
 
@@ -64,7 +64,7 @@
 
 
 @section('form.avatars')
-    @include('livecms::partials.error', ['hasOnly' => 'avatars', 'passwordprivilege' => 'password'])
+    @include('livecms::user.partials.error', ['hasOnly' => 'avatars', 'passwordprivilege' => 'password'])
     
     {!!Form::hidden('avatars', true)!!}
 
@@ -127,7 +127,7 @@
 
 
 @section('form.credentials')
-    @include('livecms::partials.error', ['hasOnly' => 'credentials'])
+    @include('livecms::user.partials.error', ['hasOnly' => 'credentials'])
     
     {!!Form::hidden('credentials', true)!!}
 

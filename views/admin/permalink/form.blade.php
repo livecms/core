@@ -2,7 +2,7 @@
 
 @section('form')
 
-	@include('livecms::partials.error')
+	@include('livecms::admin.partials.error')
 	<div class="row form-group">
 		<div class="col-md-4">
 			{!! Form::label('permalink', url('/').'/', ['class' => 'control-label']) !!}
@@ -15,5 +15,5 @@
 @stop
 
 @section('content')
-@include('livecms::partials.form')
+@include('livecms::admin.partials.form')
 @stop

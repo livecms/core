@@ -2,7 +2,7 @@
 
 @section('form')
 	
-	@include('livecms::partials.error', ['hasOnly' => 'credentials'])
+	@include('livecms::admin.partials.error', ['hasOnly' => 'credentials'])
 
     {!!Form::hidden('credentials', true)!!}
 
@@ -44,5 +44,5 @@
 @stop
 
 @section('content')
-@include('livecms::partials.form')
+@include('livecms::admin.partials.form')
 @stop

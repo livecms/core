@@ -1,10 +1,10 @@
 @extends('livecms::backend')
 
 @section('form')
-	@include('livecms::partials.error')
-	@include('livecms::partials.postableForm', ['model' => $gallery])
+	@include('livecms::admin.partials.error')
+	@include('livecms::admin.partials.postableForm', ['model' => $gallery])
 @stop
 
 @section('content')
-@include('livecms::partials.form', ['width' => '12', 'files' => true])
+@include('livecms::admin.partials.form', ['width' => '12', 'files' => true])
 @stop

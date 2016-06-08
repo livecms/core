@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-sm-12">
-        @include('livecms::partials.error')
+        @include('livecms::user.partials.error')
     </div>
     <div class="col-lg-10 col-lg-offset-1">
     {!! Form::model($myarticle, ['method' => !isset($params['id']) ? 'post' : 'put', 'url' => action($baseClass.'@'.$action, !isset($params) ? [] : $params), 'files' => true, 'id' => $base.'form', 'class' => 'form-horizontal']) !!}
