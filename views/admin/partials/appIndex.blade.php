@@ -6,7 +6,7 @@
 	@if(isset($withoutAddButton))
 	@else
 		<p>
-		<a href="{{ action($baseClass.'@create', request()->query()) }}" class="btn btn-danger">{{trans('livecms::livecms.add')}}</a> &nbsp;<span>{{trans('livecms::livecms.clicktoadd')}} {{ trans('livecms::'.($groupName ?: 'livecms').'.$base) }}.</span>
+		<a href="{{ action($baseClass.'@create', request()->query()) }}" class="btn btn-danger">{{trans('livecms::livecms.add')}}</a> &nbsp;<span>{{trans('livecms::livecms.clicktoadd')}} {{ trans('livecms::'.($groupName ?: 'livecms').'.' .$base) }}.</span>
 		</p>
 	@endif
 	</div>
@@ -22,7 +22,7 @@
 		<table class="table datatables display responsive no-wrap">
 			<thead>
 			@foreach(array_values($fields) as $field)
-				<th>{{ trans('livecms::'.($groupName ?: 'livecms').'.strtolower($field)) }}</th>
+				<th>{{ trans('livecms::'.($groupName ?: 'livecms').'.' .strtolower($field)) }}</th>
 			@endforeach
 				<th>Menu</th>
 			</thead>
