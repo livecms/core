@@ -27,7 +27,6 @@ class LiveCMSServiceProvider extends ServiceProvider
         $this->publishes([$this->baseDir().'/lang' => base_path('resources/lang/vendor/livecms')], 'lang');
 
         // Config
-        $this->mergeConfigFrom($this->baseDir().'/config/livecms.php', 'livecms');
         $this->publishes([$this->baseDir().'/config/livecms.php' => config_path('livecms.php')], 'config');
 
         // Model
@@ -123,6 +122,8 @@ class LiveCMSServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom($this->baseDir().'/config/livecms.php', 'livecms');
+        
         require $this->baseDir().'/helpers.php';
     }
 }
