@@ -2,6 +2,11 @@
 
 return [
     
+    'image' => [
+    
+        'driver' => 'gd',
+    ],
+    
     'thumbnailer' => [
 
         // 'thumb' => '_thumb_',
