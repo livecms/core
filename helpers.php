@@ -181,14 +181,24 @@ if (! function_exists('frontendRoute')) {
 
 if (! function_exists('theme')) {
 
-    function theme($type, $location = 'template')
+    function theme($type, $location = 'template', $getPath = false)
     {
         $types = 'livecms::themes.'.config('livecms.themes.'.$type);
         $location = '.'.$location;
+        $viewPath = config('view.paths.0');
 
         if (view()->exists($view = $type.$location)) {
 
+            if ($getPath) {
+                return $viewPath.DIRECTORY_SEPARATOR.(str_replace('.', DIRECTORY_SEPARATOR, $view));
+            }
+
             return $view;
+        }
+
+        if ($getPath) {
+            $view = str_replace(['::', '.'], DIRECTORY_SEPARATOR, $types.$location);
+            return $viewPath.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.$view;
         }
 
         return $types.$location;
