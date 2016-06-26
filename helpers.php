@@ -145,11 +145,12 @@ if (! function_exists('liveCMSRouter')) {
         $host       = $site->getHost();
         $path       = $site->getPath();
         $domain     = $site->getDomain();
+        $baseUrl    = $site->getBaseUrl();
         $subDomain  = $site->subdomain;
         $subFolder  = $site->subfolder;
 
         $notFound = $site->id == null && $host != $domain;
-        $redirectToIfNotFound = '//'.$domain. '/'. ltrim($path, '/');
+        $redirectToIfNotFound = $baseUrl. '/'. ltrim($path, '/');
 
         if ($notFound) {
             $router->any($path, function () use ($redirectToIfNotFound) {

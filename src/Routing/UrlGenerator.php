@@ -18,13 +18,11 @@ class UrlGenerator extends BaseUrlGenerator
      */
     protected function getRootUrl($scheme, $root = null)
     {
-        $url = $this->request->root();
-
-        $start = Str::startsWith($url, 'http://') ? 'http://' : 'https://';
+        $url = site()->getBaseUrl().(site()->isShared() ? '/public' : '');
 
         $subfolder = ($subfolder = site()->subfolder) ? '/'.$subfolder : '';
 
-        $this->cachedRoot = $this->forcedRoot = $start. site()->getHost().$subfolder;
+        $this->cachedRoot = $this->forcedRoot = $url.$subfolder;
 
         return parent::getRootUrl($scheme, $root);
     }
@@ -41,7 +39,7 @@ class UrlGenerator extends BaseUrlGenerator
 
         $subfolder = site()->subfolder;
 
-        return Str::contains($root, site()->getDomain()) && $subfolder ? Str::replaceLast('/'.$subfolder, '', $root) : $root;
+        return Str::contains($root, site()->getBaseUrl()) && $subfolder ? Str::replaceLast('/'.$subfolder, '', $root) : $root;
     }
 
     /**

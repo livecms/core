@@ -18,6 +18,8 @@ class Site extends Model
     
     protected static $domain;
 
+    protected static $baseUrl;
+
     protected $fillable = ['site', 'subdomain', 'subfolder'];
 
 
@@ -33,16 +35,20 @@ class Site extends Model
             return static::setCurrent(new Site);
         }
         
-        static::$domain = $domain = rtrim(config('livecms.domain'), '/');
+        static::$baseUrl = $baseUrl = rtrim(config('app.url'), '/');
+        
+        static::$domain = $domain = parse_url($baseUrl, PHP_URL_HOST);
 
-        static::$host = $host = request()->server('HTTP_HOST');
+        $basePath = parse_url($baseUrl, PHP_URL_PATH);
+
+        static::$host = $host = parse_url(request()->root(), PHP_URL_HOST);
 
         if (false === strpos($host, $domain) && !request()) {
             
             throw new \Exception('Anda harus men-set konfigurasi domain '.$domain);
         }
 
-        $subdomain = rtrim(substr($host, 0, (strlen($host) - strlen($domain))), '.');
+        $subdomain = $basePath ? null : rtrim(substr($host, 0, (strlen($host) - strlen($domain))), '.');
 
         if ($subdomain) {
             
@@ -122,6 +128,16 @@ class Site extends Model
     public function getDomain()
     {
         return static::$domain;
+    }
+
+    public function getBaseUrl()
+    {
+        return static::$baseUrl;
+    }
+
+    public function isShared()
+    {
+        return env('APP_SHARED');
     }
 
     public function users()
