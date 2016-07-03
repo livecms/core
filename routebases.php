@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) {
+    $adminSlug = getSlug('admin');
 
     $router->get('coming-soon', ['as' => 'coming-soon', function () {
         return view('livecms::coming-soon');
@@ -55,5 +55,3 @@ liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) {
     $router->get('register', function () {
         return redirect()->route('user.home');
     });
-
-});

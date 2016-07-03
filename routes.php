@@ -10,8 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) {
-
+    $adminSlug = getSlug('admin');
+    
     // ADMIN AREA
     $router->group(['prefix' => $adminSlug, 'namespace' => 'Backend', 'middleware' => 'auth'], function ($router) {
         
@@ -35,5 +35,3 @@ liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) {
     $router->group(['prefix' => $userSlug, 'namespace' => 'User', 'middleware' => 'auth'], function ($router) {
         $router->resource(getSlug('article'), 'ArticleController');
     });
-
-});

@@ -19,6 +19,7 @@
         "barryvdh/laravel-debugbar": "^2.1",
         "roketid/imagemax": "dev-master",
         "livecms/support": "dev-master",
+        "mrofi/laravel-shared-hosting-package": "dev-master",
         "mrofi/videoinfo": "dev-master"
     },
     "autoload": {

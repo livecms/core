@@ -53,28 +53,28 @@ class LiveCMSServiceProvider extends ServiceProvider
         $this->bootPublish();
 
         // Extends Url Generator
-        $url = new UrlGenerator(
-            app()->make('router')->getRoutes(),
-            app()->make('request')
-        );
-     
-        $this->app->bind('url', function () use ($url) {
-            return $url;
+        $this->app->bind('url', function ($app) {
+            return new UrlGenerator(
+                $app['router']->getRoutes(),
+                $app['request']
+            );
         });
 
-        $registrar = new ResourceRegistrar($this->app['router']);
-
-        $this->app->bind('Illuminate\Routing\ResourceRegistrar', function () use ($registrar) {
-            return $registrar;
+        $this->app->bind('Illuminate\Routing\ResourceRegistrar', function ($app) {
+            return new ResourceRegistrar($app['router']);
         });
 
         try {
 
             Site::init();
+
+            $host = site()->getHost();
+            $subFolder = site()->subfolder;
+
             // DEBUG BAR
             $routeConfig = [
                 'namespace' => 'Barryvdh\Debugbar\Controllers',
-                'prefix' => site()->getCurrent()->subfolder.'/'.$this->app['config']->get('debugbar.route_prefix'),
+                'prefix' => $subFolder.'/'.$this->app['config']->get('debugbar.route_prefix'),
             ];
 
             $this->app['router']->group($routeConfig, function ($router) {
@@ -101,13 +101,19 @@ class LiveCMSServiceProvider extends ServiceProvider
 
             // EXTEND ROUTER
             
-            $this->app['router']->group(['namespace' => 'LiveCMS\Controllers'], function ($router) {
-                require $this->baseDir().'/routebases.php';
+            $this->app['router']->group([
+                'domain' => $host, 'middleware' => 'web', 'prefix' => $subFolder
+            ], function ($router) {
+
+                $this->app['router']->group(['namespace' => 'LiveCMS\Controllers'], function ($router) {
+                    require $this->baseDir().'/routebases.php';
+                });
+
+                $this->app['router']->group(['namespace' => 'App\Http\Controllers'], function ($router) {
+                    require $this->baseDir().'/routes.php';
+                });
             });
 
-            $this->app['router']->group(['namespace' => 'App\Http\Controllers'], function ($router) {
-                require $this->baseDir().'/routes.php';
-            });
             
         } catch (\Exception $e) {
             
