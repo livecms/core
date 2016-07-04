@@ -117,7 +117,9 @@ class Site extends Model
         $start = Str::startsWith(request()->root(), 'http://') ? 'http://' : 'https://';
         $subDomain = $this->subdomain ? $this->subdomain.'.' : '';
         $subFolder = $this->subfolder ? '/'.$this->subfolder : '';
-        return $start.$subDomain.$this->getDomain().$subFolder;
+        $port = request()->getPort();
+        $port = $port != 80 ? ':'.$port : $port;
+        return $start.$subDomain.$this->getDomain().$port.$subFolder;
     }
 
     public function getPath()

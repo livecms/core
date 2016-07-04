@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
             $user = Auth::guard($guard)->user();
             $site = $user->site ?: site();
             $root = $site->getRootUrl();
-            $userSlug = globalParams('slug_userhome', config('livecms.slugs.userhome'));
+            $userSlug = getSlug('userhome');
 
             $url = $root.'/'.$userSlug;
             return redirect()->away($url);

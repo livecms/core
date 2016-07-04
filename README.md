@@ -30,7 +30,7 @@
     ````
 
 4. open file config/app.php
-    Change :
+    Before :
     ````
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
@@ -38,22 +38,17 @@
         App\Providers\RouteServiceProvider::class,
     ````
 
-    with :
+    add this :
     ````
-        App\Providers\AppServiceProvider::class,
-        LiveCMS\Providers\LiveCMSServiceProvider::class,
+        Mrofi\LaravelSharedHostingPackage\LaravelSharedHostingPackageServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-
         Yajra\Datatables\DatatablesServiceProvider::class,
-        LiveCMS\Collective\Html\HtmlServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         LiveCMS\Support\Thumbnailer\ThumbnailerServiceProvider::class,
         RoketId\ImageMax\ImageMaxServiceProvider::class,
+        LiveCMS\Providers\LiveCMSServiceProvider::class,
     ````
-    Add to 'aliases'
+    and add to 'aliases'
     ````
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
         'Datatables'=> Yajra\Datatables\Datatables::class,
@@ -132,9 +127,9 @@
     ````
 
 9. Update your .env
-    add based on what your domain url:
+    update based on what your site url:
     ````
-        APP_DOMAIN=yourdomain.com
+        APP_URL=yourdomain.com
     ````
 
 10. Do Migrate

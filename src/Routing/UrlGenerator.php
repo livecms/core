@@ -2,25 +2,30 @@
 
 namespace LiveCMS\Routing;
 
+use Illuminate\Support\Str;
 use Mrofi\LaravelSharedHostingPackage\UrlGenerator as BaseUrlGenerator;
 
 class UrlGenerator extends BaseUrlGenerator
 {
     /**
-     * Get the base URL for the request.
+     * Generate an absolute URL to the given path.
      *
-     * @param  string  $scheme
-     * @param  string  $root
+     * @param  string  $path
+     * @param  mixed  $extra
+     * @param  bool|null  $secure
      * @return string
      */
-    protected function getRootUrl($scheme, $root = null)
+    public function to($path, $extra = [], $secure = null)
     {
-        if ($root == null) {
-            $root = $this->request->root();
+        // First we will check if the URL is already a valid URL. If it is we will not
+        // try to generate a new one but will simply return the URL as is, which is
+        // convenient since developers do not always have to check if it's valid.
+        if ($this->isValidUrl($path)) {
+            return $path;
         }
 
-        $root = trim($root, '/').'/'.site()->subfolder;
-
-        return parent::getRootUrl($scheme, $root);
+        $subfolder = site()->subfolder;
+        $path = $subfolder ? $subfolder.'/'.Str::replaceFirst('/'.$subfolder.'/', '', $path) : $path;
+        return parent::to($path, $extra, $secure);
     }
 }
