@@ -77,9 +77,9 @@
     <div class="col-md-8">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#profiles" data-toggle="tab">{{trans('livecms::backend.changeprofile')}}</a></li>
-          <li><a href="#avatars" data-toggle="tab">{{trans('livecms::backend.changeavatar')}}</a></li>
-          <li><a href="#credentials" data-toggle="tab">{{trans('livecms::backend.changecredential')}}</a></li>
+          <li class="active"><a href="#profiles" data-toggle="tab">{{trans('livecms::livecms.changeprofile')}}</a></li>
+          <li><a href="#avatars" data-toggle="tab">{{trans('livecms::livecms.changeavatar')}}</a></li>
+          <li><a href="#credentials" data-toggle="tab">{{trans('livecms::livecms.changecredential')}}</a></li>
         </ul>
         <div class="tab-content">
 

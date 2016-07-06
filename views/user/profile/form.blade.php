@@ -84,7 +84,7 @@
             <div class="row">
                 <div class="col-sm-12">
                 @if ($avatar = $profile->avatar)
-                    <strong>{{trans('livecms::backend.ifwanttochangeavatar')}}</strong>
+                    <strong>{{trans('livecms::livecms.ifwanttochangeavatar')}}</strong>
                 @endif
                     {!! Form::file('avatar', null, ['class' => 'form-control']) !!}
                 </div>
@@ -110,7 +110,7 @@
             <div class="row">
                 <div class="col-sm-12">
                 @if ($background = $profile->background)
-                    <strong>{{trans('livecms::backend.ifwanttochangebackground')}}</strong>
+                    <strong>{{trans('livecms::livecms.ifwanttochangebackground')}}</strong>
                 @endif
                     {!! Form::file('background', null, ['class' => 'form-control']) !!}
                 </div>

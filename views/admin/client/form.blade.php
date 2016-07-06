@@ -67,7 +67,7 @@
             <div class="row">
                 <div class="col-sm-12">
                 @if ($picture = $client->picture)
-                    <strong>{{trans('livecms::backend.ifwanttochangepicture')}}</strong>
+                    <strong>{{trans('livecms::livecms.ifwanttochangepicture')}}</strong>
                 @endif
                     {!! Form::file('picture', null, ['class' => 'form-control']) !!}
                 </div>

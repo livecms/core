@@ -35,7 +35,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h5>
-				{{trans('livecms::backend.administrators')}}
+				{{trans('livecms::livecms.administrators')}}
 			</h5>
 		</div>
 	</div>

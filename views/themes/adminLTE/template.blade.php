@@ -479,7 +479,7 @@ desired effect
 
       swal.withFormAsync({
         title: title,
-        text: '{{trans('livecms::backend.needyourpasswordtocontinue')}}',
+        text: '{{trans('livecms::livecms.needyourpasswordtocontinue')}}',
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
         confirmButtonText: button,

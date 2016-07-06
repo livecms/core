@@ -18,7 +18,7 @@
 			{!! Form::label('client', 'Client', ['class' => 'control-label']) !!}
 		</div>
 		<div class="col-md-10">
-			{!! Form::select('client', [null => trans('livecms::backend.choose')] + $client, $project->client_id, ['class' => 'form-control']) !!}
+			{!! Form::select('client', [null => trans('livecms::livecms.choose')] + $client, $project->client_id, ['class' => 'form-control']) !!}
 		</div>
 	</div>
 @stop

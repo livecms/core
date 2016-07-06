@@ -8,7 +8,7 @@ $passwordprivilege = isset($passwordprivilege) ? $passwordprivilege : 'passwordp
 @if($errors->any() && ( !isset($hasOnly) ?: old($hasOnly)))
 <div id="form-alert" class="alert alert-warning" @if (isset($hasOnly)) data-errors="{{$hasOnly}}"  @endif>
     @if ($errors->count() === 1 && $errors->first($passwordprivilege))
-    <h4>{{trans('livecms::backend.needyourpasswordtocontinue')}}</h4>
+    <h4>{{trans('livecms::livecms.needyourpasswordtocontinue')}}</h4>
     <div class="row form-group">
         <div class="col-md-3">
             {!! Form::label($passwordprivilege, trans('livecms::livecms.'.$passwordprivilege), ['class' => 'control-label']) !!}
