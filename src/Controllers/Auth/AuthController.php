@@ -95,7 +95,7 @@ class AuthController extends Controller
     {
         if ($user->is_banned) {
             $this->logout();
-            alert()->error(trans('livecms::backend.userisbanned'), trans('livecms::backend.loginfailed'));
+            alert()->error(trans('livecms::livecms.userisbanned'), trans('livecms::livecms.loginfailed'));
             return redirect()->back();
         }
         

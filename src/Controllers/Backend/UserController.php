@@ -49,12 +49,12 @@ class UserController extends BackendController
                     ($data->is_banned ? '<span class="text-red" title="User is banned"> <i class="fa fa-xs fa-pencil"></i> Edit</span>' : ' <i class="fa fa-xs fa-pencil"></i> Edit').
             '</a> '.
             (!$data->is_banned ?
-            '<a data-method="delete" data-title="'.trans('livecms::backend.wanttobanuser').'"
+            '<a data-method="delete" data-title="'.trans('livecms::livecms.wanttobanuser').'"
                 data-action="'.action($this->baseClass.'@destroy', [$data->{$this->model->getKeyName()}]).'"
                 class="btn btn-small btn-link btn-need-auth">
                 <i class="fa fa-xs fa-ban"></i>'.trans('livecms::livecms.ban').'
             </a>' :
-            '<a data-method="put" data-title="'.trans('livecms::backend.wanttounbanuser').'"
+            '<a data-method="put" data-title="'.trans('livecms::livecms.wanttounbanuser').'"
                 data-action="'.action($this->baseClass.'@update', [$data->{$this->model->getKeyName()}]).'"
                 class="btn btn-small text-red btn-link btn-need-auth"
                 data-hidden=\''.json_encode(['credentials' => 'true', 'unban' => 'true']).'\'>
