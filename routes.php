@@ -10,8 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-    $adminSlug = getSlug('admin');
-    
+
     // ADMIN AREA
     $router->group(['prefix' => $adminSlug, 'namespace' => 'Backend', 'middleware' => 'auth'], function ($router) {
         

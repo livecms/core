@@ -10,7 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-    $adminSlug = getSlug('admin');
 
     $router->get('coming-soon', ['as' => 'coming-soon', function () {
         return view('livecms::coming-soon');

@@ -40,7 +40,7 @@ if (! function_exists('getSlug')) {
 
     function getSlug($name)
     {
-        return globalParams('slug_'.$name, config('livecms.slugs.'.$name, $name));
+        return globalParams('slug_'.$name, config('livecms.routing.slugs.'.$name, $name));
     }
 }
 

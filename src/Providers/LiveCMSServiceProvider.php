@@ -4,7 +4,6 @@ namespace LiveCMS\Providers;
 
 use App;
 use Illuminate\Support\ServiceProvider;
-// use Illuminate\Routing\Redirector;
 use LiveCMS\Routing\Redirector;
 use LiveCMS\Routing\ResourceRegistrar;
 use LiveCMS\Routing\UrlGenerator;
@@ -104,11 +103,11 @@ class LiveCMSServiceProvider extends ServiceProvider
                 });
 
                 // EXTEND ROUTER
-                $router->group(['namespace' => 'LiveCMS\Controllers'], function ($router) {
+                $router->group(['namespace' => 'LiveCMS\Controllers'], function ($router) use ($adminSlug, $subDomain, $subFolder) {
                     require $this->baseDir().'/routebases.php';
                 });
 
-                $router->group(['namespace' => 'App\Http\Controllers'], function ($router) {
+                $router->group(['namespace' => $config->get('livecms.routing.namespace')], function ($router) use ($adminSlug, $subDomain, $subFolder) {
                     require $this->baseDir().'/routes.php';
                 });
             });
@@ -116,8 +115,7 @@ class LiveCMSServiceProvider extends ServiceProvider
             
             
         } catch (\Exception $e) {
-            
-            throw new Exception('Error in LiveCMSServiceProvider');
+            throw new \Exception('Error in LiveCMSServiceProvider : '.$e->getMessage());
         }
 
     }
