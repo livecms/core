@@ -199,7 +199,7 @@ desired effect
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="{{ route((site()->subfolder ? site()->subfolder.'.' : '').globalParams('slug_userhome', config('livecms.slugs.userhome')).'.'.globalParams('slug_profile', config('livecms.slugs.profile')).'.index') }}" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ route((site()->subfolder ? site()->subfolder.'.' : '').getSlug('userhome').'.'.getSlug('profile').'.index') }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{ url('logout') }}" class="btn btn-default btn-flat">Sign out</a>
