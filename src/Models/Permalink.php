@@ -21,7 +21,7 @@ class Permalink extends BaseModel
         request()->merge(compact('permalink'));
 
         return [
-            'permalink' => 'required|unique:'.$this->getTable().',permalink'.(($this->id != null) ? ','.$this->id : ''),
+            'permalink' => 'required|unique:'.$this->getTable().',permalink'.(($this->id != null) ? ','.$this->id : ',NULL').','.$this->getKeyName().',site_id,'.$this->site_id,
         ];
     }
 
