@@ -5,7 +5,7 @@
         ================================================== -->
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="icon" type="image/png" href="/frontend/timer/images/favicon.png">
+        <link rel="icon" type="image/png" href="{{asset('frontend/timer/images/favicon.png')}}">
         <title>{{ $title or 'Judul' }} | {{ globalParams('site_name') }}</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -18,21 +18,21 @@
         <!-- Template CSS Files
         ================================================== -->
         <!-- Twitter Bootstrs CSS -->
-        <link rel="stylesheet" href="/frontend/timer/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{asset('frontend/timer/css/bootstrap.min.css')}}">
         <!-- Ionicons Fonts Css -->
-        <link rel="stylesheet" href="/frontend/timer/css/ionicons.min.css">
+        <link rel="stylesheet" href="{{asset('frontend/timer/css/ionicons.min.css')}}">
         <!-- animate css -->
-        <link rel="stylesheet" href="/frontend/timer/css/animate.css">
+        <link rel="stylesheet" href="{{asset('frontend/timer/css/animate.css')}}">
         <!-- Hero area slider css-->
-        <link rel="stylesheet" href="/frontend/timer/css/slider.css">
+        <link rel="stylesheet" href="{{asset('frontend/timer/css/slider.css')}}">
         <!-- owl craousel css -->
-        <link rel="stylesheet" href="/frontend/timer/css/owl.carousel.css">
-        <link rel="stylesheet" href="/frontend/timer/css/owl.theme.css">
-        <link rel="stylesheet" href="/frontend/timer/css/jquery.fancybox.css">
+        <link rel="stylesheet" href="{{asset('frontend/timer/css/owl.carousel.css')}}">
+        <link rel="stylesheet" href="{{asset('frontend/timer/css/owl.theme.css')}}">
+        <link rel="stylesheet" href="{{asset('frontend/timer/css/jquery.fancybox.css')}}">
         <!-- template main css file -->
-        <link rel="stylesheet" href="/frontend/timer/css/main.css">
+        <link rel="stylesheet" href="{{asset('frontend/timer/css/main.css')}}">
         <!-- responsive css -->
-        <link rel="stylesheet" href="/frontend/timer/css/responsive.css">
+        <link rel="stylesheet" href="{{asset('frontend/timer/css/responsive.css')}}">
         
     </head>
     <body>
@@ -55,7 +55,7 @@
                     <!-- logo -->
                     <div class="navbar-brand">
                         <a href="{{url('/')}}" >
-                            <h2 class="logo">Live CMS</h2>
+                            <h2 class="logo">{{ globalParams('site_name') }}</h2>
                             <!-- <img src="/frontend/timer/images/logo.png" alt=""> -->
                         </a>
                     </div>
@@ -130,22 +130,22 @@
                     <!-- Social Media -->
                     <ul class="social">
                         <li>
-                            <a href="/frontend/timer/http://wwww.fb.com/themefisher" class="Facebook">
+                            <a href="http://wwww.fb.com/themefisher" class="Facebook">
                                 <i class="ion-social-facebook"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="/frontend/timer/http://wwww.twitter.com/themefisher" class="Twitter">
+                            <a href="http://wwww.twitter.com/themefisher" class="Twitter">
                                 <i class="ion-social-twitter"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="/frontend/timer/#" class="Linkedin">
+                            <a href="#" class="Linkedin">
                                 <i class="ion-social-linkedin"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="/frontend/timer/http://wwww.fb.com/themefisher" class="Google Plus">
+                            <a href="http://wwww.fb.com/themefisher" class="Google Plus">
                                 <i class="ion-social-googleplus"></i>
                             </a>
                         </li>
@@ -157,23 +157,23 @@
          <!-- Template Javascript Files
         ================================================== -->
         <!-- modernizr js -->
-        <script src="/frontend/timer/js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="{{asset('frontend/timer/js/vendor/modernizr-2.6.2.min.js')}}"></script>
         <!-- jquery -->
-        <script src="/frontend/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+        <script src="{{asset('frontend/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
         <!-- owl carouserl js -->
-        <script src="/frontend/timer/js/owl.carousel.min.js"></script>
+        <script src="{{asset('frontend/timer/js/owl.carousel.min.js')}}"></script>
         <!-- bootstrap js -->
 
-        <script src="/frontend/timer/js/bootstrap.min.js"></script>
+        <script src="{{asset('frontend/timer/js/bootstrap.min.js')}}"></script>
         <!-- wow js -->
-        <script src="/frontend/timer/js/wow.min.js"></script>
+        <script src="{{asset('frontend/timer/js/wow.min.js')}}"></script>
         <!-- slider js -->
-        <script src="/frontend/timer/js/slider.js"></script>
-        <script src="/frontend/timer/js/jquery.fancybox.js"></script>
+        <script src="{{asset('frontend/timer/js/slider.js')}}"></script>
+        <script src="{{asset('frontend/timer/js/jquery.fancybox.js')}}"></script>
         <!-- template main js -->
-        <script src="/frontend/timer/js/main.js"></script>
+        <script src="{{asset('frontend/timer/js/main.js')}}"></script>
         <!-- jscroll js -->
-        <script src="/frontend/plugins/jscroll-2.3.4/jquery.jscroll.min.js"></script>
+        <script src="{{asset('frontend/plugins/jscroll-2.3.4/jquery.jscroll.min.js')}}"></script>
 
         @yield('script')
     
