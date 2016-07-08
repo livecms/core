@@ -125,6 +125,6 @@ abstract class PostableController extends BackendController
             }
         }
 
-        return $this->model;
+        return parent::afterSaving($request);
     }
 }
