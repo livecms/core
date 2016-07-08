@@ -86,15 +86,11 @@ class ProfileController extends UserController
             }
         }
 
-        if ($request->has('credentials')) {
+        $successMessage = ucfirst(trans('livecms::livecms.updatesuccessmessage', [
+            'model' => trans('livecms::livecms.'.($request->has('credentials') ? 'credential' : 'profile'))
+        ]));
 
-            alert()->success(trans('livecms::livecms.updatecredentialsuccess'), trans('livecms::livecms.updatesuccess'));
-
-        } else {
-
-            alert()->success(trans('livecms::livecms.updateprofilesuccess'), trans('livecms::livecms.updatesuccess'));
-        }
-
+        alert()->success($successMessage, trans('livecms::livecms.updatesuccess'));
 
         return $this->model;
     }

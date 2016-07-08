@@ -64,6 +64,13 @@ class BackendController extends BaseController
 
     protected function afterSaving($request)
     {
+        $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 2);
+        $action = $trace[1]['function'];
+
+        $title = ucfirst(trans('livecms::livecms.'.$action.'success'));
+        $message = ucfirst(trans('livecms::livecms.'.$action.'successmessage', ['model' => trans('livecms::livecms.'.$this->base)]));
+        alert()->success($message, $title);
+
         return $this->model;
     }
 
@@ -249,6 +256,10 @@ class BackendController extends BaseController
         $this->model = $this->model->findOrFail($id);
 
         $deleted = $this->model->delete();
+
+        $title = ucfirst(trans('livecms::livecms.destroysuccess'));
+        $message = ucfirst(trans('livecms::livecms.destroysuccessmessage', ['model' => trans('livecms::livecms.'.$this->base)]));
+        alert()->success($message, $title);
 
         if ($deleted) {
             return $this->redirection();
