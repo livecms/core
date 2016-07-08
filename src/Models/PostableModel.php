@@ -78,7 +78,7 @@ class PostableModel extends BaseModel
             return url($this->prefixSlug.'/'.$this->slug);
         }
 
-        return url($this->prefixSlug);
+        return url($this->prefixSlug ?: '/');
     }
 
     public function getPicturePath()
