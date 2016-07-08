@@ -207,7 +207,7 @@ desired effect
               </li>
             </ul>
           </li>
-          <li><a href="{{ url('/logout') }}"><i class="fa fa-lock"></i> <span class="hidden-sm">Logout</span></a></li>
+          <li><a href="{{ url('logout') }}"><i class="fa fa-lock"></i> <span class="hidden-sm">Logout</span></a></li>
         </ul>
       </div>
     </nav>
