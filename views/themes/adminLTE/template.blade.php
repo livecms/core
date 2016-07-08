@@ -13,33 +13,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- CSRF -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Bootstrap 3.3.5 -->
-  <link rel="stylesheet" href="/backend/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{asset('backend/bootstrap/css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/backend/plugins/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{asset('backend/plugins/font-awesome/4.4.0/css/font-awesome.min.css')}}">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="/backend/plugins/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="{{asset('backend/plugins/ionicons/2.0.1/css/ionicons.min.css')}}">
   <!-- Select2 -->
-  <link rel="stylesheet" href="/backend/plugins/select2/select2.min.css">
-  <link rel="stylesheet" href="/backend/plugins/select2/select2-bootstrap.min.css">
+  <link rel="stylesheet" href="{{asset('backend/plugins/select2/select2.min.css')}}">
+  <link rel="stylesheet" href="{{asset('backend/plugins/select2/select2-bootstrap.min.css')}}">
   <!-- Datepicker -->
-  <link rel="stylesheet" href="/backend/plugins/datepicker/datepicker3.css">
+  <link rel="stylesheet" href="{{asset('backend/plugins/datepicker/datepicker3.css')}}">
   <!-- datatables -->
-  <link rel="stylesheet" href="/backend/plugins/datatables/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap.css')}}">
   <!-- I Check -->
-  <link rel="stylesheet" href="/backend/plugins/iCheck/square/blue.css">
+  <link rel="stylesheet" href="{{asset('backend/plugins/iCheck/square/blue.css')}}">
   <!-- Styky Table Header -->
-  <link rel="stylesheet" href="/backend/plugins/sticky-table-headers/css/component.css">
+  <link rel="stylesheet" href="{{asset('backend/plugins/sticky-table-headers/css/component.css')}}">
   <!-- SweetAlert -->
-  <link rel="stylesheet" href="/backend/plugins/sweetalert/sweetalert.css">
+  <link rel="stylesheet" href="{{asset('backend/plugins/sweetalert/sweetalert.css')}}">
   <!-- SweetAlert Forms -->
-  <link rel="stylesheet" href="/backend/plugins/swal-forms/swal-forms.css">
+  <link rel="stylesheet" href="{{asset('backend/plugins/swal-forms/swal-forms.css')}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="/backend/dist/css/AdminLTE.dark.min.css">
+  <link rel="stylesheet" href="{{asset('backend/dist/css/AdminLTE.dark.min.css')}}">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect.
   -->
-  <link rel="stylesheet" href="/backend/dist/css/skins/skin-dark.min.css">
+  <link rel="stylesheet" href="{{asset('backend/dist/css/skins/skin-dark.min.css')}}">
 
   <style type="text/css">
     .user-label {
@@ -290,35 +290,35 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 2.1.4 -->
-<script src="/backend/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="{{asset('backend/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
 <!-- Bootstrap 3.3.5 -->
-<script src="/backend/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{asset('backend/bootstrap/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="/backend/dist/js/app.min.js"></script>
+<script src="{{asset('backend/dist/js/app.min.js')}}"></script>
 <!-- date js -->
-<script src="/backend/plugins/datejs/date.js"></script>
+<script src="{{asset('backend/plugins/datejs/date.js')}}"></script>
 <!-- date-range-picker -->
-<script src="/backend/plugins/datepicker/bootstrap-datepicker.js"></script>
-<script src="/backend/plugins/datepicker/locales/bootstrap-datepicker.id.js" charset="UTF-8"></script>
+<script src="{{asset('backend/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+<script src="{{asset('backend/plugins/datepicker/locales/bootstrap-datepicker.id.js')}}" charset="UTF-8"></script>
 <!-- DataTables -->
-<script src="/backend/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="/backend/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="{{asset('backend/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('backend/plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
 <!-- Bootstrap Typeahead -->
-<script src="/backend/plugins/bootstrap-typeahead/bootstrap3-typeahead.min.js"></script>
+<script src="{{asset('backend/plugins/bootstrap-typeahead/bootstrap3-typeahead.min.js')}}"></script>
 <!-- Select2 -->
-<script src="/backend/plugins/select2/select2.full.min.js"></script>
+<script src="{{asset('backend/plugins/select2/select2.full.min.js')}}"></script>
 <!-- autonumeric -->
-<script src="/backend/plugins/autoNumeric/autoNumeric-min.js"></script>
+<script src="{{asset('backend/plugins/autoNumeric/autoNumeric-min.js')}}"></script>
 <!-- TinyMCE -->
-<script src="/backend/plugins/tinymce/js/tinymce/tinymce.min.js"></script>
+<script src="{{asset('backend/plugins/tinymce/js/tinymce/tinymce.min.js')}}"></script>
 <!-- Sweet Alert -->
-<script src="/backend/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="{{asset('backend/plugins/sweetalert/sweetalert.min.js')}}"></script>
 <!-- Sweet Alert Form -->
-<script src="/backend/plugins/swal-forms/swal-forms.js"></script>
+<script src="{{asset('backend/plugins/swal-forms/swal-forms.js')}}"></script>
 <!-- Sticky Table Header -->
-<script src="/backend/plugins/sticky-table-headers/js/jquery.stickyheader.js"></script>
+<script src="{{asset('backend/plugins/sticky-table-headers/js/jquery.stickyheader.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="/backend/dist/js/demo.js"></script>
+<script src="{{asset('backend/dist/js/demo.js')}}"></script>
 
 
 <script>
