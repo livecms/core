@@ -128,7 +128,7 @@ class PageController extends FrontendController
         $parameters = func_get_args();
 
         // get static
-        $statisSlug = globalParams('slug_staticpage', config('livecms.slugs.staticpage'));
+        $statisSlug = getSlug('staticpage');
 
         if ($parameters[0] == $statisSlug) {
             view()->share('routeBy', 'static');
@@ -156,7 +156,7 @@ class PageController extends FrontendController
         }
 
         // get article
-        $articleSlug = globalParams('slug_article', config('livecms.slugs.article'));
+        $articleSlug = getSlug('article');
 
         if ($parameters[0] == $articleSlug) {
             view()->share('routeBy', 'article');
@@ -165,7 +165,7 @@ class PageController extends FrontendController
         }
 
         // get gallery
-        $gallerySlug = globalParams('slug_gallery', config('livecms.slugs.gallery'));
+        $gallerySlug = getSlug('gallery');
 
         if ($parameters[0] == $gallerySlug) {
             view()->share('routeBy', 'gallery');

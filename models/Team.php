@@ -20,7 +20,7 @@ class Team extends PostableModel
     {
         parent::__construct($attributes);
      
-        $this->prefixSlug = globalParams('slug_team', config('livecms.slugs.team'));
+        $this->prefixSlug = getSlug('team');
     }
 
     public function rules()

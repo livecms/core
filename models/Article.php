@@ -19,7 +19,7 @@ class Article extends PostableModel
     {
         parent::__construct($attributes);
      
-        $this->prefixSlug = globalParams('slug_article', config('livecms.slugs.article'));
+        $this->prefixSlug = getSlug('article');
     }
 
     public function author()

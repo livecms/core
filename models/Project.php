@@ -22,7 +22,7 @@ class Project extends PostableModel
     {
         parent::__construct($attributes);
      
-        $this->prefixSlug = globalParams('slug_project', config('livecms.slugs.project'));
+        $this->prefixSlug = getSlug('project');
     }
 
     public function rules()

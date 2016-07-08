@@ -18,7 +18,7 @@ class Gallery extends PostableModel
     {
         parent::__construct($attributes);
      
-        $this->prefixSlug = globalParams('slug_gallery', config('livecms.slugs.gallery'));
+        $this->prefixSlug = getSlug('gallery');
     }
 
     public function rules()

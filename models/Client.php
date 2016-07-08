@@ -22,7 +22,7 @@ class Client extends PostableModel
     {
         parent::__construct($attributes);
      
-        $this->prefixSlug = globalParams('slug_client', config('livecms.slugs.client'));
+        $this->prefixSlug = getSlug('client');
     }
 
     public function rules()

@@ -43,7 +43,7 @@
       <div class="container">
         <div class="navbar-header">
           <!-- Logo -->
-          <a href="{{url(globalParams('slug_admin', config('livecms.slugs.admin')))}}" class="navbar-brand">
+          <a href="{{url(getSlug('admin'))}}" class="navbar-brand">
             {{ globalParams('site_name', 'Live CMS') }}
           </a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -116,7 +116,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="{{ route((site()->subfolder ? site()->subfolder.'.' : '').globalParams('slug_userhome', config('livecms.slugs.userhome')).'.'.globalParams('slug_profile', config('livecms.slugs.profile')).'.index') }}" class="btn btn-default btn-flat">Profile</a>
+                    <a href="{{ route((site()->subfolder ? site()->subfolder.'.' : '').getSlug('userhome').'.'.getSlug('profile').'.index') }}" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
                     <a href="{{ url('logout') }}" class="btn btn-default btn-flat">Sign out</a>
@@ -124,7 +124,7 @@
                 </li>
               </ul>
             </li>
-            <li><a href="{{ url('/logout') }}"><i class="fa fa-lock"></i> <span class="hidden-sm">Logout</span></a></li>
+            <li><a href="{{ url('logout') }}"><i class="fa fa-lock"></i> <span class="hidden-sm">Logout</span></a></li>
           </ul>
         </div>
       </div>

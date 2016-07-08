@@ -51,7 +51,7 @@ class AuthController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
 
-        $userSlug = globalParams('slug_userhome', config('livecms.slugs.userhome'));
+        $userSlug = getSlug('userhome');
         $this->redirectTo = '/'.$userSlug;
     }
 
