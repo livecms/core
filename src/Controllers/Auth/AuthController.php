@@ -52,7 +52,7 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
 
         $userSlug = getSlug('userhome');
-        $this->redirectTo = '/'.$userSlug;
+        $this->redirectTo = $userSlug;
     }
 
     /**

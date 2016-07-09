@@ -118,7 +118,7 @@ class Site extends Model
         $subDomain = $this->subdomain ? $this->subdomain.'.' : '';
         $subFolder = $this->subfolder ? '/'.$this->subfolder : '';
         $port = request()->getPort();
-        $port = $port != 80 ? ':'.$port : $port;
+        $port = $port != 80 ? ':'.$port : '';
         return $start.$subDomain.$this->getDomain().$port.$subFolder;
     }
 
