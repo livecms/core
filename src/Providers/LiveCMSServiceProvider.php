@@ -75,33 +75,6 @@ class LiveCMSServiceProvider extends ServiceProvider
 
             liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) use ($config) {
 
-                $routeConfig = [
-                    'namespace' => 'Barryvdh\Debugbar\Controllers',
-                    'prefix' => $config->get('debugbar.route_prefix'),
-                ];
-
-                $router->group($routeConfig, function ($router) {
-                    $router->get('open', [
-                        'uses' => 'OpenHandlerController@handle',
-                        'as' => 'debugbar.openhandler',
-                    ]);
-
-                    $router->get('clockwork/{id}', [
-                        'uses' => 'OpenHandlerController@clockwork',
-                        'as' => 'debugbar.clockwork',
-                    ]);
-
-                    $router->get('assets/stylesheets', [
-                        'uses' => 'AssetController@css',
-                        'as' => 'debugbar.assets.css',
-                    ]);
-
-                    $router->get('assets/javascript', [
-                        'uses' => 'AssetController@js',
-                        'as' => 'debugbar.assets.js',
-                    ]);
-                });
-
                 // EXTEND ROUTER
                 $router->group(['namespace' => 'LiveCMS\Controllers'], function ($router) use ($adminSlug, $subDomain, $subFolder) {
                     require $this->baseDir().'/routebases.php';
