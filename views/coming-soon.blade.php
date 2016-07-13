@@ -11,16 +11,16 @@
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
 
     <!-- Bootstrap  -->
-    <link href="/frontend/coming-soon/parallax/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('frontend/coming-soon/parallax/assets/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- icon fonts font Awesome -->
-    <link href="/frontend/coming-soon/parallax/assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{asset('frontend/coming-soon/parallax/assets/css/font-awesome.min.css')}}" rel="stylesheet">
 
     <!-- Custom Styles -->
-    <link href="/frontend/coming-soon/parallax/assets/css/style.css" rel="stylesheet">
+    <link href="{{asset('frontend/coming-soon/parallax/assets/css/style.css')}}" rel="stylesheet">
 
     <!--[if lt IE 9]>
-    <script src="/frontend/coming-soon/parallax/assets/js/html5shiv.js"></script>
+    <script src="{{asset('frontend/coming-soon/parallax/assets/js/html5shiv.js')}}"></script>
     <![endif]-->
 
 </head>
@@ -69,7 +69,7 @@
     
 
     <!-- Page Top Section -->
-    <section id="page-top" class="section-style parallax-bg" data-background-image="/frontend/coming-soon/parallax/images/background/page-top.jpg">
+    <section id="page-top" class="section-style parallax-bg" data-background-image="{{asset('frontend/coming-soon/parallax/images/background/page-top.jpg')}}">
         <div class="pattern height-resize">
             <div class="container">
                 <h1 class="site-title">
@@ -153,7 +153,7 @@
 
 
     <!-- About Us Section -->
-    <section id="about" class="section-style no-parallax-bg" data-background-image="/frontend/coming-soon/parallax/images/background/about-us.jpg">
+    <section id="about" class="section-style no-parallax-bg" data-background-image="{{asset('frontend/coming-soon/parallax/images/background/about-us.jpg')}}">
         <div class="pattern height-resize"> 
             <div class="container">
                 <h3 class="section-name">
@@ -182,7 +182,7 @@
 
 
     <!-- Subscribe Section -->
-    <section id="subscribe" class="section-style parallax-bg" data-background-image="/frontend/coming-soon/parallax/images/background/newsletter.jpg">
+    <section id="subscribe" class="section-style parallax-bg" data-background-image="{{asset('frontend/coming-soon/parallax/images/background/newsletter.jpg')}}">
         <div class="pattern height-resize">
             <div class="container">
                 <h3 class="section-name">
@@ -197,7 +197,7 @@
                     Join and get first access. 
                 </p><!-- /.section-description -->
 
-                <form class="news-letter" action="/frontend/coming-soon/parallax/php/subscribe.php" method="post">
+                <form class="news-letter" action="{{asset('frontend/coming-soon/parallax/php/subscribe.php')}}" method="post">
                     <div class="subscribe-hide">
                         <input class="form-control" type="email" id="subscribe-email" name="subscribe-email" placeholder="Email Address"  required>
                         <button  type="submit" id="subscribe-submit" class="btn"><i class="fa fa-envelope"></i></button>
@@ -247,7 +247,7 @@
 
 
         <!-- Contact Section -->
-        <section id="contact" class="section-style no-parallax-bg" data-background-image="/frontend/coming-soon/parallax/images/background/contact.jpg">
+        <section id="contact" class="section-style no-parallax-bg" data-background-image="{{asset('frontend/coming-soon/parallax/images/background/contact.jpg')}}">
             <div class="pattern height-resize">
                 <div class="container">
                     <h3 class="section-name">
@@ -262,7 +262,7 @@
                         Drop your comment.
                     </p><!-- /.section-description -->
 
-                    <form id="contact-form" action="/frontend/coming-soon/parallax/email.php" method="post" class="clearfix">
+                    <form id="contact-form" action="{{asset('frontend/coming-soon/parallax/email.php')}}" method="post" class="clearfix">
                         <div class="contact-box-hide">
                             <div class="col-sm-6">
                                 <input type="text"  class="form-control" id="first_name" name="first_name" required placeholder="First Name">
@@ -317,17 +317,17 @@
         <!-- Footer Section End -->
 
         <!-- jQuery Library -->
-        <script type="text/javascript" src="/frontend/coming-soon/parallax/assets/js/jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="{{asset('frontend/coming-soon/parallax/assets/js/jquery-2.1.0.min.js')}}"></script>
         <!-- Modernizr js -->
-        <script type="text/javascript" src="/frontend/coming-soon/parallax/assets/js/modernizr-2.8.0.min.js"></script>
+        <script type="text/javascript" src="{{asset('frontend/coming-soon/parallax/assets/js/modernizr-2.8.0.min.js')}}"></script>
         <!-- Plugins -->
-        <script type="text/javascript" src="/frontend/coming-soon/parallax/assets/js/plugins.js"></script>
+        <script type="text/javascript" src="{{asset('frontend/coming-soon/parallax/assets/js/plugins.js')}}"></script>
         <!-- Custom JavaScript Functions -->
-        <script type="text/javascript" src="/frontend/coming-soon/parallax/assets/js/functions.js"></script>
+        <script type="text/javascript" src="{{asset('frontend/coming-soon/parallax/assets/js/functions.js')}}"></script>
         <!-- jquery.parallax.js -->
-        <script type="text/javascript" src="/frontend/coming-soon/parallax/assets/js/jquery.parallax.js"></script>
+        <script type="text/javascript" src="{{asset('frontend/coming-soon/parallax/assets/js/jquery.parallax.js')}}"></script>
         <!-- Custom JavaScript Functions -->
-        <script type="text/javascript" src="/frontend/coming-soon/parallax/assets/js/jquery.ajaxchimp.min.js"></script>
+        <script type="text/javascript" src="{{asset('frontend/coming-soon/parallax/assets/js/jquery.ajaxchimp.min.js')}}"></script>
 
 
         <script type="text/javascript">
