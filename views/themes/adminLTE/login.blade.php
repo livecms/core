@@ -53,19 +53,19 @@ $loginBackground = count($userImages) ? $userImages->random()->background : '/ba
   </div>
   <!-- /.login-box-body -->
   <div class="login-footer">
-    <p class="login-box-msg">Powered by <a href="http://github.com/livecms/liveCMS">Live CMS</a></p>
+    <p class="login-box-msg">Powered by <a href="{{url('/')}}">{{globalParams('site_name', 'Live CMS')}}</a></p>
   </div>
 </div>
 <!-- /.login-box -->
 
 <!-- jQuery 2.1.4 -->
-<script src="/backend/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="{{asset('backend/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
 <!-- Bootstrap 3.3.5 -->
-<script src="/backend/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{asset('backend/bootstrap/js/bootstrap.min.js')}}"></script>
 <!-- iCheck -->
-<script src="/backend/plugins/iCheck/icheck.min.js"></script>
+<script src="{{asset('backend/plugins/iCheck/icheck.min.js')}}"></script>
 <!-- Sweet Alert -->
-<script src="/backend/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="{{asset('backend/plugins/sweetalert/sweetalert.min.js')}}"></script>
 @if (Session::has('sweet_alert.alert'))
     <script>
         swal({!! Session::get('sweet_alert.alert') !!});
