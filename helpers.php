@@ -142,16 +142,12 @@ if (! function_exists('liveCMSRouter')) {
     {
         $adminSlug  = getSlug('admin');
         $site       = site()->getCurrent();
-        $host       = $site->getHost();
-        $path       = $site->getPath();
-        $domain     = $site->getDomain();
-        $baseUrl    = $site->getBaseUrl();
         $subDomain  = $site->subdomain;
         $subFolder  = $site->subfolder;
 
         // ROUTING        
         $router->group(
-            ['domain' => $host, 'middleware' => 'web', 'prefix' => $subFolder],
+            ['middleware' => 'web', 'prefix' => $subFolder],
             function ($router) use ($adminSlug, $subDomain, $subFolder, $callback) {
                 $callback($router, $adminSlug, $subDomain, $subFolder);
             }
