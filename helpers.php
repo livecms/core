@@ -200,6 +200,10 @@ if (! function_exists('get')) {
 
         $class = $namespace.studly_case(snakeToStr($postType));
 
+        if (!class_exists($class)) {
+            $class = 'LiveCMS\\Models\\'.studly_case(snakeToStr($postType));
+        }
+
         $instance = app($class);
 
 
@@ -234,6 +238,10 @@ if (! function_exists('getCategory')) {
 
         $class = $namespace.studly_case(snakeToStr($postType));
 
+        if (!class_exists($class)) {
+            $class = 'LiveCMS\\Models\\'.studly_case(snakeToStr($postType));
+        }
+
         $ids = app($class)->whereHas('categories', function ($query) use ($category) {
             $query->where(function ($query) use ($category) {
                 $table = $query->getModel()->getTable();
@@ -252,6 +260,10 @@ if (! function_exists('getTag')) {
         $namespace = 'App\\Models\\';
 
         $class = $namespace.studly_case(snakeToStr($postType));
+
+        if (!class_exists($class)) {
+            $class = 'LiveCMS\\Models\\'.studly_case(snakeToStr($postType));
+        }
 
         $ids = app($class)->whereHas('tags', function ($query) use ($tag) {
             $query->where(function ($query) use ($tag) {
