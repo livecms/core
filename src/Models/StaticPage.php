@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace LiveCMS\Models;
 
-use LiveCMS\Models\PostableModel;
+use LiveCMS\Models\Core\PostableModel;
 use LiveCMS\Models\Traits\AdminModelTrait;
 
 class StaticPage extends PostableModel

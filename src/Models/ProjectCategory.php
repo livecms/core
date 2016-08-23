@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace LiveCMS\Models;
 
-use LiveCMS\Models\BaseModel;
+use LiveCMS\Models\Core\BaseModel;
 use LiveCMS\Models\Traits\AdminModelTrait;
 
 class ProjectCategory extends BaseModel

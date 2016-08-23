@@ -1,6 +1,6 @@
 <?php
 
-namespace LiveCMS\Models;
+namespace LiveCMS\Models\Core;
 
 use LiveCMS\Models\Users\User as UserModel;
 use LiveCMS\Models\Traits\ImagableTrait;

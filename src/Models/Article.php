@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace LiveCMS\Models;
 
-use LiveCMS\Models\PostableModel;
-use LiveCMS\Models\Permalink;
+use LiveCMS\Models\Core\PostableModel;
+use LiveCMS\Models\Core\Permalink;
 use LiveCMS\Models\Traits\AuthorModelTrait;
-use LiveCMS\Models\User;
+use LiveCMS\Models\Core\User;
 
 class Article extends PostableModel
 {

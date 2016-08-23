@@ -1,28 +1,26 @@
 <?php
 
-namespace App\Models;
+namespace LiveCMS\Models;
 
 use Carbon\Carbon;
-use LiveCMS\Models\PostableModel;
+use LiveCMS\Models\Core\PostableModel;
 use LiveCMS\Models\Traits\AdminModelTrait;
 
-class Client extends PostableModel
+class Team extends PostableModel
 {
     use AdminModelTrait;
-    
-    protected $fillable = ['name', 'site_id', 'slug', 'description', 'author_id', 'picture'];
 
-    protected $mergesAfter = ['project' => 'Project'];
+    protected $fillable = ['name', 'role', 'site_id', 'slug', 'description', 'author_id', 'picture'];
 
     protected $excepts = ['author_id'];
-
-    protected $dependencies = ['projects'];
+    
+    protected $dependencies = ['socials'];
  
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
      
-        $this->prefixSlug = getSlug('client');
+        $this->prefixSlug = getSlug('team');
     }
 
     public function rules()
@@ -37,15 +35,17 @@ class Client extends PostableModel
 
         return [
             'name' => 'required',
+            'role' => 'required',
             'slug' => $this->uniqify('slug'),
             'description' => 'required',
             'picture' => 'image|max:5120',
+            'socials.*' => 'active_url',
             'published_at' => 'required',
         ];
     }
 
-    public function projects()
+    public function socials()
     {
-        return $this->hasMany(Project::class);
+        return $this->belongsToMany(TeamMediaSocial::class, 'team_team_media_socials', 'team_id', 'team_media_social_id');
     }
 }

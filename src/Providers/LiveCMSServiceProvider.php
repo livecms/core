@@ -30,10 +30,10 @@ class LiveCMSServiceProvider extends ServiceProvider
         $this->publishes([$this->baseDir().'/config/livecms.php' => config_path('livecms.php')], 'config');
 
         // Model
-        $this->publishes([$this->baseDir().'/models' => app_path('Models')], 'model');
+        // $this->publishes([$this->baseDir().'/models' => app_path('Models')], 'model');
         
         // Controller
-        $this->publishes([$this->baseDir().'/controllers' => app_path('Http/Controllers')], 'controller');
+        // $this->publishes([$this->baseDir().'/controllers' => app_path('Http/Controllers')], 'controller');
 
         // Migration
         $this->publishes([$this->baseDir().'/database' => base_path('database')], 'database');
@@ -80,9 +80,9 @@ class LiveCMSServiceProvider extends ServiceProvider
                     require $this->baseDir().'/routebases.php';
                 });
 
-                $router->group(['namespace' => $config->get('livecms.routing.namespace')], function ($router) use ($adminSlug, $subDomain, $subFolder) {
-                    require $this->baseDir().'/routes.php';
-                });
+                // $router->group(['namespace' => $config->get('livecms.routing.namespace')], function ($router) use ($adminSlug, $subDomain, $subFolder) {
+                //     require $this->baseDir().'/routes.php';
+                // });
             });
 
             

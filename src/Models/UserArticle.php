@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace LiveCMS\Models;
 
 use LiveCMS\Models\Contracts\UserOnlyInterface as UserContract;
 

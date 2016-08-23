@@ -25,13 +25,12 @@
     $router->group(['prefix' => $userSlug, 'namespace' => 'User', 'middleware' => 'auth'], function ($router) {
 
         $router->get('/', ['as' => 'user.home', function () {
-            $bodyClass        = 'skin-blue sidebar-mini sidebar-collapse';
-
+            $bodyClass = 'skin-blue sidebar-mini sidebar-collapse';
             return view('livecms::user', compact('bodyClass'));
         }]);
 
         $router->resource('profile', 'ProfileController');
-    
+        $router->resource(getSlug('article'), 'ArticleController');
     });
 
     // ADMIN AREA
@@ -40,6 +39,18 @@
         $router->get('/', ['as' => 'admin.home', function () {
             return view('livecms::admin.home');
         }]);
+
+
+        $router->resource(getSlug('category'), 'CategoryController');
+        $router->resource(getSlug('tag'), 'TagController');
+        $router->resource(getSlug('article'), 'ArticleController');
+        $router->resource(getSlug('staticpage'), 'StaticPageController');
+        $router->resource(getSlug('team'), 'TeamController');
+        $router->resource(getSlug('project'), 'ProjectController');
+        $router->resource(getSlug('projectcategory'), 'ProjectCategoryController');
+        $router->resource(getSlug('client'), 'ClientController');
+        $router->resource(getSlug('gallery'), 'GalleryController');
+        $router->resource(getSlug('contact'), 'ContactController');
 
         $router->resource('permalink', 'PermalinkController');
         $router->resource('setting', 'SettingController');

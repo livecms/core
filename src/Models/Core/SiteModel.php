@@ -1,6 +1,6 @@
 <?php
 
-namespace LiveCMS\Models;
+namespace LiveCMS\Models\Core;
 
 use Validator;
 use LiveCMS\Models\Contracts\BaseModelInterface as BaseModelContract;

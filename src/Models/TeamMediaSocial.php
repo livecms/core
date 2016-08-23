@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace LiveCMS\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use LiveCMS\Models\Traits\AdminModelTrait;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace LiveCMS\Models;
 
-use LiveCMS\Models\BaseModel;
-use LiveCMS\Models\Setting;
+use LiveCMS\Models\Core\BaseModel;
+use LiveCMS\Models\Core\Setting;
 use LiveCMS\Models\Traits\AdminModelTrait;
 
 class Contact extends BaseModel

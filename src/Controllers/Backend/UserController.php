@@ -4,8 +4,7 @@ namespace LiveCMS\Controllers\Backend;
 
 use Form;
 use Illuminate\Http\Request;
-use LiveCMS\Controllers\BackendController;
-use LiveCMS\Models\User as Model;
+use LiveCMS\Models\Core\User as Model;
 use LiveCMS\Models\Users\Role;
 
 class UserController extends BackendController
