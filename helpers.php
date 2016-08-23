@@ -1,7 +1,7 @@
 <?php
 
-use LiveCMS\Models\GenericSetting as Setting;
-use LiveCMS\Models\Site;
+use LiveCMS\Models\Core\GenericSetting as Setting;
+use LiveCMS\Models\Core\Site;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Collection;
 
