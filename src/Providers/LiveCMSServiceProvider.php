@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use LiveCMS\Routing\Redirector;
 use LiveCMS\Routing\ResourceRegistrar;
 use LiveCMS\Routing\UrlGenerator;
-use LiveCMS\Models\Site;
+use LiveCMS\Models\Core\Site;
 
 class LiveCMSServiceProvider extends ServiceProvider
 {
