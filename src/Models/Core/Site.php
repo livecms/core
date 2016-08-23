@@ -4,7 +4,7 @@ namespace LiveCMS\Models\Core;
 
 use Schema;
 use LiveCMS\Models\Users\User;
-use LiveCMS\Models\GenericSetting as Setting;
+use LiveCMS\Models\Core\GenericSetting as Setting;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
