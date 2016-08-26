@@ -3,7 +3,7 @@
 namespace LiveCMS\Controllers\Backend;
 
 use LiveCMS\Controllers\BackendController;
-use LiveCMS\Models\Setting as Model;
+use LiveCMS\Models\Core\Setting as Model;
 
 class SettingController extends BackendController
 {

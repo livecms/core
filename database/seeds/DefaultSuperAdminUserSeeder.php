@@ -18,7 +18,7 @@ class DefaultSuperAdminUserSeeder extends Seeder
         
         DB::table('users')->insert($user = [
                 'username' => 'super',
-                'email' => 'super@livecms.org',
+                'email' => 'super@livecms.dev',
                 'password' => bcrypt('admin'),
                 'name' => 'Super Administrator',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

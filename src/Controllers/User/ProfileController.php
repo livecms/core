@@ -4,7 +4,7 @@ namespace LiveCMS\Controllers\User;
 
 use Illuminate\Http\Request;
 use LiveCMS\Controllers\UserController;
-use LiveCMS\Models\Profile as Model;
+use LiveCMS\Models\Core\Profile as Model;
 
 class ProfileController extends UserController
 {

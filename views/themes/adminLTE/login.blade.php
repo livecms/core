@@ -2,7 +2,7 @@
 
 <?php
 $title = 'Login';
-$userImages = LiveCMS\Models\User::whereNotNull('background')->get();
+$userImages = LiveCMS\Models\Core\User::whereNotNull('background')->get();
 $loginBackground = count($userImages) ? $userImages->random()->background : '/background/'.globalParams('background_image', 'keyboard.jpg');
 ?>
 

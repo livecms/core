@@ -3,9 +3,9 @@
 namespace LiveCMS\Controllers\Backend;
 
 use LiveCMS\Controllers\BackendController;
-use LiveCMS\Models\SiteModel as Model;
-use LiveCMS\Models\User;
-use LiveCMS\Models\Setting;
+use LiveCMS\Models\Core\SiteModel as Model;
+use LiveCMS\Models\Core\User;
+use LiveCMS\Models\Core\Setting;
 use LiveCMS\Models\Users\Role;
 
 class SiteController extends BackendController

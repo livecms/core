@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use LiveCMS\Controllers\BackendController;
 use LiveCMS\Models\Contracts\UserModelInterface;
-use LiveCMS\Models\PostableModel as Model;
-use LiveCMS\Models\Permalink;
+use LiveCMS\Models\Core\PostableModel as Model;
+use LiveCMS\Models\Core\Permalink;
 
 abstract class PostableController extends BackendController
 {

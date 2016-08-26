@@ -2,7 +2,7 @@
 
 namespace LiveCMS\Models\Traits;
 
-use LiveCMS\Models\Site;
+use LiveCMS\Models\Core\Site;
 use LiveCMS\Models\Users\Role;
 
 trait UserModelTrait

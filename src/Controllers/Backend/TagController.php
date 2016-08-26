@@ -2,6 +2,7 @@
 
 namespace LiveCMS\Controllers\Backend;
 
+use LiveCMS\Controllers\BackendController;
 use LiveCMS\Models\Tag as Model;
 
 class TagController extends BackendController

@@ -3,7 +3,7 @@
 namespace LiveCMS\Controllers\Backend;
 
 use LiveCMS\Controllers\BackendController;
-use LiveCMS\Models\Permalink as Model;
+use LiveCMS\Models\Core\Permalink as Model;
 
 class PermalinkController extends BackendController
 {

@@ -50,7 +50,7 @@ return [
 
     'routing' => [
 
-        'namespace' => 'App\Http\Controllers',
+        'namespace' => 'LiveCMS\Controllers',
 
         'slugs' => [
             'admin'         => '@',

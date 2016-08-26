@@ -2,6 +2,7 @@
 
 namespace LiveCMS\Controllers\Backend;
 
+use LiveCMS\Controllers\BackendController;
 use LiveCMS\Models\ProjectCategory as Model;
 
 class ProjectCategoryController extends BackendController

@@ -3,6 +3,7 @@
 namespace LiveCMS\Controllers\Backend;
 
 use Illuminate\Http\Request;
+use LiveCMS\Controllers\BackendController;
 use LiveCMS\Models\Contact as Model;
 
 class ContactController extends BackendController

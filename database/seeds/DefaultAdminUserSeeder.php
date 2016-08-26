@@ -19,7 +19,7 @@ class DefaultAdminUserSeeder extends Seeder
         
         DB::table('users')->insert($user = [
                 'username' => 'admin',
-                'email' => 'admin@livecms.org',
+                'email' => 'admin@livecms.dev',
                 'password' => bcrypt('admin'),
                 'name' => 'LiveCMS Administrator',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
