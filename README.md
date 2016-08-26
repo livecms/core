@@ -26,7 +26,7 @@
 3. After finish, add livecms core in your project
     ````
          cd liveCMS 
-         composer require livecms/core "dev-master"
+         composer require livecms/core
     ````
 
 4. open file config/app.php
@@ -143,11 +143,11 @@
     default username / password 
     
     1. Admin :
-        email : admin@livecms.org
+        email : admin@livecms.dev
         password : admin
 
     2. Super Admin :
-        email : super@livecms.org
+        email : super@livecms.dev
         password : admin
 
 Visit https://github.com/livecms/LiveCMS for more info.
