@@ -15,5 +15,7 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'emptyCredential' => 'Sorry, :credential can not be empty',
+    'emptyPassword' => 'Sorry, password can not be empty',
 
 ];
