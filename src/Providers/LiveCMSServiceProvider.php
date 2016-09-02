@@ -29,12 +29,6 @@ class LiveCMSServiceProvider extends ServiceProvider
         // Config
         $this->publishes([$this->baseDir().'/config/livecms.php' => config_path('livecms.php')], 'config');
 
-        // Model
-        // $this->publishes([$this->baseDir().'/models' => app_path('Models')], 'model');
-        
-        // Controller
-        // $this->publishes([$this->baseDir().'/controllers' => app_path('Http/Controllers')], 'controller');
-
         // Migration
         $this->publishes([$this->baseDir().'/database' => base_path('database')], 'database');
         
@@ -74,19 +68,12 @@ class LiveCMSServiceProvider extends ServiceProvider
             // DEBUG BAR
 
             liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) use ($config) {
-
                 // EXTEND ROUTER
                 $router->group(['namespace' => 'LiveCMS\Controllers'], function ($router) use ($adminSlug, $subDomain, $subFolder) {
                     require $this->baseDir().'/routebases.php';
                 });
-
-                // $router->group(['namespace' => $config->get('livecms.routing.namespace')], function ($router) use ($adminSlug, $subDomain, $subFolder) {
-                //     require $this->baseDir().'/routes.php';
-                // });
             });
 
-            
-            
         } catch (\Exception $e) {
             throw new \Exception('Error in LiveCMSServiceProvider : '.$e->getMessage());
         }
@@ -101,7 +88,6 @@ class LiveCMSServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom($this->baseDir().'/config/livecms.php', 'livecms');
-        
         require $this->baseDir().'/helpers.php';
     }
 }

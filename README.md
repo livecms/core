@@ -137,7 +137,13 @@
         php artisan migrate --seed
     ````
 
-11. Login
+11. Add frontend routes
+    Add this line of code to your app/Http/routes.php
+    ````
+        frontendRoute($router);
+    ````
+
+12. Login
     visit : http://yourdomain/login
 
     default username / password 

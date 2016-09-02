@@ -65,5 +65,3 @@
     $router->get('register', function () {
         return redirect()->route('user.home');
     });
-
-    frontendRoute($router);
