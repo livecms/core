@@ -159,7 +159,7 @@ if (! function_exists('frontendRoute')) {
 
     function frontendRoute($router)
     {
-        $router->group(['namespace' => 'Frontend'], function ($router) {
+        $router->group(['namespace' => 'LiveCMS'], function ($router) {
             $router->get('/', ['as' => 'home', 'uses' => 'PageController@home']);
             $router->get('{arg0?}/{arg1?}/{arg2?}/{arg3?}/{arg4?}/{arg5?}', 'PageController@routes');
         });

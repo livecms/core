@@ -29,10 +29,12 @@ class LiveCMSServiceProvider extends ServiceProvider
         // Config
         $this->publishes([$this->baseDir().'/config/livecms.php' => config_path('livecms.php')], 'config');
 
+        // Controller
+        $this->publishes([$this->baseDir().'/controllers' => app_path('Http/Controllers')], 'controller');
+
         // Migration
         $this->publishes([$this->baseDir().'/database' => base_path('database')], 'database');
-        
-        
+
         // Public Asset
         $this->publishes([$this->baseDir().'/public' => public_path('/')], 'public');
     }
