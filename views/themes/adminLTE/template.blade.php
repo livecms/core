@@ -42,6 +42,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('backend/dist/css/skins/skin-dark.min.css')}}">
 
   <style type="text/css">
+    .topbutton.sticked {
+      position: relative;
+    }
+
+    .topbutton.sticked .buttons {
+      z-index: 1;
+      padding-top: 8px;
+    }
+
+    .topbutton.sticked > .row {
+      position: absolute;
+      width: 100%;
+    }
+
     .user-label {
         width: 30px;
         height: 30px;

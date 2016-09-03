@@ -9,7 +9,8 @@ use LiveCMS\Models\StaticPage as Model;
 class StaticPageController extends PostableController
 {
     protected $query;
-    
+    protected $withoutStickedTopButton = true;
+
     public function __construct(Model $model, $base = 'staticpage')
     {
         parent::__construct($model, $base);

@@ -158,6 +158,9 @@ $(function(){
 				repositionStickyCol();
 			}))
 			.scroll($.throttle(250, repositionStickyHead));
+
+			// adding new features
+			$('.topbutton.run').addClass('sticked');
 		}
 	});
 });

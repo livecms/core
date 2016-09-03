@@ -1,18 +1,20 @@
 @extends('livecms::user')
 
 @section('content')
-<div class="row">
-	<div class="col-md-8">
-	@if(isset($withoutAddButton))
-	@else
-		<p>
-        <a href="{{ action($baseClass.'@create', request()->query()) }}" class="btn btn-danger">{{trans('livecms::livecms.add')}}</a> &nbsp;<span>{{trans('livecms::livecms.clicktoadd')}} {{ trans('livecms::'.($groupName ?: 'livecms').'.' .$base) }}.</span>
-		</p>
-	@endif
-	</div>
-	<div class="col-md-4 row">
-		<div class="col-xs-12 visible-xs visible-sm">&nbsp;</div> 
-		@yield('index.submenu')
+<div class="topbutton @if (!isset($withoutStickedTopButton)) run @endif ">
+	<div class="row">
+		<div class="col-xs-6 buttons">
+		@if(isset($withoutAddButton))
+		@else
+			<p>
+	        <a href="{{ action($baseClass.'@create', request()->query()) }}" class="btn btn-danger">{{trans('livecms::livecms.add')}}</a> &nbsp;<span>{{trans('livecms::livecms.clicktoadd')}} {{ trans('livecms::'.($groupName ?: 'livecms').'.' .$base) }}.</span>
+			</p>
+		@endif
+		</div>
+		<div class="col-xs-6 row">
+			<div class="col-xs-12 visible-xs visible-sm">&nbsp;</div> 
+			@yield('index.submenu')
+		</div>
 	</div>
 </div>
 <h4>
