@@ -19,7 +19,7 @@ $passwordprivilege = isset($passwordprivilege) ? $passwordprivilege : 'passwordp
         </div>
     </div>
     @else
-    <h4>Terjadi error</h4>
+    <h4>{{trans('livecms::livecms.errorhappens')}}</h4>
     @endif
     <ul class="list-unstyled">
         @foreach ($errors->all() as $error)

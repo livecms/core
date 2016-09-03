@@ -105,6 +105,6 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => require(base_path('resources/lang/vendor/livecms/en/livecms.php')),
 
 ];
