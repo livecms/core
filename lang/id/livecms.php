@@ -102,6 +102,8 @@ return [
 
     
     'administrators'                => 'Adminstrator',
+    'aftersavingsuccess'            => 'Disimpan',
+    'aftersavingsuccessmessage'     => 'Sudah disimpan',
     'changeavatar'                  => 'Ubah Avatar',
     'changecredential'              => 'Ubah Password',
     'changeprofile'                 => 'Ubah Profile',

@@ -26,6 +26,9 @@ class LiveCMSServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom($this->baseDir().'/lang', 'livecms');
         $this->publishes([$this->baseDir().'/lang' => base_path('resources/lang/vendor/livecms')], 'lang');
 
+        // Validation messages
+        $this->publishes([$this->baseDir().'/validations' => base_path('resources/lang')], 'validation');
+
         // Config
         $this->publishes([$this->baseDir().'/config/livecms.php' => config_path('livecms.php')], 'config');
 

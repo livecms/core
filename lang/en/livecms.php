@@ -102,6 +102,8 @@ return [
 
     
     'administrators'                => 'Adminstrator',
+    'aftersavingsuccess'            => 'Saved',
+    'aftersavingsuccessmessage'     => 'Saved Successfully',
     'changeavatar'                  => 'Change Avatar',
     'changecredential'              => 'Change Password',
     'changeprofile'                 => 'Change Profile',

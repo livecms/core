@@ -53,11 +53,11 @@
                 <div class="box-footer">
                     <div class="row">
                         <div class="col-xs-6 col-md-12">
-                            {!! Form::submit('Simpan', ['class' => 'btn btn-success btn-block']) !!}
+                            {!! Form::submit(trans('livecms::livecms.save'), ['class' => 'btn btn-success btn-block']) !!}
                         </div>
                         <div class="col-md-12 visible-md visible-lg">&nbsp;</div>
                         <div class="col-xs-6 col-md-12">
-                            <a href="{{ action($baseClass.'@index') }}" class="btn btn-default btn-block">Batal</a>
+                            <a href="{{ action($baseClass.'@index') }}" class="btn btn-default btn-block">{{trans('livecms::livecms.cancel')}}</a>
                         </div>
                     </div>
             </div>
