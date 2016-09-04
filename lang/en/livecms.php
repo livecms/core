@@ -98,7 +98,7 @@ return [
     'value'                         => 'Value',
     'viewed'                        => 'Viewed',
     'yes'                           => 'Yes',
-    'yourpassword'                  => 'Yoour Password',
+    'yourpassword'                  => 'Your Password',
 
     
     'administrators'                => 'Adminstrator',
