@@ -87,6 +87,7 @@ return [
                                         'google-plus' => 'Google Plus',
                                     ],
     'state'                         => 'Negara Bagian',
+    'status'                        => 'Status',
     'subdomain'                     => 'Sub Domain',
     'subfolder'                     => 'Sub Folder',
     'success'                       => 'Sukses',
