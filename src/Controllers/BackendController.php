@@ -65,7 +65,7 @@ class BackendController extends BaseController
     protected function afterSaving($request)
     {
         $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 3);
-        $action = $trace[1]['function'] != 'afterSaving' ?$trace[1]['function'] : $trace[2]['function'];
+        $action = strtolower($trace[1]['function'] != 'afterSaving' ?$trace[1]['function'] : $trace[2]['function']);
 
         $title = ucfirst(trans('livecms::livecms.'.$action.'success'));
         $message = ucfirst(trans('livecms::livecms.'.$action.'successmessage', ['model' => trans('livecms::livecms.'.$this->base)]));
