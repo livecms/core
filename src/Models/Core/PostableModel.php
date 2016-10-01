@@ -14,7 +14,6 @@ class PostableModel extends BaseModel
     use ImagableTrait;
 
     protected $fillable = ['title', 'site_id', 'slug', 'content', 'author_id', 'picture', 'published_at'];
-
     protected $appends = ['url', 'highlight'];
 
     protected $dependencies = ['permalink', 'author'];
@@ -26,10 +25,19 @@ class PostableModel extends BaseModel
     protected $aliases = ['author_id' => 'Author'];
 
     protected static $picturePath = 'files';
- 
+
+    protected $postableforms = [
+        'text' => ['title', 'slug'],
+        'readonly_url' => ['url'],
+        'textarea' => ['content'],
+        'image' => ['picture'],
+    ];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
+
+        $this->forms = array_merge($this->postableforms, $this->forms);
     }
 
     public function rules()

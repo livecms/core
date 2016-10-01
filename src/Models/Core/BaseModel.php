@@ -31,6 +31,8 @@ abstract class BaseModel extends Model implements BaseModelContract, ModelAuthor
 
     protected $deletion = [];
 
+    protected $forms = [];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);

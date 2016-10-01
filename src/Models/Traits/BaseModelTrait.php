@@ -52,6 +52,16 @@ trait BaseModelTrait
 
     }
 
+    public function getForms()
+    {
+        return $this->forms;
+    }
+
+    public function getDependencies()
+    {
+        return $this->dependencies;
+    }
+
     protected function buildFields()
     {
         $fillable = array_flip($this->getFillable());
