@@ -61,8 +61,36 @@ class ProjectController extends PostableController
 
     protected function afterSaving($request)
     {
-        $this->model->categories()->sync($request->get('categories', []));
+        $categories = $request->get('categories', []);
 
+        $newCategories = [];
+
+        foreach ($categories as $index => $category) {
+            if (is_numeric($category) && $this->category->find($category)) {
+                continue;
+            }
+
+            $cat = $this->category->firstOrNew(['category' => $category]);
+
+            if (!$cat->id) {
+
+                $i = 0;
+                do {
+                    $slug = str_slug($cat->category).($i++ > 0 ? '-'.$i : '');
+                } while ($this->category->where('slug', $slug)->first());
+
+                $cat->slug = $slug;
+                $cat->save();
+            }
+
+            $newCategories[$index] = $cat->id;
+        }
+
+        $categories = array_replace($categories, $newCategories);
+        $request->merge(compact('categories'));
+
+        $this->model->categories()->sync($request->get('categories', []));
+        
         return parent::afterSaving($request);
     }
 }
