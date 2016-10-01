@@ -10,7 +10,7 @@ class Project extends PostableModel
 {
     use AdminModelTrait;
 
-    protected $fillable = ['title', 'site_id', 'slug', 'content', 'author_id', 'picture', 'client_id'];
+    protected $fillable = ['title', 'site_id', 'slug', 'content', 'author_id', 'picture', 'client_id', 'status'];
 
     protected $excepts = ['author_id', 'client_id'];
 

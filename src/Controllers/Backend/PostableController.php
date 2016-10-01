@@ -5,6 +5,7 @@ namespace LiveCMS\Controllers\Backend;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Str;
 use LiveCMS\Controllers\BackendController;
 use LiveCMS\Models\Contracts\UserModelInterface;
 use LiveCMS\Models\Core\PostableModel as Model;
@@ -45,6 +46,9 @@ abstract class PostableController extends BackendController
             })
             ->editColumn('published_at', function ($data) {
                 return $data->published_at ? $data->published_at->diffForHumans() : '';
+            })
+            ->editColumn('status', function ($data) {
+                return Str::title($data->status);
             });
     }
 
@@ -123,6 +127,11 @@ abstract class PostableController extends BackendController
                 
                 $this->deletePicture($oldPicture);
             }
+        }
+
+        if (empty($this->model->status)) {
+            $status = Model::STATUS_DRAFT;
+            $this->model->update(compact('status'));
         }
 
         return parent::afterSaving($request);

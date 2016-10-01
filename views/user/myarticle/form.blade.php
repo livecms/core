@@ -50,6 +50,10 @@
                     {!! Form::label('tag', trans('livecms::livecms.tag'), ['class' => 'control-label']) !!}
                     {!! Form::select('tags[]', $tags, $myarticle->tags->pluck('id')->all(), ['class' => 'form-control', 'multiple' => true, 'data-tags' => true]) !!}
                 </div>
+                <div class="box-body">
+                    {!! Form::label('status', trans('livecms::livecms.status'), ['class' => 'control-label']) !!}
+                    {!! Form::select('status', $myarticle->statuses, $myarticle->status, ['class' => 'form-control']) !!}
+                </div>
                 <div class="box-footer">
                     <div class="row">
                         <div class="col-xs-6 col-md-12">

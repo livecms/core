@@ -11,7 +11,7 @@ class Client extends PostableModel
 {
     use AdminModelTrait;
     
-    protected $fillable = ['name', 'site_id', 'slug', 'description', 'author_id', 'picture'];
+    protected $fillable = ['name', 'site_id', 'slug', 'description', 'author_id', 'picture', 'status'];
 
     protected $mergesAfter = ['project' => 'Project'];
 

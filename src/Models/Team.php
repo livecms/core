@@ -10,7 +10,7 @@ class Team extends PostableModel
 {
     use AdminModelTrait;
 
-    protected $fillable = ['name', 'role', 'site_id', 'slug', 'description', 'author_id', 'picture'];
+    protected $fillable = ['name', 'role', 'site_id', 'slug', 'description', 'author_id', 'picture', 'status'];
 
     protected $excepts = ['author_id'];
     

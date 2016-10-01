@@ -2,9 +2,10 @@
 
 namespace LiveCMS\Models\Core;
 
+use Carbon\Carbon;
 use LiveCMS\Models\Users\User as UserModel;
 use LiveCMS\Models\Traits\ImagableTrait;
-use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Mrofi\VideoInfo\VideoInfo;
 use Mrofi\VideoInfo\Youtube;
 use Symfony\Component\DomCrawler\Crawler;
@@ -13,7 +14,12 @@ class PostableModel extends BaseModel
 {
     use ImagableTrait;
 
-    protected $fillable = ['title', 'site_id', 'slug', 'content', 'author_id', 'picture', 'published_at'];
+    const STATUS_DRAFT = 'draft';
+    const STATUS_PUBLISHED = 'published';
+    const STATUS_REMOVED = 'removed';
+
+    protected $fillable = ['title', 'site_id', 'slug', 'content', 'author_id', 'picture', 'published_at', 'status'];
+
     protected $appends = ['url', 'highlight'];
 
     protected $dependencies = ['permalink', 'author'];
@@ -31,6 +37,7 @@ class PostableModel extends BaseModel
         'readonly_url' => ['url'],
         'textarea' => ['content'],
         'image' => ['picture'],
+        'select' => ['status'],
     ];
 
     public function __construct(array $attributes = [])
@@ -72,6 +79,21 @@ class PostableModel extends BaseModel
     public function children()
     {
         //
+    }
+
+    public function statuses()
+    {
+        $allStatuses = [
+            static::STATUS_DRAFT,
+            static::STATUS_PUBLISHED,
+            static::STATUS_REMOVED,
+        ];
+
+        $captions = array_map(function ($item) {
+            return Str::title($item);
+        }, $allStatuses);
+
+        return array_combine($allStatuses, $captions);
     }
 
     public function getUrlAttribute()
