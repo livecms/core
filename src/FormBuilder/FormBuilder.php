@@ -87,10 +87,18 @@ class FormBuilder
     public function selectType($model, $field)
     {
         $fieldId = $field.'_id';
-        $fieldModel = $model->{$field}()->getRelated();
-        $fillable = $fieldModel->getFillable();
-        $fieldName = in_array($field, $fillable) ? $field : (in_array('name', $fillable) ? 'name' : (in_array('title', $fillable) ? 'title' : array_first($fillable)));
-        $fieldInput = Form::select($field, [null => trans('livecms::livecms.choose')] + $fieldModel->pluck($fieldName, 'id')->toArray(), $model->{$fieldId}, ['class' => $this->inputClass]);
+        $fields = Str::plural($field);
+        if (is_array($model->{$fields}())) {
+            $options = $model->{$fields}();
+            $choosenOption = $model->$field;
+        } else {
+            $fieldModel = $model->{$field}()->getRelated();
+            $fillable = $fieldModel->getFillable();
+            $fieldName = in_array($field, $fillable) ? $field : (in_array('name', $fillable) ? 'name' : (in_array('title', $fillable) ? 'title' : array_first($fillable)));
+            $options = $fieldModel->pluck($fieldName, 'id')->toArray();
+            $choosenOption = $model->{$fieldId};
+        }
+        $fieldInput = Form::select($field, [null => trans('livecms::livecms.choose')] + $options, $choosenOption, ['class' => $this->inputClass]);
         return $this->fieldWrapper($field, $fieldInput);
     }
 
