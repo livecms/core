@@ -111,4 +111,17 @@ return [
         ],
 
     ],
+
+    'formfieldtemplate' => '
+        <div class="row form-group">
+            <div class="col-md-2">
+                $fieldLabel
+            </div>
+            <div class="col-md-10">
+                $fieldInput
+            </div>
+        </div>
+    ',
+    'formfieldlabelclass' => 'control-label',
+    'formfieldinputclass' => 'form-control',
 ];
