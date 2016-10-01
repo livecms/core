@@ -15,6 +15,11 @@ class Article extends PostableModel
 
     protected $dependencies = ['author', 'categories', 'tags', 'permalink'];
 
+    protected $forms = [
+        'text' => ['title', 'slug'],
+        'tagged_multi_select' => ['categories', 'tags'],
+    ];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);

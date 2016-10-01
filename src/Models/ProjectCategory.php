@@ -11,6 +11,10 @@ class ProjectCategory extends BaseModel
 
     protected $fillable = ['category', 'slug'];
 
+    protected $forms = [
+        'text' => ['category', 'slug']
+    ];
+
     public function rules()
     {
         $this->slugify('category');

@@ -12,6 +12,10 @@ class Contact extends BaseModel
 
     protected $fillable = ['address', 'address2', 'city', 'country', 'postcode', 'telephone', 'faximile', 'email'];
 
+    protected $forms = [
+        'text' => ['address', 'address2', 'city', 'country', 'postcode', 'telephone', 'faximile', 'email'],
+    ];
+
     public function rules()
     {
         return [

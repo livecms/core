@@ -18,6 +18,11 @@ class Project extends PostableModel
     
     protected $dependencies = ['categories', 'client', 'permalink'];
 
+    protected $forms = [
+        'tagged_multi_select' => ['categories'],
+        'select' => ['client']
+    ];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);

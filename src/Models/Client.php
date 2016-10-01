@@ -2,6 +2,7 @@
 
 namespace LiveCMS\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use LiveCMS\Models\Core\PostableModel;
 use LiveCMS\Models\Traits\AdminModelTrait;
@@ -16,7 +17,11 @@ class Client extends PostableModel
 
     protected $excepts = ['author_id'];
 
-    protected $dependencies = ['projects'];
+    protected $forms = [
+        'text' => ['name', 'slug'],
+        'textarea' => ['description'],
+        'image' => ['picture'],
+    ];
  
     public function __construct(array $attributes = [])
     {

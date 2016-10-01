@@ -13,6 +13,10 @@ class Tag extends BaseModel
     
     protected $fillable = ['tag', 'slug'];
 
+    protected $forms = [
+        'text' => ['tag', 'slug']
+    ];
+
     public function rules()
     {
         $this->slugify('tag');

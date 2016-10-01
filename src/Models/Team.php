@@ -15,7 +15,12 @@ class Team extends PostableModel
     protected $excepts = ['author_id'];
     
     protected $dependencies = ['socials'];
- 
+
+    protected $forms = [
+        'text' => ['name', 'role', 'slug'],
+        'textarea' => ['description'],
+    ];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);

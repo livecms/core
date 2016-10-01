@@ -17,6 +17,10 @@ class Setting extends BaseModel
 
     protected $hidden = ['publicable', 'site_id'];
 
+    protected $forms = [
+        'text' => ['key', 'value']
+    ];
+
     public function rules()
     {
         $site_id = site()->id;
