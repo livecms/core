@@ -52,7 +52,7 @@
                 </div>
                 <div class="box-body">
                     {!! Form::label('status', trans('livecms::livecms.status'), ['class' => 'control-label']) !!}
-                    {!! Form::select('status', $myarticle->statuses, $myarticle->status, ['class' => 'form-control']) !!}
+                    {!! Form::select('status', $myarticle->statuses(), $myarticle->status, ['class' => 'form-control']) !!}
                 </div>
                 <div class="box-footer">
                     <div class="row">
