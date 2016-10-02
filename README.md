@@ -44,19 +44,20 @@
         Barryvdh\Debugbar\ServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-        LiveCMS\Support\Thumbnailer\ThumbnailerServiceProvider::class,
+        LiveCMS\Support\LiveCMSSupportServiceProvider::class,
         RoketId\ImageMax\ImageMaxServiceProvider::class,
         LiveCMS\Providers\LiveCMSServiceProvider::class,
     ````
     and add to 'aliases'
     ````
-        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
-        'Datatables'=> Yajra\Datatables\Datatables::class,
-        'Form'      => Collective\Html\FormFacade::class,
-        'Html'      => Collective\Html\HtmlFacade::class,
-        'Alert'     => UxWeb\SweetAlert\SweetAlert::class,
-        'Thumb'     => LiveCMS\Support\Thumbnailer\Facades\Thumbnailer::class,
-        'ImageMax'  => RoketId\ImageMax\ImageMaxFacade::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Datatables' => Yajra\Datatables\Datatables::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Thumb' => LiveCMS\Support\Thumbnailer\Facades\Thumb::class,
+        'ImageMax' => RoketId\ImageMax\ImageMaxFacade::class,
+        'Upload' => LiveCMS\Support\Uploader\Facades\Upload::class,
     ````
 
 4. Publish vendor :
