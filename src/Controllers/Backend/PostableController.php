@@ -111,10 +111,7 @@ abstract class PostableController extends BackendController
             }
         }
 
-        $oldPicture = $this->model->picture;
-
         if ($request->hasFile('picture') && $request->file('picture')->isValid()) {
-
             $object = $this->model;
             Upload::setFilenameMaker(function ($file, $object) {
                 $title = $object->title ? $object->title : $object->name;
@@ -122,22 +119,7 @@ abstract class PostableController extends BackendController
             }, $object);
 
             Upload::model($object);
-
             $this->model->save();
-
-            // $destinationPath = public_path($this->model->getPicturePath());
-
-            // $extension = $request->file('picture')->getClientOriginalExtension();
-            // $picture = str_limit(str_slug($this->model->title.' '.date('YmdHis')), 200) . '.' . $extension;
-            
-            // $result = $request->file('picture')->move($destinationPath, $picture);
-
-            // if ($result) {
-                
-            //     $this->model->update(compact('picture'));
-                
-            //     $this->deletePicture($oldPicture);
-            // }
         }
 
         if (empty($this->model->status)) {

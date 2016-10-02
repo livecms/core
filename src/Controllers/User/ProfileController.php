@@ -5,6 +5,7 @@ namespace LiveCMS\Controllers\User;
 use Illuminate\Http\Request;
 use LiveCMS\Controllers\UserController;
 use LiveCMS\Models\Core\Profile as Model;
+use Upload;
 
 class ProfileController extends UserController
 {
@@ -50,41 +51,18 @@ class ProfileController extends UserController
 
     protected function afterSaving($request)
     {
-        $result = [];
-
-        $update = [];
-
         foreach (['avatar', 'background'] as $picture) {
-
-            $oldPicture = $this->model->$picture;
-
             if ($request->hasFile($picture) && $request->file($picture)->isValid()) {
+                $object = $this->model;
+                Upload::setFilenameMaker(function ($file, $object) {
+                    $title = $object->title ? $object->title : $object->name;
+                    return str_limit(str_slug($title.' '.date('YmdHis')), 200) . '.' . $file->getClientOriginalExtension();
+                }, $object);
 
-                $destinationPath = public_path($this->model->getPicturePath());
-
-                $extension = $request->file($picture)->getClientOriginalExtension();
-                $file = str_limit(str_slug($this->model->username.'-'.$picture.'-'.date('YmdHis').uniqid()), 200) . '.' . $extension;
-                
-                $success = $request->file($picture)->move($destinationPath, $file);
-
-                if ($success) {
-                    
-                    $result[$oldPicture] = $file;
-
-                    $update[$picture] = $file;
-                }
+                Upload::model($object);
             }
         }
-
-        if (count($result)) {
-
-            $this->model->update($update);
-
-            foreach ($result as $oldPicture => $file) {
-                
-                $this->deletePicture($oldPicture);
-            }
-        }
+        $this->model->save();
 
         $successMessage = ucfirst(trans('livecms::livecms.updatesuccessmessage', [
             'model' => trans('livecms::livecms.'.($request->has('credentials') ? 'credential' : 'profile'))
