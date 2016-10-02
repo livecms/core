@@ -1,7 +1,9 @@
 <?php
 
 return [
-    
+
+    'useimagemax' => false,
+
     'image' => [
     
         'driver' => 'gd',
