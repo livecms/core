@@ -174,20 +174,20 @@ desired effect
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              @if (!auth()->user()->avatar)
+              @if (!($avatar = auth()->user()->avatar_small_square))
               <div class="user-label">
                 <span>{{ auth()->user()->getInitial() }}</span>
               </div>
               @else
               <!-- The user image in the navbar-->
-              <img src="{{auth()->user()->avatar}}" class="user-image" alt="User Image">
+              <img src="{{$avatar}}" class="user-image" alt="User Image">
               @endif
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                @if (auth()->user()->avatar)
-                <img src="{{auth()->user()->avatar}}" class="img-circle" alt="User Image">
+                @if ($avatar)
+                <img src="{{$avatar}}" class="img-circle" alt="User Image">
                 @else
                 <i class="text-gray ion ion-person fa-5x"></i>
                 @endif

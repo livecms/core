@@ -71,7 +71,7 @@
     <div class="row form-group">
         {!! Form::label('avatar', trans('livecms::livecms.avatar'), ['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            @if ($avatar = $profile->avatar)
+            @if ($avatar = $profile->avatar_small_square)
             <div class="row">
                 <div class="col-xs-8 col-sm-4">
                     <figure style="width: 100%;">
@@ -83,7 +83,7 @@
             @endif
             <div class="row">
                 <div class="col-sm-12">
-                @if ($avatar = $profile->avatar)
+                @if ($avatar)
                     <strong>{{trans('livecms::livecms.ifwanttochangeavatar')}}</strong>
                 @endif
                     {!! Form::file('avatar', null, ['class' => 'form-control']) !!}
@@ -97,7 +97,7 @@
     <div class="row form-group">
         {!! Form::label('background', trans('livecms::livecms.background'), ['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            @if ($background = $profile->background)
+            @if ($background = $profile->background_medium_cover)
             <div class="row">
                 <div class="col-sm-8">
                     <figure style="width: 100%;">
@@ -109,7 +109,7 @@
             @endif
             <div class="row">
                 <div class="col-sm-12">
-                @if ($background = $profile->background)
+                @if ($background)
                     <strong>{{trans('livecms::livecms.ifwanttochangebackground')}}</strong>
                 @endif
                     {!! Form::file('background', null, ['class' => 'form-control']) !!}

@@ -15,16 +15,16 @@
       <div class="box box-widget widget-user">
         <!-- Add the bg color to the header using any of the bg-* classes -->
         <div class="widget-user-header bg-aqua" 
-          @if ($profile->background)
-          style="background: url('{{$profile->background}}') center center;"
+          @if ($background = $profile->background_medium_cover)
+          style="background: url('{{$background}}') center center;"
           @endif
         >
           <h3 class="widget-user-username">{{$profile->name}}</h3>
           <h5 class="widget-user-desc">{{$profile->jobtitle}}</h5>
         </div>
         <div class="widget-user-image text-center text-aqua img-circle">
-        @if ($profile->avatar)
-          <img class="img-circle" src="{{$profile->avatar}}" alt="User Avatar" title="{{basename($profile->avatar)}}">
+        @if ($avatar = $profile->avatar_small_square)
+          <img class="img-circle" src="{{$avatar}}" alt="User Avatar" title="{{basename($avatar)}}">
         @else
           <i class="ion ion-person fa-5x"></i>
         @endif
