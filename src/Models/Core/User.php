@@ -43,6 +43,10 @@ class User extends BaseModel implements UserModelContract
 
     protected $credentials = ['username', 'email', 'password'];
 
+    protected $files = ['avatar', 'background'];
+
+    protected $images = ['avatar', 'background'];
+
     public function rules()
     {
         $request = request();

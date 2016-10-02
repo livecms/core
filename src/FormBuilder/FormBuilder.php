@@ -117,7 +117,7 @@ class FormBuilder
 
     public function imageType($model, $field)
     {
-        $thumbnail = $field.'_thumbnail';
+        $thumbnail = $field.'_small_cover';
         $image = $model->$thumbnail ?: ($model->$field ?: null);
         $input = Form::file($field, null, ['class' => $this->inputClass]);
 

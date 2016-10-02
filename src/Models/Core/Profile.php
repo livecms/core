@@ -2,6 +2,8 @@
 
 namespace LiveCMS\Models\Core;
 
+use Illuminate\Support\Facades\Config;
+
 class Profile extends User
 {
     protected $table = 'users';
@@ -17,6 +19,15 @@ class Profile extends User
     protected $casts = [
         'socials' => 'array',
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $baseFolder = Config::get('livecms.uploader.baseFolder');
+
+        $this->baseFolder = $baseFolder.'/user';
+    }
 
     public function allowsUserRead($user)
     {

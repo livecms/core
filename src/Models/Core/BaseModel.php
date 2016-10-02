@@ -3,6 +3,7 @@
 namespace LiveCMS\Models\Core;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Config;
 use LiveCMS\Models\Traits\BaseModelTrait;
 use LiveCMS\Models\Traits\ImagableTrait;
 use LiveCMS\Models\Traits\ModelAuthorizationTrait;
@@ -36,35 +37,23 @@ abstract class BaseModel extends Model implements BaseModelContract, ModelAuthor
 
     protected $forms = [];
 
-    /* ATTRIBUTES */
-    protected $defWidth = 480;// landscape
-    protected $defHeight = 360; // portrait
-    protected $extendedThumbnailStyle = [];
-    protected $thumbnailStyle = [
-        'small_square' => '128x128',
-        'medium_square' => '256x256',
-        'large_square' => '512x512',
-        'xlarge_square' => '2048x2048',
-        'small_cover' => '240x_',
-        'normal_cover' => '360x_',
-        'medium_cover' => '480x_',
-        'large_cover' => '1280x_',
-        'small_banner' => '_x240',
-        'normal_banner' => '_x360',
-        'medium_banner' => '_x480',
-        'large_banner' => '_x1280'
-    ];
-    protected $defThumbnailName = '_thumbnail';
-    protected $baseFolder = 'public/files';
+    protected $thumbnailStyle = [];
+
+    protected $baseFolder = null;
+
     protected $images = [];
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
 
+        $this->thumbnailStyle = Config::get('livecms.thumbnailer.thumbnailStyle', []);
+
         $className = strtolower(class_basename(static::class));
 
-        $this->baseFolder = $this->baseFolder.'/'.$className;
+        $baseFolder = Config::get('livecms.uploader.baseFolder');
+
+        $this->baseFolder = $baseFolder.'/'.$className;
 
         static::setPolicy(AdminPolicy::class);
     }
