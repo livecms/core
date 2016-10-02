@@ -4,7 +4,6 @@ namespace LiveCMS\Models\Core;
 
 use Carbon\Carbon;
 use LiveCMS\Models\Users\User as UserModel;
-use LiveCMS\Models\Traits\ImagableTrait;
 use Illuminate\Support\Str;
 use Mrofi\VideoInfo\VideoInfo;
 use Mrofi\VideoInfo\Youtube;
@@ -12,8 +11,6 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class PostableModel extends BaseModel
 {
-    use ImagableTrait;
-
     const STATUS_DRAFT = 'draft';
     const STATUS_PUBLISHED = 'published';
     const STATUS_REMOVED = 'removed';
@@ -39,6 +36,10 @@ class PostableModel extends BaseModel
         'image' => ['picture'],
         'select' => ['status'],
     ];
+
+    protected $files = ['picture'];
+
+    protected $images = ['picture'];
 
     public function __construct(array $attributes = [])
     {

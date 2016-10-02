@@ -10,6 +10,7 @@ use LiveCMS\Controllers\BackendController;
 use LiveCMS\Models\Contracts\UserModelInterface;
 use LiveCMS\Models\Core\PostableModel as Model;
 use LiveCMS\Models\Core\Permalink;
+use Upload;
 
 abstract class PostableController extends BackendController
 {
@@ -41,7 +42,7 @@ abstract class PostableController extends BackendController
                 return $data->author->name;
             })
             ->editColumn('picture', function ($data) {
-                $imgUrl = $data->picture_small;
+                $imgUrl = $data->picture_small_cover;
                 return $data->picture ? '<a target="_blank"  href="'.$imgUrl.'"><img src="'.$imgUrl.'" style="width: 100px;"></a>' : '-';
             })
             ->editColumn('published_at', function ($data) {
@@ -114,19 +115,29 @@ abstract class PostableController extends BackendController
 
         if ($request->hasFile('picture') && $request->file('picture')->isValid()) {
 
-            $destinationPath = public_path($this->model->getPicturePath());
+            $object = $this->model;
+            Upload::setFilenameMaker(function ($file, $object) {
+                $title = $object->title ? $object->title : $object->name;
+                return str_limit(str_slug($title.' '.date('YmdHis')), 200) . '.' . $file->getClientOriginalExtension();
+            }, $object);
 
-            $extension = $request->file('picture')->getClientOriginalExtension();
-            $picture = str_limit(str_slug($this->model->title.' '.date('YmdHis')), 200) . '.' . $extension;
+            Upload::model($object);
+
+            $this->model->save();
+
+            // $destinationPath = public_path($this->model->getPicturePath());
+
+            // $extension = $request->file('picture')->getClientOriginalExtension();
+            // $picture = str_limit(str_slug($this->model->title.' '.date('YmdHis')), 200) . '.' . $extension;
             
-            $result = $request->file('picture')->move($destinationPath, $picture);
+            // $result = $request->file('picture')->move($destinationPath, $picture);
 
-            if ($result) {
+            // if ($result) {
                 
-                $this->model->update(compact('picture'));
+            //     $this->model->update(compact('picture'));
                 
-                $this->deletePicture($oldPicture);
-            }
+            //     $this->deletePicture($oldPicture);
+            // }
         }
 
         if (empty($this->model->status)) {
