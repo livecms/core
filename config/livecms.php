@@ -14,6 +14,21 @@ return [
         // 'thumb' => '_thumb_',
 
         // 'size' => '300x300',
+
+        'thumbnailStyle' => [
+            'small_square' => '128x128',
+            'medium_square' => '256x256',
+            'large_square' => '512x512',
+            'xlarge_square' => '2048x2048',
+            'small_cover' => '240x_',
+            'normal_cover' => '360x_',
+            'medium_cover' => '480x_',
+            'large_cover' => '1280x_',
+            'small_banner' => '_x240',
+            'normal_banner' => '_x360',
+            'medium_banner' => '_x480',
+            'large_banner' => '_x1280'
+        ]
     ],
 
     'uploader' => [
@@ -22,7 +37,7 @@ return [
 
         // 'modelOverride' => true,
 
-        // 'baseFolder' => 'public/uploads',
+        'baseFolder' => 'public/files',
 
         // 'folder' => '',
 
