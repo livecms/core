@@ -2,7 +2,7 @@
 
 @section('form')
 	@include('livecms::admin.partials.error')
-    @include('livecms::admin.partials.postableForm', ['contentName' => 'content'])
+    @include('livecms::admin.partials.postableForm', ['contentName' => 'content', 'model' => $gallery])
 @stop
 
 @section('content')

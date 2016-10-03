@@ -7,7 +7,7 @@
 		@if(isset($withoutAddButton))
 		@else
 			<p>
-	        <a href="{{ action($baseClass.'@create', request()->query()) }}" class="btn btn-danger">{{trans('livecms::livecms.add')}}</a> &nbsp;<span>{{trans('livecms::livecms.clicktoadd')}} {{ trans('livecms::'.($groupName ?: 'livecms').'.' .$base) }}.</span>
+	        <a href="{{ action($baseClass.'@create', request()->query()) }}" class="btn btn-danger">{{trans('livecms::livecms.add')}}</a> &nbsp;<span class="hidden-xs">{{trans('livecms::livecms.clicktoadd')}} {{ trans('livecms::'.($groupName ?: 'livecms').'.' .$base) }}.</span>
 			</p>
 		@endif
 		</div>

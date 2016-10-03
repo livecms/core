@@ -2,7 +2,7 @@
 
 @section('form')
     @include('livecms::admin.partials.error')
-    @include('livecms::admin.partials.postableForm', ['contentName' => 'decription'])
+    @include('livecms::admin.partials.postableForm', ['contentName' => 'decription', 'model' => $team])
     <hr>
     <div class="row form-group">
         {!! Form::label('mediasocial', trans('livecms::livecms.mediasocial'), ['class' => 'col-md-2 control-label']) !!}
