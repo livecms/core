@@ -61,6 +61,7 @@ class PostableModel extends BaseModel
         return [
             'title' => $this->uniqify('title'),
             'slug' => $this->uniqify('slug'),
+            'permalink' => 'unique:permalinks,permalink,'.($this->permalink ? $this->permalink->id : 'NULL').',id,site_id,'.(site()->id == null ? 'NULL' : site()->id),
             'content' => 'required',
             'picture' => 'image|max:5120',
             'published_at' => 'required',
