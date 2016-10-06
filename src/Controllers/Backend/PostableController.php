@@ -33,7 +33,7 @@ abstract class PostableController extends BackendController
     {
         return $datatables
             ->editColumn('title', function ($data) {
-                return '<a target="_blank" href="'.$data->url.'">'.$data->title.'</a>';
+                return '<a target="_blank" href="'.$data->url.'?preview=true">'.$data->title.'</a>';
             })
             ->editColumn('content', function ($data) {
                 return str_limit(strip_tags($data->content), 300);
@@ -43,7 +43,7 @@ abstract class PostableController extends BackendController
             })
             ->editColumn('picture', function ($data) {
                 $imgUrl = $data->picture_small_cover;
-                return $data->picture ? '<a target="_blank"  href="'.$imgUrl.'"><img src="'.$imgUrl.'" style="width: 100px;"></a>' : '-';
+                return $imgUrl ? '<a target="_blank"  href="'.$imgUrl.'"><img src="'.$imgUrl.'" style="max-width: 100px; max-height: 50px;"></a>' : '-';
             })
             ->editColumn('published_at', function ($data) {
                 return $data->published_at ? $data->published_at->diffForHumans() : '';

@@ -36,8 +36,8 @@ class UserController extends BackendController
                 return $data->is_banned ? '<span class="text-red" title="User is banned">'.$data->email.'</span>' : $data->email;
             })
             ->editColumn('avatar', function ($data) {
-                $imgUrl = $data->avatar;
-                return $data->avatar ? '<a target="_blank"  href="'.$imgUrl.'"><img src="'.$imgUrl.'" style="width: 100px;"></a>' : '-';
+                $imgUrl = $data->avatar_small_cover;
+                return $imgUrl ? '<a target="_blank"  href="'.$imgUrl.'"><img src="'.$imgUrl.'" style="max-width: 100px; max-height: 50px;"></a>' : '-';
             });
     }
 
