@@ -25,6 +25,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('backend/plugins/datepicker/datepicker3.css')}}">
   <!-- datatables -->
   <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap.css')}}">
+  <link rel="stylesheet" href="{{asset('backend/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css')}}">
   <!-- I Check -->
   <link rel="stylesheet" href="{{asset('backend/plugins/iCheck/square/blue.css')}}">
   <!-- Styky Table Header -->
@@ -317,6 +318,7 @@ desired effect
 <!-- DataTables -->
 <script src="{{asset('backend/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('backend/plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
+<script src="{{asset('backend/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js')}}"></script>
 <!-- Bootstrap Typeahead -->
 <script src="{{asset('backend/plugins/bootstrap-typeahead/bootstrap3-typeahead.min.js')}}"></script>
 <!-- Select2 -->

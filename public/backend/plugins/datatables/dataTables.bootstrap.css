@@ -369,3 +369,9 @@ div.DTFC_RightBodyWrapper table.dataTable thead .sorting_desc:after {
 div.FixedHeader_Cloned table {
     margin: 0 !important
 }
+
+@media (max-width: 767px) {
+    table.dataTable th#menu-control {
+        width: 50px!important;
+    }
+}

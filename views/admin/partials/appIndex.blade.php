@@ -24,9 +24,9 @@
 		<table class="table datatables display responsive no-wrap">
 			<thead>
 			@foreach(array_values($fields) as $field)
-				<th>{{ trans('livecms::'.($groupName ?: 'livecms').'.' .strtolower($field)) }}</th>
+				<th @if ($field == 'id') class="desktop" @endif>{{ trans('livecms::'.($groupName ?: 'livecms').'.' .strtolower($field)) }}</th>
 			@endforeach
-				<th>Menu</th>
+                <th id="menu-control" class="all">Menu</th>
 			</thead>
 		</table>  	  	
   	</div><!-- /.box-body -->
