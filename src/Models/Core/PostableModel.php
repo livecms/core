@@ -83,6 +83,11 @@ class PostableModel extends BaseModel
         //
     }
 
+    public function scopePublished($query)
+    {
+        return $query->where('status', static::STATUS_PUBLISHED);
+    }
+
     public function statuses()
     {
         $allStatuses = [
