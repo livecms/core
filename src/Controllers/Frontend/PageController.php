@@ -137,6 +137,7 @@ class PageController extends FrontendController
 
         // get static
         $statisSlug = getSlug('staticpage');
+        $param = isset($parameters[1]) ? $parameters[1] : null;
 
         if ($parameters[0] == $statisSlug) {
             view()->share('routeBy', 'static');
@@ -147,7 +148,6 @@ class PageController extends FrontendController
         $category = Category::where('slug', $parameters[0])->first();
         if ($category || $parameters[0] == 'category') {
             view()->share('routeBy', 'category');
-            $param = isset($parameters[1]) ? $parameters[1] : null;
             if (!$category) {
                 $category = Category::where('slug', $param)->first();
                 $param = null;
@@ -168,7 +168,6 @@ class PageController extends FrontendController
 
         if ($parameters[0] == $articleSlug) {
             view()->share('routeBy', 'article');
-            $param = isset($parameters[1]) ? $parameters[1] : null;
             return $this->getArticle(true, $param);
         }
 
@@ -177,7 +176,6 @@ class PageController extends FrontendController
 
         if ($parameters[0] == $gallerySlug) {
             view()->share('routeBy', 'gallery');
-            $param = isset($parameters[1]) ? $parameters[1] : null;
             return $this->getGallery(true, $param);
         }
 
