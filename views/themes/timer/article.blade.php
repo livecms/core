@@ -6,7 +6,7 @@
         Global Page Section Start
         ================================================== -->
         <div class="background-img">
-            <img class="img-responsive" alt="{{$article->title}}" src="{{$article->picture}}">
+            <img class="img-responsive" alt="{{$article->title}}" src="{{$article->picture_large_cover}}" style="width: 100%; max-width: 100%;">
         </div>
         <section class="single-post">
             <div class="container">
