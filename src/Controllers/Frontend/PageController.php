@@ -21,7 +21,6 @@ class PageController extends FrontendController
         $launchingDateTime = globalParams('launching_datetime') ?
         new Carbon(globalParams('launching_datetime')) : Carbon::now();
 
-
         // check if has home permalink
         $permalink = Permalink::withDependencies()->whereIn('permalink', ['/', ''])->first();
 
@@ -31,38 +30,38 @@ class PageController extends FrontendController
         }
 
         $post = $permalink->postable;
-
         $title = globalParams('home_title', config('livecms.home_title', 'Home'));
-
         return view(theme('front', 'home'), compact('post', 'title'));
     }
 
     public function getArticle($redirect = true, $slug = null, $with = [])
     {
         $article = new Article;
-
         view()->share($with);
 
         foreach ($with as $key => $value) {
-            
             $article = $article->whereHas($key, function ($query) use ($value) {
                 $query->where($query->getModel()->getKeyName(), $value);
             });
         }
 
         if ($slug == null) {
-
-            $articles = $article->orderBy('published_at', 'DESC')->simplePaginate(12);
-
+            $articles = $article->published()->orderBy('published_at', 'DESC')->simplePaginate(12);
             return view(theme('front', (request()->ajax() ? 'partials.articles' : 'articles')), compact('articles'));
+        }
 
+        if (($user = auth()->user()) && request()->get('preview') == 'true') {
+            if (!$user->is_administer) {
+                $article = $article->where('author_id', $user->id);
+            }
+        } else {
+            $article = $article->published();
         }
 
         $post = $article = $article->where('slug', $slug)->firstOrFail();
         $title = $post->title;
 
         if ($redirect && $post->permalink) {
-            
             return redirect($post->url);
         }
 
@@ -72,29 +71,31 @@ class PageController extends FrontendController
     public function getGallery($redirect = true, $slug = null, $with = [])
     {
         $gallery = new Gallery;
-
         view()->share($with);
 
         foreach ($with as $key => $value) {
-            
             $gallery = $gallery->whereHas($key, function ($query) use ($value) {
                 $query->where($query->getModel()->getKeyName(), $value);
             });
         }
 
         if ($slug == null) {
-
-            $galleries = $gallery->orderBy('published_at', 'DESC')->simplePaginate(12);
-
+            $galleries = $gallery->published()->orderBy('published_at', 'DESC')->simplePaginate(12);
             return view(theme('front', (request()->ajax() ? 'partials.galleries' : 'galleries')), compact('galleries'));
+        }
 
+        if (($user = auth()->user()) && request()->get('preview') == 'true') {
+            if (!$user->is_administer) {
+                $gallery = $gallery->where('author_id', $user->id);
+            }
+        } else {
+            $gallery = $gallery->published();
         }
 
         $post = $gallery = $gallery->where('slug', $slug)->firstOrFail();
         $title = $post->title;
 
         if ($redirect && $post->permalink) {
-            
             return redirect($post->url);
         }
 
@@ -103,23 +104,30 @@ class PageController extends FrontendController
 
     public function getStaticPage($redirect = true, $slug = null)
     {
-        $post = $statis = StaticPage::where('slug', $slug)->firstOrFail();
+        $static = new StaticPage;
+
+        if (($user = auth()->user()) && request()->get('preview') == 'true') {
+            if (!$user->is_administer) {
+                $static = $static->where('author_id', $user->id);
+            }
+        } else {
+            $static = $static->published();
+        }
+
+        $post = $static = $static->where('slug', $slug)->firstOrFail();
         $title = $post->title;
 
         if ($redirect && $post->permalink) {
-            
             return redirect($post->url);
         }
 
-        return view(theme('front', 'staticpage'), compact('post', 'statis', 'title'));
+        return view(theme('front', 'staticpage'), compact('post', 'static', 'title'));
     }
 
     public function getByPermalink($permalink)
     {
         $page = Permalink::where('permalink', $permalink)->firstOrFail();
-
         $type = (new ReflectionClass($post = $page->postable))->getShortName();
-
         return view()->exists(theme('front', $permalink)) ? view(theme('front', $permalink), compact('post')) : $this->{'get'.$type}(false, $post->slug);
     }
 
@@ -174,7 +182,6 @@ class PageController extends FrontendController
         }
 
         $permalink = implode('/', $parameters);
-
         return $this->getByPermalink($permalink);
     }
 }
