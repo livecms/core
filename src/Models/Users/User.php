@@ -12,6 +12,7 @@ use LiveCMS\Models\Traits\ImagableTrait;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Notifications\Notifiable;
 use LiveCMS\Models\Contracts\UserModelInterface as UserModelContract;
 use LiveCMS\Support\Uploader\Contracts\ModelUploaderInterface as ModelUploaderContract;
 use LiveCMS\Support\Thumbnailer\Contracts\ModelThumbnailerInterface as ModelThumbnailerContract;
@@ -25,7 +26,7 @@ class User extends Model implements
     ModelUploaderContract,
     ModelThumbnailerContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, UserModelTrait, ImagableTrait;
+    use Authenticatable, Authorizable, CanResetPassword, UserModelTrait, ImagableTrait, Notifiable;
 
     protected $withSuper = true;
 

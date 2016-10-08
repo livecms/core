@@ -17,8 +17,14 @@ class ResetPasswordController extends Controller
     | explore this trait and override any methods you wish to tweak.
     |
     */
-
     use ResetsPasswords;
+
+    /**
+     * Where to redirect users after login / registration.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -28,5 +34,8 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+
+        $userSlug = getSlug('userhome');
+        $this->redirectTo = $userSlug;
     }
 }

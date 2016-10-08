@@ -61,6 +61,7 @@
 
     // AUTH
     Auth::routes();
+    $router->get('logout', 'Auth\LoginController@logout');
 
     $router->get('register', function () {
         return redirect()->route('user.home');
