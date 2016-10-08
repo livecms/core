@@ -136,14 +136,13 @@
 10. Edit your RouteServiceProvider
     Update mapWebRoutes() method in your app/Providers/RouteServiceProvider.php
     ````
-        protected function mapWebRoutes()
+        protected function mapWebRoutes(Router $router)
         {
-            Route::group([
-                'middleware' => 'web',
-                'namespace' => $this->namespace,
+            $router->group([
+                'namespace' => $this->namespace, 'middleware' => 'web',
             ], function ($router) {
                 liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) {
-                    require base_path('routes/web.php');
+                    require app_path('Http/routes.php');
                     frontendRoute($router);
                 });
             });
