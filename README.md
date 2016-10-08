@@ -1,5 +1,7 @@
 # Project LiveCMS - CORE
 
+##For Laravel 5.2, please checkout branch V0
+
 # How To Install :
 
 1. Create Laravel Project (5.3.*)
