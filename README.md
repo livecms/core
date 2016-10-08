@@ -2,9 +2,9 @@
 
 # How To Install :
 
-1. Create Laravel Project (5.2.*)
+1. Create Laravel Project (5.3.*)
     ````
-         composer create-project laravel/laravel liveCMS --prefer-dist 
+         composer create-project laravel/laravel liveCMS --prefer-dist
     ````
 
 2. Edit composer.json
@@ -121,30 +121,36 @@
         ],
     ````
 
-8. Update resources/lang/id/validation.php
-    Edit :
-    ````
-        'attributes' => require(base_path('resources/lang/vendor/livecms/id/livecms.php')),
-    ````
-
-9. Update your .env
+8. Update your .env
     update based on what your site url:
     ````
         APP_URL=yourdomain.com
     ````
 
-10. Do Migrate
+9. Artisan Optimize and do Migrate
     ````
+        php artisan optimize
         php artisan migrate --seed
     ````
 
-11. Add frontend routes
-    Add this line of code to your app/Http/routes.php
+10. Edit your RouteServiceProvider
+    Update mapWebRoutes() method in your app/Providers/RouteServiceProvider.php
     ````
-        frontendRoute($router);
+        protected function mapWebRoutes()
+        {
+            Route::group([
+                'middleware' => 'web',
+                'namespace' => $this->namespace,
+            ], function ($router) {
+                liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) {
+                    require base_path('routes/web.php');
+                    frontendRoute($router);
+                });
+            });
+        }
     ````
 
-12. Login
+11. Login
     visit : http://yourdomain/login
 
     default username / password 
@@ -158,4 +164,3 @@
         password : admin
 
 Visit https://github.com/livecms/LiveCMS for more info.
-
