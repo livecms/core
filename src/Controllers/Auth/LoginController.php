@@ -6,11 +6,10 @@ use Illuminate\Http\Request;
 use LiveCMS\Controllers\Controller;
 use LiveCMS\Models\Users\User;
 use LiveCMS\Models\User as UserModel;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Validator;
 
-class AuthController extends Controller
+class LoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -23,7 +22,7 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login / registration.
@@ -53,6 +52,16 @@ class AuthController extends Controller
 
         $userSlug = getSlug('userhome');
         $this->redirectTo = $userSlug;
+    }
+
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        return view($this->loginView);
     }
 
     /**

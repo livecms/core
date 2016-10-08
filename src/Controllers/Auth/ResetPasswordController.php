@@ -2,10 +2,10 @@
 
 namespace LiveCMS\Controllers\Auth;
 
-use LiveCMS\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
-class PasswordController extends Controller
+class ResetPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -21,17 +21,7 @@ class PasswordController extends Controller
     use ResetsPasswords;
 
     /**
-     * add linkRequestView
-     */
-    protected $linkRequestView = 'livecms::auth.passwords.email';
-
-    /**
-     * add resetView
-     */
-    protected $resetView = 'livecms::auth.passwords.reset';
-
-    /**
-     * Create a new password controller instance.
+     * Create a new controller instance.
      *
      * @return void
      */

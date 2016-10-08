@@ -22,7 +22,7 @@
     // PROFILE AREA
 
     $userSlug = getSlug('userhome');
-    $router->group(['prefix' => $userSlug, 'namespace' => 'User', 'middleware' => 'auth'], function ($router) {
+    $router->group(['prefix' => $userSlug, 'as' => $userSlug.'.', 'namespace' => 'User', 'middleware' => 'auth'], function ($router) {
 
         $router->get('/', ['as' => 'user.home', function () {
             $bodyClass = 'skin-blue sidebar-mini sidebar-collapse';
@@ -34,7 +34,7 @@
     });
 
     // ADMIN AREA
-    $router->group(['prefix' => $adminSlug, 'namespace' => 'Backend', 'middleware' => 'auth'], function ($router) {
+    $router->group(['prefix' => $adminSlug, 'as' => $adminSlug.'.', 'namespace' => 'Backend', 'middleware' => 'auth'], function ($router) {
         
         $router->get('/', ['as' => 'admin.home', function () {
             return view('livecms::admin.home');
@@ -60,7 +60,7 @@
     });
 
     // AUTH
-    $router->auth();
+    Auth::routes();
 
     $router->get('register', function () {
         return redirect()->route('user.home');
