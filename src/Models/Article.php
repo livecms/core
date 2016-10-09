@@ -10,15 +10,22 @@ use LiveCMS\Models\Core\User;
 class Article extends PostableModel
 {
     use AuthorModelTrait;
-    
+
+    protected $fillable = ['title', 'site_id', 'slug', 'content', 'author_id', 'picture', 'published_at', 'status', 'is_featured'];
+
     protected $mergesAfter = ['category' => 'Category', 'tag' => 'Tag'];
+
+    protected $aliases = ['author_id' => 'author', 'is_featured' => 'fa-star'];
 
     protected $dependencies = ['author', 'categories', 'tags', 'permalink'];
 
     protected $forms = [
         'text' => ['title', 'slug'],
         'tagged_multi_select' => ['categories', 'tags'],
+        'boolean' => ['is_featured'],
     ];
+
+    protected $casts = ['is_featured' => 'boolean'];
 
     public function __construct(array $attributes = [])
     {

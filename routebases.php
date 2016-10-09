@@ -43,6 +43,7 @@
 
         $router->resource(getSlug('category'), 'CategoryController');
         $router->resource(getSlug('tag'), 'TagController');
+        $router->put(getSlug('article').'/{id}/update-featured', 'ArticleController@putUpdateFeatured');
         $router->resource(getSlug('article'), 'ArticleController');
         $router->resource(getSlug('staticpage'), 'StaticPageController');
         $router->resource(getSlug('team'), 'TeamController');

@@ -2,6 +2,8 @@
 
 namespace LiveCMS\Controllers\Backend;
 
+use Form;
+use Illuminate\Http\Request;
 use LiveCMS\Models\Core\Permalink;
 use LiveCMS\Models\Article as Model;
 use LiveCMS\Models\Category;
@@ -12,6 +14,7 @@ class ArticleController extends PostableController
     protected $category;
     protected $tag;
     protected $permalink;
+    protected $stackedFields = ['fa-star'];
 
     public function __construct(Model $model, Category $category, Tag $tag, $base = 'article')
     {
@@ -28,6 +31,41 @@ class ArticleController extends PostableController
         $this->view->share();
     }
 
+    protected function processRequest($request)
+    {
+        if (!$request->get('is_featured')) {
+            $request->merge(['is_featured' => false]);
+        }
+        return parent::processRequest($request);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function putUpdateFeatured(Request $request, $id)
+    {
+        $this->model = $this->model->findOrFail($id);
+
+        $request = $this->processRequest($request);
+
+        if ($request === true) {
+            return $this->redirection();
+        }
+
+        $is_featured = $request->get('is_featured');
+        $this->model->update(compact('is_featured'));
+
+        $saved = $this->afterSaving($request);
+
+        if ($saved) {
+            return $this->redirection();
+        }
+    }
+
     protected function processDatatables($datatables)
     {
         $datatables = parent::processDatatables($datatables);
@@ -38,6 +76,26 @@ class ArticleController extends PostableController
             })
             ->addColumn('tag', function ($data) {
                 return dataImplode($data->tags, 'tag');
+            })
+            ->addColumn('is_featured', function ($data) {
+                return $data->is_featured ? 
+                    (Form::open(['style' => 'display: inline!important', 'method' => 'put',
+                        'action' => [$this->baseClass.'@putUpdateFeatured', $data->{$this->model->getKeyName()}]
+                    ]).
+                    '  <button type="submit" name="is_featured" value="0" onClick="return confirm(\''.$this->getTrans('unsetfeaturedconfirmation').'\');" 
+                        class="btn btn-small btn-link" title="'.$this->getTrans('unsetfeatured').'">
+                            <i class="fa fa-xs fa-star text-yellow"></i> 
+                    </button>
+                    </form>')
+                 :
+                    (Form::open(['style' => 'display: inline!important', 'method' => 'put',
+                        'action' => [$this->baseClass.'@putUpdateFeatured', $data->{$this->model->getKeyName()}]
+                    ]).
+                    '  <button type="submit" name="is_featured" value="1" onClick="return confirm(\''.$this->getTrans('setfeaturedconfirmation').'\');" 
+                        class="btn btn-small btn-link" title="'.$this->getTrans('setfeatured').'">
+                            <i class="fa fa-xs fa-star-o"></i> 
+                    </button>
+                    </form>');
             });
     }
 

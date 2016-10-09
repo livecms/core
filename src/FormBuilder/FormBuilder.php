@@ -32,6 +32,7 @@ use LiveCMS\Models\Core\BaseModel;
 // radio
 // image
 // file
+// boolean
 
 class FormBuilder
 {
@@ -143,6 +144,12 @@ class FormBuilder
                 </div>
             </div>
         ';
+        return $this->fieldWrapper($field, $fieldInput);
+    }
+
+    public function booleanType($model, $field)
+    {
+        $fieldInput = '<label>'.Form::checkbox($field, '1', $model->$field).' '.trans('livecms::'.$this->groupName.'.formclicktomakeas', ['field' => Str::title(Str::replaceFirst('is_', '', $field))]).' </label>';
         return $this->fieldWrapper($field, $fieldInput);
     }
 
