@@ -152,21 +152,23 @@ class PageController extends FrontendController
         }
 
         // get article category
-        $category = Category::where('slug', $parameters[0])->first();
-        if ($category || $parameters[0] == 'category') {
+        $categorySlug = getSlug('category');
+        $category = Category::where('slug', $param)->first();
+        if ($category || $parameters[0] == $categorySlug) {
             view()->share('routeBy', 'category');
             if (!$category) {
                 $category = Category::where('slug', $param)->first();
                 $param = null;
             }
             view()->share('title', $category->category);
-            return $this->getArticle(true, $param, $category ? ['categories' => $category->id] : []);
+            return $this->getArticle(true, null, $category ? ['categories' => $category->id] : []);
         }
 
         // get article tag
-        if ($parameters[0] == 'tag') {
+        $tagSlug = getSlug('tag');
+        $tag = Tag::where('slug', $param)->first();
+        if ($tag || $parameters[0] == $tagSlug) {
             view()->share('routeBy', 'tag');
-            $tag = Tag::where('slug', $param)->first();
             return $this->getArticle(true, null, $tag ? ['tags' => $tag->id] : []);
         }
 
