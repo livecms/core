@@ -1,5 +1,7 @@
 @extends('livecms::backend')
 
+@inject('str', 'Illuminate\Support\Str')
+
 @section('content')
 <div class="topbutton @if (!isset($withoutStickedTopButton)) run @endif ">
 	<div class="row">
@@ -24,7 +26,7 @@
 		<table class="table datatables display responsive no-wrap">
 			<thead>
 			@foreach(array_values($fields) as $field)
-				<th @if ($field == 'id') class="desktop" @endif>{{ trans('livecms::'.($groupName ?: 'livecms').'.' .strtolower($field)) }}</th>
+				<th @if ($field == 'id') class="desktop" @else @if (in_array($field, $stackedFields)) class="all" @endif @endif> @if ($str->startsWith($field, 'fa-')) <i class="fa {{$field}}"></i> @else {{trans('livecms::'.($groupName ?: 'livecms').'.' .strtolower($field)) }} @endif</th>
 			@endforeach
                 <th id="menu-control" class="all">Menu</th>
 			</thead>

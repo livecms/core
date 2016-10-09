@@ -15,7 +15,7 @@ class Article extends PostableModel
 
     protected $mergesAfter = ['category' => 'Category', 'tag' => 'Tag'];
 
-    protected $aliases = ['author_id' => 'author', 'is_featured' => 'fa-star'];
+    protected $aliases = ['author_id' => 'author', 'is_featured' => 'fa-star', 'view' => 'viewed'];
 
     protected $dependencies = ['author', 'categories', 'tags', 'permalink'];
 

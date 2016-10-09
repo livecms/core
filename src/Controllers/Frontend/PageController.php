@@ -50,7 +50,7 @@ class PageController extends FrontendController
             return view(theme('front', (request()->ajax() ? 'partials.articles' : 'articles')), compact('articles'));
         }
 
-        if (($user = auth()->user()) && request()->get('preview') == 'true') {
+        if ($loggedAndPreview = (($user = auth()->user()) && request()->get('preview') == 'true')) {
             if (!$user->is_administer) {
                 $article = $article->where('author_id', $user->id);
             }
@@ -59,7 +59,7 @@ class PageController extends FrontendController
         }
 
         $post = $article = $article->where('slug', $slug)->firstOrFail();
-        if (!request()->get('preview') == 'true' || (auth()->user() && auth()->user()->id != $article->author_id)) {
+        if (!$loggedAndPreview || (auth()->user() && auth()->user()->id != $article->author_id)) {
             if ($article->view > 0) {
                 $article->increment('view');
             } else {
