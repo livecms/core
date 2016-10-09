@@ -55,6 +55,13 @@
                         
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="post-content">
+                            {!!disqusComment($article)!!}
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 

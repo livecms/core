@@ -304,3 +304,29 @@ if (! function_exists('dataImplode')) {
         return rtrim($data->pluck($attribute)->implode(', '), ', ');
     }
 }
+
+if (! function_exists('disqusComment')) {
+
+    function disqusComment($artile, $disqusId = null, $url = null, $title = null, $identifier = null) {
+        return '
+            <div id="disqus_thread"></div>
+            <script>
+                var disqus_config = function () {
+                    this.page.url = \''.( $url ?: request()->url() ).'\';
+                    this.page.identifier = \''.( $identifier ?: $artile->id ).'\';
+                    this.page.title = \''.( $title ?: $artile->title ).'\';
+                };
+
+                (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+                    var d = document, s = d.createElement(\'script\');
+
+                    s.src = \'//'.( $disqusId ?: globalParams('disqus_id') ).'.disqus.com/embed.js\';
+
+                    s.setAttribute(\'data-timestamp\', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        ';
+    }
+}
