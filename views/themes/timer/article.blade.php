@@ -15,6 +15,7 @@
                         <div class="block text-center">
                             <h1>{{$article->title}}</h1>
                             <div class="portfolio-meta">
+                                <span>{{$article->view}} views</span>|
                                 <span>{{$article->published_at->diffForHumans()}}</span>|
                                 <span> Category: {{dataImplode($article->categories, 'category')}}</span>|
                                 <span> Tags: {{dataImplode($article->tags, 'tag')}}</span>

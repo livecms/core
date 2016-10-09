@@ -11,7 +11,7 @@ class Article extends PostableModel
 {
     use AuthorModelTrait;
 
-    protected $fillable = ['title', 'site_id', 'slug', 'content', 'author_id', 'picture', 'published_at', 'status', 'is_featured'];
+    protected $fillable = ['title', 'site_id', 'slug', 'content', 'author_id', 'picture', 'published_at', 'status', 'is_featured', 'view'];
 
     protected $mergesAfter = ['category' => 'Category', 'tag' => 'Tag'];
 

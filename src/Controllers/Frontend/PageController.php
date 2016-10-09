@@ -59,6 +59,13 @@ class PageController extends FrontendController
         }
 
         $post = $article = $article->where('slug', $slug)->firstOrFail();
+        if (!request()->get('preview') == 'true' || (auth()->user() && auth()->user()->id != $article->author_id)) {
+            if ($article->view > 0) {
+                $article->increment('view');
+            } else {
+                $article->update(['view' => 1]);
+            }
+        }
         $title = $post->title;
 
         if ($redirect && $post->permalink) {
