@@ -3,7 +3,7 @@
     <head>
         <!-- Basic Page Needs
         ================================================== -->
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="icon" type="image/png" href="{{asset('frontend/timer/images/favicon.png')}}">
         <title>{{ $title or 'Judul' }} | {{ globalParams('site_name') }}</title>
@@ -187,6 +187,6 @@
             ga('send', 'pageview');
 
         </script>
-
+        <script id="dsq-count-scr" src="//{{globalParams('disqus_id')}}.disqus.com/count.js" async></script>
     </body>
 </html>

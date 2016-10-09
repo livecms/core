@@ -18,7 +18,8 @@
                                 <span>{{$article->view}} views</span>|
                                 <span>{{$article->published_at->diffForHumans()}}</span>|
                                 <span> Category: {{dataImplode($article->categories, 'category')}}</span>|
-                                <span> Tags: {{dataImplode($article->tags, 'tag')}}</span>
+                                <span> Tags: {{dataImplode($article->tags, 'tag')}}</span>|
+                                <span> Komentar: </span><a href="#disqus_thread"><span class="disqus-comment-count" href="#disqus_thread" data-disqus-identifier="{{$article->id}}"></span></a>
                             </div>
                         </div>
                     </div>
