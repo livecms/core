@@ -4,6 +4,7 @@ namespace LiveCMS\Controllers\Backend;
 
 use Form;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use LiveCMS\Models\Core\Permalink;
 use LiveCMS\Models\Article as Model;
 use LiveCMS\Models\Category;
@@ -70,14 +71,16 @@ class ArticleController extends PostableController
     {
         $datatables = parent::processDatatables($datatables);
         
-        return $datatables
+        $datatables = $datatables
             ->addColumn('category', function ($data) {
                 return dataImplode($data->categories, 'category');
             })
             ->addColumn('tag', function ($data) {
                 return dataImplode($data->tags, 'tag');
-            })
-            ->addColumn('is_featured', function ($data) {
+            });
+
+        if (Str::endsWith(get_called_class(), 'Backend\ArticleController')) {
+            return $datatables->editColumn('is_featured', function ($data) {
                 return $data->is_featured ? 
                     (Form::open(['style' => 'display: inline!important', 'method' => 'put',
                         'action' => [$this->baseClass.'@putUpdateFeatured', $data->{$this->model->getKeyName()}]
@@ -97,6 +100,8 @@ class ArticleController extends PostableController
                     </button>
                     </form>');
             });
+        }
+        return $datatables;
     }
 
     protected function loadFormClasses($model)
