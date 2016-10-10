@@ -17,6 +17,7 @@ class BackendController extends BaseController
     protected $base;
     protected $baseClass;
     protected $stackedFields = [];
+    protected $inDetailedFields = [];
 
     protected $groupName = 'admin';
 

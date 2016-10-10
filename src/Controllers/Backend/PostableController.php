@@ -15,7 +15,9 @@ use Upload;
 abstract class PostableController extends BackendController
 {
     protected $unsortables = ['picture', 'author_id'];
- 
+
+    protected $inDetailedFields = ['slug', 'content', 'description'];
+
     public function __construct(Model $model, $base = 'post')
     {
         parent::__construct($model, $base);
