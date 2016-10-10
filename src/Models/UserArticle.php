@@ -9,6 +9,8 @@ class UserArticle extends Article implements UserContract
 {
     protected $table = 'articles';
 
+    protected $excepts = ['is_featured'];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
