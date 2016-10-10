@@ -101,6 +101,6 @@ return array(
     |
     */
 
-    'attributes' => require(base_path('resources/lang/vendor/livecms/id/livecms.php')),
+    'attributes' => require(file_exists($path = base_path('resources/lang/vendor/livecms/id/livecms.php')) ? $path : base_path('vendor/livecms/core/lang/id/livecms.php')),
 
 );
