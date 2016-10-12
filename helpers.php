@@ -188,11 +188,11 @@ if (! function_exists('get')) {
     function get($postType, $identifier = null, $number = 1, array $where = [], array $fields = ['*'], $order = 'asc', $orderBy = 'id')
     {
         $namespace = 'App\\Models\\';
-
-        $class = $namespace.studly_case(snakeToStr($postType));
+        $classTypeName = studly_case(snakeToStr($postType));
+        $class = $namespace.$classTypeName;
 
         if (!class_exists($class)) {
-            $class = 'LiveCMS\\Models\\'.studly_case(snakeToStr($postType));
+            $class = 'LiveCMS\\Models\\'.$classTypeName;
         }
 
         $instance = app($class);
@@ -227,11 +227,11 @@ if (! function_exists('getCategory')) {
     function getCategory($category, $postType = 'article', $number = 10, array $fields = ['*'], $order = 'asc', $orderBy = 'id')
     {
         $namespace = 'App\\Models\\';
-
-        $class = $namespace.studly_case(snakeToStr($postType));
+        $classTypeName = studly_case(snakeToStr($postType));
+        $class = $namespace.$classTypeName;
 
         if (!class_exists($class)) {
-            $class = 'LiveCMS\\Models\\'.studly_case(snakeToStr($postType));
+            $class = 'LiveCMS\\Models\\'.$classTypeName;
         }
 
         $ids = app($class)->where('status', PostableModel::STATUS_PUBLISHED)->whereHas('categories', function ($query) use ($category) {
@@ -250,11 +250,11 @@ if (! function_exists('getTag')) {
     function getTag($tag, $postType = 'article', $number = 10, array $fields = ['*'], $order = 'asc', $orderBy = 'id')
     {
         $namespace = 'App\\Models\\';
-
-        $class = $namespace.studly_case(snakeToStr($postType));
+        $classTypeName = studly_case(snakeToStr($postType));
+        $class = $namespace.$classTypeName;
 
         if (!class_exists($class)) {
-            $class = 'LiveCMS\\Models\\'.studly_case(snakeToStr($postType));
+            $class = 'LiveCMS\\Models\\'.$classTypeName;
         }
 
         $ids = app($class)->where('status', PostableModel::STATUS_PUBLISHED)->whereHas('tags', function ($query) use ($tag) {
