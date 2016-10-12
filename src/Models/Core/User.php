@@ -129,4 +129,27 @@ class User extends BaseModel implements UserModelContract
 
         return $this;
     }
+
+    public function getTotalPosts($postType = 'article', $publishedOnly = true)
+    {
+        if (! $this->exists) {
+            return null;
+        }
+
+        $namespace = 'App\\Models\\';
+        $classTypeName = studly_case(snakeToStr($postType));
+        $class = $namespace.$classTypeName;
+
+        if (!class_exists($class)) {
+            $class = 'LiveCMS\\Models\\'.$classTypeName;
+        }
+
+        $where = ['author_id' => $this->id];
+        if ($publishedOnly) {
+            $where['status'] = PostableModel::STATUS_PUBLISHED;
+        }
+
+        $posts = app($class)->where($where)->get(['id']);
+        return $posts->count();
+    }
 }
