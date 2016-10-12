@@ -148,8 +148,9 @@ class User extends BaseModel implements UserModelContract
         if ($publishedOnly) {
             $where['status'] = PostableModel::STATUS_PUBLISHED;
         }
-
-        $posts = app($class)->where($where)->get(['id']);
+        $model = app($class);
+        $model->withoutDependencies = true;
+        $posts = $model->where($where)->get(['id']);
         return $posts->count();
     }
 }
