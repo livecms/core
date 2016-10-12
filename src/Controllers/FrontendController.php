@@ -8,7 +8,7 @@ class FrontendController extends BaseController
 {
     public function __construct()
     {
-        $helpers = theme('front', 'partials.helpers', true).'.php';
+        $helpers = theme('front', 'partials.helpers', true);
         $variables = file_exists($helpers) ? require_once $helpers : [];
         view()->share($variables);
     }
