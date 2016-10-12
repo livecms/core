@@ -133,7 +133,7 @@ trait BaseModelTrait
 
     public function scopeWithDependencies($query)
     {
-        return $query->with($this->dependencies());
+        return $this->withoutDependencies ? $query : $query->with($this->dependencies());
     }
 
     public function save(array $options = [])
