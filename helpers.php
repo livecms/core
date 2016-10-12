@@ -2,6 +2,7 @@
 
 use LiveCMS\Models\Core\GenericSetting as Setting;
 use LiveCMS\Models\Core\Site;
+use LiveCMS\Models\Core\PostableModel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -173,21 +174,12 @@ if (! function_exists('theme')) {
         $location = '.'.$location;
         $viewPath = config('view.paths.0');
 
-        if (view()->exists($view = $type.$location)) {
-
+        if (view()->exists($view = $types.$location)) {
             if ($getPath) {
-                return $viewPath.DIRECTORY_SEPARATOR.(str_replace('.', DIRECTORY_SEPARATOR, $view));
+                return view($view)->getPath();
             }
-
             return $view;
         }
-
-        if ($getPath) {
-            $view = str_replace(['::', '.'], DIRECTORY_SEPARATOR, $types.$location);
-            return $viewPath.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.$view;
-        }
-
-        return $types.$location;
     }
 }
 
@@ -205,6 +197,7 @@ if (! function_exists('get')) {
 
         $instance = app($class);
 
+        $where['status'] = isset($where['status']) ? $where['status'] : PostableModel::STATUS_PUBLISHED;
 
         if ($identifier === null) {
 
@@ -241,7 +234,7 @@ if (! function_exists('getCategory')) {
             $class = 'LiveCMS\\Models\\'.studly_case(snakeToStr($postType));
         }
 
-        $ids = app($class)->whereHas('categories', function ($query) use ($category) {
+        $ids = app($class)->where('status', PostableModel::STATUS_PUBLISHED)->whereHas('categories', function ($query) use ($category) {
             $query->where(function ($query) use ($category) {
                 $table = $query->getModel()->getTable();
                 $query->where($table.'.category', $category)->orWhere($table.'.slug', $category);
@@ -264,7 +257,7 @@ if (! function_exists('getTag')) {
             $class = 'LiveCMS\\Models\\'.studly_case(snakeToStr($postType));
         }
 
-        $ids = app($class)->whereHas('tags', function ($query) use ($tag) {
+        $ids = app($class)->where('status', PostableModel::STATUS_PUBLISHED)->whereHas('tags', function ($query) use ($tag) {
             $query->where(function ($query) use ($tag) {
                 $table = $query->getModel()->getTable();
                 $query->where($table.'.tag', $tag)->orWhere($table.'.slug', $tag);
@@ -299,9 +292,13 @@ if (! function_exists('child')) {
 
 if (! function_exists('dataImplode')) {
 
-    function dataImplode($data, $attribute)
+    function dataImplode($data, $attribute, $callback = null, $keyBy = null)
     {
-        return rtrim($data->pluck($attribute)->implode(', '), ', ');
+        $data = $data->pluck($attribute, $keyBy);
+        if (is_callable($callback)) {
+            $data = $data->map($callback);
+        }
+        return rtrim($data->implode(', '), ', ');
     }
 }
 
