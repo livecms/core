@@ -15,13 +15,12 @@ use Upload;
 abstract class PostableController extends BackendController
 {
     protected $unsortables = ['picture', 'author_id'];
-
     protected $inDetailedFields = ['slug', 'content', 'description'];
+    protected $withPreview = true;
 
     public function __construct(Model $model, $base = 'post')
     {
         parent::__construct($model, $base);
-        
         $this->breadcrumb2Icon  = 'file-o';
         $this->view->share();
     }
@@ -35,7 +34,7 @@ abstract class PostableController extends BackendController
     {
         return $datatables
             ->editColumn('title', function ($data) {
-                return '<a target="_blank" href="'.$data->url.'?preview=true">'.$data->title.'</a>';
+                return '<a target="_blank" href="'.$data->url_preview.'">'.$data->title.'</a>';
             })
             ->editColumn('content', function ($data) {
                 return str_limit(strip_tags($data->content), 300);
@@ -130,5 +129,14 @@ abstract class PostableController extends BackendController
         }
 
         return parent::afterSaving($request);
+    }
+
+    protected function redirectTo()
+    {
+        if (request()->has('save_and_preview')) {
+            return redirect()->action($this->baseClass.'@'.'edit', ['id' => $this->model->id])->with(['open_new_tab' => $this->model->url_preview]);
+        }
+
+        return false;
     }
 }

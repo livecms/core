@@ -56,8 +56,14 @@
                 </div>
                 <div class="box-footer">
                     <div class="row">
+                        <div class="col-xs-12">
+                            {!! Form::button('<i class="fa fa-search"></i> '.trans('livecms::livecms.saveandpreview'), ['class' => 'btn bg-navy btn-block', 'name' => 'save_and_preview', 'value' => 'true', 'type' => 'submit']) !!}
+                        </div>
+                        <div class="col-xs-12">&nbsp;</div>
+                    </div>
+                    <div class="row">
                         <div class="col-xs-6 col-md-12">
-                            {!! Form::submit(trans('livecms::livecms.save'), ['class' => 'btn btn-success btn-block']) !!}
+                            {!! Form::submit(trans('livecms::livecms.save'), ['class' => 'btn btn-success btn-block', 'name' => 'save']) !!}
                         </div>
                         <div class="col-md-12 visible-md visible-lg">&nbsp;</div>
                         <div class="col-xs-6 col-md-12">

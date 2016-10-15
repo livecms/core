@@ -118,6 +118,11 @@ class PostableModel extends BaseModel
         return url($this->prefixSlug ?: '/');
     }
 
+    public function getUrlPreviewAttribute()
+    {
+        return $this->getUrlAttribute().'?preview=true';
+    }
+
     public function getPicturePath()
     {
         return static::$picturePath;

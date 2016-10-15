@@ -12,6 +12,9 @@
 				<div class="row form-group">
 					<div class="col-md-{{ $formLeftWidth or '2' }}">&nbsp;</div>
 					<div class="col-md-9">
+					@if (isset($withPreview) && $withPreview)
+                        {!! Form::button('<i class="fa fa-search"></i> '.trans('livecms::livecms.saveandpreview'), ['class' => 'btn bg-navy', 'name' => 'save_and_preview', 'value' => 'true', 'type' => 'submit']) !!}
+					@endif
 						{!! Form::submit(trans('livecms::livecms.save'), ['class' => 'btn btn-success']) !!}
 						<a href="{{ action($baseClass.'@index') }}" class="btn btn-default">{{trans('livecms::livecms.cancel')}}</a>
 					</div>

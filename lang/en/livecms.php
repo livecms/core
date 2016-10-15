@@ -76,6 +76,7 @@ return [
     'published at'                  => 'Published at',
     'role'                          => 'Role',
     'save'                          => 'Save',
+    'saveandpreview'                => 'Save and Preview',
     'seeall'                        => 'See all',
     'setfeatured'                   => 'Set Featured Post',
     'setfeaturedconfirmation'       => 'Are you sure to set Featured Post?',

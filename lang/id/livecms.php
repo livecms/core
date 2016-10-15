@@ -76,6 +76,7 @@ return [
     'published at'                  => 'Diterbitkan Pada',
     'role'                          => 'Jabatan',
     'save'                          => 'Simpan',
+    'saveandpreview'                => 'Simpan dan Preview',
     'seeall'                        => 'Lihat Semua',
     'setfeatured'                   => 'Jadikan Featured Post',
     'setfeaturedconfirmation'       => 'Apakah akan dijadikan Featured Post?',

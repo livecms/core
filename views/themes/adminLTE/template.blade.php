@@ -441,7 +441,7 @@ desired effect
           @foreach(array_keys($fields) as $field) { name: '{{ $field }}', data: '{{ $field }}', sortable: {{ in_array($field, $unsortables) ? 'false' : 'true'}}, searchable: {{ in_array($field, $unsortables) ? 'false' : 'true'}}}, @endforeach
           { name: 'menu', data: 'menu', sortable: false, searchable: false },
         ],
-        order: [@foreach($orders as $key => $order) [{{ $key }}, '{{ $order }}']@endforeach],
+        order: [@foreach($orders as $key => $order) @if ($keyPosition = array_search($key, array_keys($fields))) ['{{ $keyPosition }}', '{{ $order }}'] @endif @endforeach],
     }).on( 'draw.dt', function () {
       $(table.table().container())
         .find('div.dataTables_paginate')
@@ -524,6 +524,13 @@ desired effect
 
 
 </script>
+
+@if (Session::has('open_new_tab'))
+    <a id="open_new_tab" href="{{Session::get('open_new_tab')}}" target="_new" style="left: -20px; position: absolute;">#</a>
+    <script>
+        $('#open_new_tab')[0].click();
+    </script>
+@endif
 
 @if (Session::has('sweet_alert.alert'))
     <script>

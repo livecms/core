@@ -18,6 +18,7 @@ class BackendController extends BaseController
     protected $baseClass;
     protected $stackedFields = [];
     protected $inDetailedFields = [];
+    protected $orders = ['id' => 'desc', 'published_at' => 'desc'];
 
     protected $groupName = 'admin';
 
@@ -76,17 +77,17 @@ class BackendController extends BaseController
         return $this->model;
     }
 
-    protected function redirection($method = 'index')
+    protected function redirection($method = 'index', $params = [])
     {
         if (request()->wantsJson()) {
             return $this->data(request());
         }
 
-        if (method_exists($this, 'redirectTo')) {
-            return $this->redirectTo();
+        if (method_exists($this, 'redirectTo') && ($redirectTo = $this->redirectTo()) !== false) {
+            return $redirectTo;
         }
 
-        return redirect()->action($this->baseClass.'@'.$method);
+        return redirect()->action($this->baseClass.'@'.$method, $params);
     }
 
     public function index(Request $request)
