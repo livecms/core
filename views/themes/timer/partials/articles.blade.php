@@ -21,5 +21,5 @@
 </article>
 @endforeach
 
-<ul class="pager" @if (!$articles->nextPageUrl()) style="display: none;" @endif ><li><a href="{{$articles->nextPageUrl()}}" rel="prev">@if ($articles->nextPageUrl())Next @else -------- @endif</a></li> </ul>
+<ul class="pager"><li>@if ($articles->nextPageUrl())<a href="{{$articles->nextPageUrl()}}" rel="next">@endif</a></li> </ul>
 

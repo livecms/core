@@ -42,7 +42,7 @@
 @section('script')
 <script>
     $(function() {
-        $('.articles').jscroll();
+        $('.articles').jscroll({nextSelector: 'a[rel=next]'});
     });
 </script>
 @endsection
