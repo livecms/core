@@ -156,6 +156,7 @@ class PageController extends FrontendController
         $category = Category::where('slug', $param)->first();
         if ($category && $parameters[0] == $categorySlug) {
             view()->share('routeBy', 'category');
+            view()->share('category', $category);
             view()->share('title', $category->category);
             return $this->getArticle(true, null, $category ? ['categories' => $category->id] : []);
         }
@@ -165,6 +166,7 @@ class PageController extends FrontendController
         $tag = Tag::where('slug', $param)->first();
         if ($tag && $parameters[0] == $tagSlug) {
             view()->share('routeBy', 'tag');
+            view()->share('tag', $tag);
             view()->share('title', $tag->tag);
             return $this->getArticle(true, null, $tag ? ['tags' => $tag->id] : []);
         }
