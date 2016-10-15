@@ -154,12 +154,8 @@ class PageController extends FrontendController
         // get article category
         $categorySlug = getSlug('category');
         $category = Category::where('slug', $param)->first();
-        if ($category || $parameters[0] == $categorySlug) {
+        if ($category && $parameters[0] == $categorySlug) {
             view()->share('routeBy', 'category');
-            if (!$category) {
-                $category = Category::where('slug', $param)->first();
-                $param = null;
-            }
             view()->share('title', $category->category);
             return $this->getArticle(true, null, $category ? ['categories' => $category->id] : []);
         }
@@ -167,14 +163,14 @@ class PageController extends FrontendController
         // get article tag
         $tagSlug = getSlug('tag');
         $tag = Tag::where('slug', $param)->first();
-        if ($tag || $parameters[0] == $tagSlug) {
+        if ($tag && $parameters[0] == $tagSlug) {
             view()->share('routeBy', 'tag');
+            view()->share('title', $tag->tag);
             return $this->getArticle(true, null, $tag ? ['tags' => $tag->id] : []);
         }
 
         // get article
         $articleSlug = getSlug('article');
-
         if ($parameters[0] == $articleSlug) {
             view()->share('routeBy', 'article');
             return $this->getArticle(true, $param);
@@ -182,7 +178,6 @@ class PageController extends FrontendController
 
         // get gallery
         $gallerySlug = getSlug('gallery');
-
         if ($parameters[0] == $gallerySlug) {
             view()->share('routeBy', 'gallery');
             return $this->getGallery(true, $param);
