@@ -99,10 +99,10 @@ abstract class PostableController extends BackendController
                 if ($permalink == null) {
                     $permalink = new Permalink();
                     $permalink->postable()->associate($this->model);
-                    $permalink->save();
                 }
 
-                $permalink->update(['permalink' => $request->get('permalink')]);
+                $permalink->permalink = $request->get('permalink');
+                $permalink->save();
             
             } else {
 
