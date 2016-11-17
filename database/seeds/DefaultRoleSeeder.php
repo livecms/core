@@ -12,7 +12,7 @@ class DefaultRoleSeeder extends Seeder
     public function run()
     {
         foreach (['super', 'admin', 'banned', 'author', 'registered'] as $role) {
-            if (DB::table('roles')->where(compact('role'))->get()) {
+            if (DB::table('roles')->where(compact('role'))->first()) {
                 continue;
             }
 

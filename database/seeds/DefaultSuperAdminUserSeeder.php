@@ -12,7 +12,7 @@ class DefaultSuperAdminUserSeeder extends Seeder
      */
     public function run()
     {
-        if (DB::table('users')->where('username', 'super')->get()) {
+        if (DB::table('users')->where('username', 'super')->first()) {
             return;
         }
         

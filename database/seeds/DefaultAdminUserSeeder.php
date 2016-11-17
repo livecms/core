@@ -13,7 +13,7 @@ class DefaultAdminUserSeeder extends Seeder
      */
     public function run()
     {
-        if (DB::table('users')->where('username', 'admin')->get()) {
+        if (DB::table('users')->where('username', 'admin')->first()) {
             return;
         }
         
