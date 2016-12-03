@@ -24,12 +24,13 @@ class PageController extends FrontendController
         // check if has home permalink
         $permalink = Permalink::withDependencies()->whereIn('permalink', ['/', ''])->first();
 
+        $post = $permalink ? $permalink->postable : null;
+
         // if home exist or not yet launch
-        if ($permalink == null || $launchingDateTime->isFuture()) {
+        if (!$post || !$post->isPublished() || $permalink == null || $launchingDateTime->isFuture()) {
             return redirect('coming-soon');
         }
 
-        $post = $permalink->postable;
         $title = globalParams('home_title', config('livecms.home_title', 'Home'));
         return view(theme('front', 'home'), compact('post', 'title'));
     }

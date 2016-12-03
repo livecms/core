@@ -88,6 +88,11 @@ class PostableModel extends BaseModel
         return $query->where('status', static::STATUS_PUBLISHED);
     }
 
+    public function isPublished()
+    {
+        return $this->status == static::STATUS_PUBLISHED;
+    }
+
     public function statuses()
     {
         $allStatuses = [
