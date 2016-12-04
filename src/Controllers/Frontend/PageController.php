@@ -15,7 +15,7 @@ use ReflectionClass;
 
 class PageController extends FrontendController
 {
-    public function home()
+    public function home(Request $request)
     {
         // if set launching time
         $launchingDateTime = globalParams('launching_datetime') ?
@@ -35,7 +35,7 @@ class PageController extends FrontendController
         return view(theme('front', 'home'), compact('post', 'title'));
     }
 
-    public function getArticle($redirect = true, $slug = null, $with = [])
+    public function getArticle(Request $request, $redirect = true, $slug = null, $with = [])
     {
         $article = new Article;
         view()->share($with);
@@ -48,10 +48,10 @@ class PageController extends FrontendController
 
         if ($slug == null) {
             $articles = $article->published()->orderBy('published_at', 'DESC')->simplePaginate(12);
-            return view(theme('front', (request()->ajax() ? 'partials.articles' : 'articles')), compact('articles'));
+            return view(theme('front', ($request->ajax() ? 'partials.articles' : 'articles')), compact('articles'));
         }
 
-        if ($loggedAndPreview = (($user = auth()->user()) && request()->get('preview') == 'true')) {
+        if ($loggedAndPreview = (($user = auth()->user()) && $request->get('preview') == 'true')) {
             if (!$user->is_administer) {
                 $article = $article->where('author_id', $user->id);
             }
@@ -76,7 +76,7 @@ class PageController extends FrontendController
         return view(theme('front', 'article'), compact('post', 'article', 'title'));
     }
 
-    public function getGallery($redirect = true, $slug = null, $with = [])
+    public function getGallery(Request $request, $redirect = true, $slug = null, $with = [])
     {
         $gallery = new Gallery;
         view()->share($with);
@@ -89,10 +89,10 @@ class PageController extends FrontendController
 
         if ($slug == null) {
             $galleries = $gallery->published()->orderBy('published_at', 'DESC')->simplePaginate(12);
-            return view(theme('front', (request()->ajax() ? 'partials.galleries' : 'galleries')), compact('galleries'));
+            return view(theme('front', ($request->ajax() ? 'partials.galleries' : 'galleries')), compact('galleries'));
         }
 
-        if (($user = auth()->user()) && request()->get('preview') == 'true') {
+        if (($user = auth()->user()) && $request->get('preview') == 'true') {
             if (!$user->is_administer) {
                 $gallery = $gallery->where('author_id', $user->id);
             }
@@ -110,11 +110,11 @@ class PageController extends FrontendController
         return view(theme('front', 'gallery'), compact('post', 'gallery', 'title'));
     }
 
-    public function getStaticPage($redirect = true, $slug = null)
+    public function getStaticPage(Request $request, $redirect = true, $slug = null)
     {
         $static = new StaticPage;
 
-        if (($user = auth()->user()) && request()->get('preview') == 'true') {
+        if (($user = auth()->user()) && $request->get('preview') == 'true') {
             if (!$user->is_administer) {
                 $static = $static->where('author_id', $user->id);
             }
@@ -132,16 +132,17 @@ class PageController extends FrontendController
         return view(theme('front', 'staticpage'), compact('post', 'static', 'title'));
     }
 
-    public function getByPermalink($permalink)
+    public function getByPermalink(Request $request, $permalink)
     {
         $page = Permalink::where('permalink', $permalink)->firstOrFail();
         $type = (new ReflectionClass($post = $page->postable))->getShortName();
-        return view()->exists(theme('front', $permalink)) ? view(theme('front', $permalink), compact('post')) : $this->{'get'.$type}(false, $post->slug);
+        return view()->exists(theme('front', $permalink)) ? view(theme('front', $permalink), compact('post')) : $this->{'get'.$type}($request, false, $post->slug);
     }
 
-    public function routes()
+    public function routes(Request $request)
     {
         $parameters = func_get_args();
+        array_shift($parameters);
 
         // get static
         $statisSlug = getSlug('staticpage');
@@ -149,7 +150,7 @@ class PageController extends FrontendController
 
         if ($parameters[0] == $statisSlug) {
             view()->share('routeBy', 'static');
-            return $this->getStaticPage(true, $parameters[1]);
+            return $this->getStaticPage($request, true, $parameters[1]);
         }
 
         // get article category
@@ -159,7 +160,7 @@ class PageController extends FrontendController
             view()->share('routeBy', 'category');
             view()->share('category', $category);
             view()->share('title', $category->category);
-            return $this->getArticle(true, null, $category ? ['categories' => $category->id] : []);
+            return $this->getArticle($request, true, null, $category ? ['categories' => $category->id] : []);
         }
 
         // get article tag
@@ -169,24 +170,24 @@ class PageController extends FrontendController
             view()->share('routeBy', 'tag');
             view()->share('tag', $tag);
             view()->share('title', $tag->tag);
-            return $this->getArticle(true, null, $tag ? ['tags' => $tag->id] : []);
+            return $this->getArticle($request, true, null, $tag ? ['tags' => $tag->id] : []);
         }
 
         // get article
         $articleSlug = getSlug('article');
         if ($parameters[0] == $articleSlug) {
             view()->share('routeBy', 'article');
-            return $this->getArticle(true, $param);
+            return $this->getArticle($request, true, $param);
         }
 
         // get gallery
         $gallerySlug = getSlug('gallery');
         if ($parameters[0] == $gallerySlug) {
             view()->share('routeBy', 'gallery');
-            return $this->getGallery(true, $param);
+            return $this->getGallery($request, true, $param);
         }
 
         $permalink = implode('/', $parameters);
-        return $this->getByPermalink($permalink);
+        return $this->getByPermalink($request, $permalink);
     }
 }
