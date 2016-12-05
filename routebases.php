@@ -27,8 +27,8 @@ $router->get('redirect', ['as' => 'redirect', function () {
 Route::post('contact',function (Request $request) {
     $sender = [$request->get('email') => $request->get('name')];
     $submission = $request->all();
-    $admins = User::adminOnly()->get()->map(function ($item) use ($sender, $submission) {
-        $item->notify(new NewContactSubmission($sender, $submission));
+    $admins = User::adminOnly()->get()->map(function ($admin) use ($sender, $submission) {
+        $admin->notify(new NewContactSubmission($sender, $submission));
     });
     return 'success';
 });

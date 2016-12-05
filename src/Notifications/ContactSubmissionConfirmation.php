@@ -12,6 +12,6 @@ class ContactSubmissionConfirmation extends NewContactSubmission
     public function __construct($sender, $submission, $confirmation = true)
     {
         parent::__construct($sender, $submission, false);
-        $this->subject = trans('livecms::notifications.'.strtolower(basename(static::class)).'.subject');
+        $this->subject = trans('livecms::notifications.'.strtolower((new \ReflectionClass($this))->getShortName()).'.subject');
     }
 }
