@@ -12,6 +12,6 @@ class MailMessage extends LaravelMailMessage
         $address = globalParams('email', config('livecms.emailer.from.address'));
         $name = globalParams('site_name', config('livecms.emailer.from.name'));
 
-        $this->from = compact('address', 'name');
+        $this->from = [$address, $name];
     }
 }
