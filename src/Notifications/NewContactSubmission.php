@@ -5,23 +5,36 @@ namespace LiveCMS\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Notifiable;
 
 class NewContactSubmission extends Notification
 {
-    use Queueable;
+    use Queueable, Notifiable;
 
+    protected $email;
     protected $sender;
     protected $submission;
+    protected $replyTo;
+    protected $subject;
+    protected $intro;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($sender, $submission)
+    public function __construct($sender, $submission, $confirmation = true)
     {
         $this->sender = $sender;
         $this->submission = $submission;
+        $this->replyTo = $sender;
+        $this->subject = (isset($submission['subject']) ? $submission['subject'] : '').'(New Contact Submission @ '.date('j F Y H:i:s').')';
+        $this->intro = trans('livecms::notifications.'.strtolower((new \ReflectionClass($this))->getShortName()).'.intro');
+
+        if ($confirmation) {
+            $this->email = $sender;
+            $this->notify(new ContactSubmissionConfirmation($sender, $submission, false));
+        }
     }
 
     /**
@@ -44,11 +57,14 @@ class NewContactSubmission extends Notification
     public function toMail($notifiable)
     {
         $mail = (new MailMessage)
-                    ->replyTo($this->sender)
-                    ->line(trans('livecms::notifications.new_contact_submissions.intro'));
-        $mail->subject('New Contact Submission @ '.date('j F Y H:i:s'));
-        $mail->viewData = ['rawText' => $this->createSubmissionEmail($this->submission)];
-        $mail->viewData = ['rawTextPlain' => $this->createSubmissionEmailPlain($this->submission)];
+                    ->replyTo($this->replyTo)
+                    ->line($this->intro)
+                    ->subject($this->subject);
+
+        $mail->viewData = [
+                'rawText' => $this->createSubmissionEmail($this->submission),
+                'rawTextPlain' => $this->createSubmissionEmailPlain($this->submission)
+            ];
         return $mail;
     }
 
@@ -86,10 +102,11 @@ class NewContactSubmission extends Notification
                     </tr>
 HTML;
             foreach ($submissionData as $key => $value) {
+                $value = str_replace("\n", '<br>', $value);
                 $message .=
 <<<HTML
                     <tr>
-                        <th align="right" style="text-align: right;">$key</th>
+                        <th align="right" valign="top" style="text-align: right; vertical-align: top">$key</th>
                         <td>$value</td>
                     </tr>
 HTML;
