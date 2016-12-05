@@ -17,6 +17,7 @@ class NewContactSubmission extends Notification
     protected $replyTo;
     protected $subject;
     protected $intro;
+    protected $confirmation;
 
     /**
      * Create a new notification instance.
@@ -31,8 +32,8 @@ class NewContactSubmission extends Notification
         $this->subject = (isset($submission['subject']) ? $submission['subject'] : '').' (New Contact Submission @ '.date('j F Y H:i:s').')';
         $this->intro = trans('livecms::notifications.'.strtolower((new \ReflectionClass($this))->getShortName()).'.intro');
 
-        if ($confirmation) {
-            $this->email = $sender;
+        if ($this->confirmation = $confirmation) {
+            $this->email = $sender[0];
             $this->notify(new ContactSubmissionConfirmation($sender, $submission, false));
         }
     }
@@ -57,14 +58,18 @@ class NewContactSubmission extends Notification
     public function toMail($notifiable)
     {
         $mail = (new MailMessage)
-                    ->replyTo($this->replyTo)
                     ->line($this->intro)
                     ->subject($this->subject);
+
+        if ($this->confirmation) {
+            $mail->replyTo($this->replyTo[0], $this->replyTo[1]);
+        }
 
         $mail->viewData = [
                 'rawText' => $this->createSubmissionEmail($this->submission),
                 'rawTextPlain' => $this->createSubmissionEmailPlain($this->submission)
             ];
+
         return $mail;
     }
 
