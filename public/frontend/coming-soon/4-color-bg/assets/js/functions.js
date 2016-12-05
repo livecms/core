@@ -105,14 +105,12 @@ jQuery(document).ready(function($) {
 	-------------------------------------------------------------------*/
 
 
-
-
-
-       /* Subscribe
+          /* Subscribe
     -------------------------------------------------------------------*/
     $(".news-letter").ajaxChimp({
         callback: mailchimpResponse,
-        url: "http://jeweltheme.us10.list-manage.com/subscribe/post?u=a3e1b6603a9caac983abe3892&amp;id=257cf1a459" // Replace your mailchimp post url inside double quote "".  
+        url: $(this).attr('action')
+        // url: "http://jeweltheme.us10.list-manage.com/subscribe/post?u=a3e1b6603a9caac983abe3892&amp;id=257cf1a459" // Replace your mailchimp post url inside double quote "".  
     });
 
     function mailchimpResponse(resp) {
@@ -128,15 +126,13 @@ jQuery(document).ready(function($) {
 
 
 
-
-
-	/* Contact
-	-------------------------------------------------------------------*/
+    /* Contact
+    -------------------------------------------------------------------*/
     $('#contact-submit').click(function () {
+        var $form = $(this).parents('form');
         $('.first-name-error, .last-name-error, .contact-email-error, .contact-subject-error, .contact-message-error').hide();
         var first_nameVal = $('input[name=first_name]').val();
         var last_nameVal = $('input[name=last_name]').val();
-        var emailReg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/igm;
         var emailVal = $('#contact_email').val();
         var contact_subjectVal = $('input[name=contact_subject]').val();
         var messageVal = $('textarea[name=message]').val();
@@ -156,10 +152,6 @@ jQuery(document).ready(function($) {
             $('.contact-email-error').html('<i class="fa fa-exclamation"></i> Your email address is required.').fadeIn();
             return false;
 
-        } else if (!emailReg.test(emailVal)) {
-
-            $('.contact-email-error').html('<i class="fa fa-exclamation"></i> Invalid email address.').fadeIn();
-            return false;
         }
          if (contact_subjectVal == '' || contact_subjectVal == 'Subject *') {
             $('.contact-subject-error').html('<i class="fa fa-exclamation"></i> Subject is required.').fadeIn();
@@ -170,7 +162,7 @@ jQuery(document).ready(function($) {
             return false;
         }
 
-        var data_string = $('.contact-form').serialize();
+        var data_string = $form.serialize();
 
         $('#contact-submit').hide();
         $('#contact-loading').fadeIn();
@@ -178,7 +170,7 @@ jQuery(document).ready(function($) {
 
         $.ajax({
             type: "POST",
-            url: "php/contact.php",
+            url: $form.attr('action'),
             data: data_string,
 
             //success
@@ -197,8 +189,8 @@ jQuery(document).ready(function($) {
         return false;
     });
 
-	/* Contact End
-	-------------------------------------------------------------------*/
+    /* Contact End
+    -------------------------------------------------------------------*/
 
 
     
