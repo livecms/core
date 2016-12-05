@@ -5,6 +5,7 @@
     <title>Coming Soon | {{ $global_params['site_name'] or 'LiveCMS' }}</title>
     <meta name="description" content="{{ $global_params['site_description'] or 'Your Website Description' }}" >
     <meta name="author" content="{{ $global_params['author'] or 'Live CMS' }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -197,7 +198,9 @@
                     Join and get first access. 
                 </p><!-- /.section-description -->
 
-                <form class="news-letter" action="{{globalParams('mailchimp_form_url')}}" method="post">
+                <form class="news-letter" target="_blank" action="{{globalParams('mailchimp_form_url')}}" method="post">
+                    <p class="alert-success"></p>
+                    <p class="alert-warning"></p>
                     <div class="subscribe-hide">
                         <input class="form-control" type="email" id="subscribe-email" name="EMAIL" placeholder="Email Address"  required>
                         <button  type="submit" id="subscribe-submit" class="btn" value="Subscribe" name="subscribe"><i class="fa fa-envelope"></i></button>
@@ -264,7 +267,7 @@
 
                     <form id="contact-form" action="{{url('contact')}}" method="post" class="clearfix">
                         <div class="contact-box-hide">
-                            <div class="col-sm-12">
+                            <div>
                                 <input type="text"  class="form-control" id="name" name="name" required placeholder="First Name">
                                 <span class="first-name-error"></span>
                             </div>
@@ -314,6 +317,13 @@
 
         <!-- jQuery Library -->
         <script type="text/javascript" src="{{asset('frontend/coming-soon/parallax/assets/js/jquery-2.1.0.min.js')}}"></script>
+        <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
         <!-- Modernizr js -->
         <script type="text/javascript" src="{{asset('frontend/coming-soon/parallax/assets/js/modernizr-2.8.0.min.js')}}"></script>
         <!-- Plugins -->
@@ -324,7 +334,6 @@
         <script type="text/javascript" src="{{asset('frontend/coming-soon/parallax/assets/js/jquery.parallax.js')}}"></script>
         <!-- Custom JavaScript Functions -->
         <script type="text/javascript" src="{{asset('frontend/coming-soon/parallax/assets/js/jquery.ajaxchimp.min.js')}}"></script>
-
 
         <script type="text/javascript">
             jQuery(document).ready(function($) {
@@ -379,7 +388,7 @@
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-            ga('create', '{{env('UA_FRONTEND')}}', 'auto');
+            ga('create', '{{globalParams('google_analytic_id', env('UA_FRONTEND'))}}', 'auto');
             ga('send', 'pageview');
 
         </script>
