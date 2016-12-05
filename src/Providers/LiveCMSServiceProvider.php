@@ -38,6 +38,9 @@ class LiveCMSServiceProvider extends ServiceProvider
         // Migration
         $this->publishes([$this->baseDir().'/database' => base_path('database')], 'database');
 
+        // Notification
+        $this->publishes([$this->baseDir().'/notifications' => base_path('resources/views/vendor/notifications')], 'notification');
+
         // Public Asset
         $this->publishes([$this->baseDir().'/public' => public_path('/')], 'public');
     }
