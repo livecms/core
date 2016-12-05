@@ -16,6 +16,7 @@ class SetupSeeder extends Seeder
         DB::table('settings')->insert([
             ['publicable' => true,'key' => 'site_name', 'value' => 'Live CMS'],
             ['publicable' => true,'key' => 'site_initial', 'value' => 'LC'],
+            ['publicable' => true,'key' => 'site_email', 'value' => 'no.replay@livecms.dev'],
             ['publicable' => true,'key' => 'slug_admin', 'value' => '@'],
             ['publicable' => true,'key' => 'slug_article', 'value' => 'a'],
             ['publicable' => true,'key' => 'slug_staticpage', 'value' => 'p'],

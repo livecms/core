@@ -28,7 +28,7 @@ class NewContactSubmission extends Notification
         $this->sender = $sender;
         $this->submission = $submission;
         $this->replyTo = $sender;
-        $this->subject = (isset($submission['subject']) ? $submission['subject'] : '').'(New Contact Submission @ '.date('j F Y H:i:s').')';
+        $this->subject = (isset($submission['subject']) ? $submission['subject'] : '').' (New Contact Submission @ '.date('j F Y H:i:s').')';
         $this->intro = trans('livecms::notifications.'.strtolower((new \ReflectionClass($this))->getShortName()).'.intro');
 
         if ($confirmation) {
