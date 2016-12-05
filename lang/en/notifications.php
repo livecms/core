@@ -6,6 +6,6 @@ return [
     ],
     'contactsubmissionconfirmation' => [
         'subject' => 'Thank you for Contacting Us',
-        'intro' => 'Below is your message\'s detail :',
+        'intro' => 'Below is your message detail. We will reply within 24 hours.',
     ],
 ];
