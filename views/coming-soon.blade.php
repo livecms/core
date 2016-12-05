@@ -197,10 +197,10 @@
                     Join and get first access. 
                 </p><!-- /.section-description -->
 
-                <form class="news-letter" action="{{asset('frontend/coming-soon/parallax/php/subscribe.php')}}" method="post">
+                <form class="news-letter" action="{{globalParams('mailchimp_form_url')}}" method="post">
                     <div class="subscribe-hide">
-                        <input class="form-control" type="email" id="subscribe-email" name="subscribe-email" placeholder="Email Address"  required>
-                        <button  type="submit" id="subscribe-submit" class="btn"><i class="fa fa-envelope"></i></button>
+                        <input class="form-control" type="email" id="subscribe-email" name="EMAIL" placeholder="Email Address"  required>
+                        <button  type="submit" id="subscribe-submit" class="btn" value="Subscribe" name="subscribe"><i class="fa fa-envelope"></i></button>
                         <span id="subscribe-loading" class="btn"> <i class="fa fa-refresh fa-spin"></i> </span>
                         <div class="subscribe-error"></div>
                     </div><!-- /.subscribe-hide -->
@@ -262,22 +262,18 @@
                         Drop your comment.
                     </p><!-- /.section-description -->
 
-                    <form id="contact-form" action="{{asset('frontend/coming-soon/parallax/email.php')}}" method="post" class="clearfix">
+                    <form id="contact-form" action="{{url('contact')}}" method="post" class="clearfix">
                         <div class="contact-box-hide">
-                            <div class="col-sm-6">
-                                <input type="text"  class="form-control" id="first_name" name="first_name" required placeholder="First Name">
+                            <div class="col-sm-12">
+                                <input type="text"  class="form-control" id="name" name="name" required placeholder="First Name">
                                 <span class="first-name-error"></span>
                             </div>
                             <div class="col-sm-6">
-                                <input type="text"  class="form-control" id="last_name" name="last_name" required placeholder="Last Name">
-                                <span class="last-name-error"></span>
-                            </div>
-                            <div class="col-sm-6">
-                                <input type="email" class="form-control"  id="contact_email" name="contact_email" required placeholder="Email Address">
+                                <input type="email" class="form-control"  id="email" name="email" required placeholder="Email Address">
                                 <span class="contact-email-error"></span>
                             </div>
                             <div class="col-sm-6">
-                                <input type="text"  class="form-control" id="subject" name="contact_subject" required placeholder="Subject">
+                                <input type="text"  class="form-control" id="subject" name="subject" required placeholder="Subject">
                                 <span class="contact-subject-error"></span>
                             </div>
                             <div class="col-sm-10">
