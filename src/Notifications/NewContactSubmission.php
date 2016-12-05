@@ -66,6 +66,7 @@ class NewContactSubmission extends Notification
     }
 
     public function createSubmissionEmailPlain(array $submissionData = [])
+    {
         $message = '';
         foreach ($submissionData as $key => $value) {
             $message .= "$key : $value \n\n";
