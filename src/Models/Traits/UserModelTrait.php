@@ -51,6 +51,13 @@ trait UserModelTrait
         return $this->belongsTo(Site::class);
     }
 
+    public function scopeAdminOnly($query)
+    {
+        return $query->whereHas('roles', function ($query) {
+            $query->where('role', Role::ADMIN);
+        });
+    }
+
     public function getSiteRootUrl()
     {
         return $this->site ? $this->site->getRootUrl() : site()->getRootUrl();
@@ -58,17 +65,17 @@ trait UserModelTrait
 
     public function getIsSuperAttribute()
     {
-        return $this->roles->where('role', 'super')->count() > 0;
+        return $this->roles->where('role', Role::SUPER)->count() > 0;
     }
 
     public function getIsAdminAttribute()
     {
-        return $this->roles->where('role', 'admin')->count() > 0;
+        return $this->roles->where('role', Role::ADMIN)->count() > 0;
     }
 
     public function getIsAuthorAttribute()
     {
-        return $this->roles->where('role', 'author')->count() > 0;
+        return $this->roles->where('role', Role::AUTHOR)->count() > 0;
     }
 
     public function getIsLimitedAttribute()
@@ -78,7 +85,7 @@ trait UserModelTrait
 
     public function getIsAdministerAttribute()
     {
-        $roles = ['super', 'admin'];
+        $roles = [Role::SUPER, Role::ADMIN];
 
         return $this->roles->filter(function ($item) use ($roles) {
             return in_array(data_get($item, 'role'), $roles);
@@ -87,7 +94,7 @@ trait UserModelTrait
 
     public function getIsBannedAttribute()
     {
-        return $this->roles->where('role', 'banned')->count() > 0;
+        return $this->roles->where('role', Role::BANNED)->count() > 0;
     }
 
     public function allowsUserRead($user)
