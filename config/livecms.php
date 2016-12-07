@@ -4,6 +4,8 @@ return [
 
     'useimagemax' => false,
 
+    'deepsearch' => false,
+
     'image' => [
     
         'driver' => 'gd',
@@ -83,6 +85,7 @@ return [
             'contact'       => 'contact',
             'userhome'      => 'me',
             'profile'       => 'profile',
+            'search'        => 'search',
         ],
     ],
 

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Config;
 use LiveCMS\Models\Traits\BaseModelTrait;
 use LiveCMS\Models\Traits\ImagableTrait;
 use LiveCMS\Models\Traits\ModelAuthorizationTrait;
+use LiveCMS\Models\Traits\SearchableTrait;
 use LiveCMS\Models\Contracts\BaseModelInterface as BaseModelContract;
 use LiveCMS\Models\Contracts\ModelAuthorizationInterface as ModelAuthorizationContract;
 use LiveCMS\Policies\AdminPolicy;
@@ -15,7 +16,7 @@ use LiveCMS\Support\Thumbnailer\Contracts\ModelThumbnailerInterface as ModelThum
 
 abstract class BaseModel extends Model implements BaseModelContract, ModelAuthorizationContract, ModelUploaderContract, ModelThumbnailerContract
 {
-    use ImagableTrait, BaseModelTrait, ModelAuthorizationTrait;
+    use SearchableTrait, ImagableTrait, BaseModelTrait, ModelAuthorizationTrait;
 
     protected $allSites = false;
 

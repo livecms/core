@@ -10,6 +10,7 @@ use LiveCMS\Models\Gallery;
 use LiveCMS\Models\Tag;
 use LiveCMS\Models\StaticPage;
 use LiveCMS\Models\Core\Permalink;
+use LiveCMS\Models\Core\PostableModel;
 use LiveCMS\Controllers\FrontendController;
 use ReflectionClass;
 
@@ -137,6 +138,21 @@ class PageController extends FrontendController
         $page = Permalink::where('permalink', $permalink)->firstOrFail();
         $type = (new ReflectionClass($post = $page->postable))->getShortName();
         return view()->exists(theme('front', $permalink)) ? view(theme('front', $permalink), compact('post')) : $this->{'get'.$type}($request, false, $post->slug);
+    }
+
+    public function postSearch(Request $request)
+    {
+        $keyword = $request->get('s');
+        $articles = Article::search($keyword)->where('status', PostableModel::STATUS_PUBLISHED)->paginate(10);
+        $staticpages = StaticPage::search($keyword)->where('status', PostableModel::STATUS_PUBLISHED)->paginate(10);
+        $categories = Category::search($keyword)->paginate(10);
+        $tags = Tag::search($keyword)->paginate(10);
+
+        $result = compact('keyword', 'articles', 'staticpages', 'categories', 'tags');
+        if ($request->isJson() || $request->wantsJson()) {
+            return $result;
+        }
+        return view(theme('front', 'search'), $result);
     }
 
     public function routes(Request $request)

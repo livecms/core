@@ -23,6 +23,9 @@ $router->get('redirect', ['as' => 'redirect', function () {
     return redirect()->to(request()->get('to'));
 }]);
 
+// Search
+Route::post(getSlug('search'), 'Frontend\PageController@postSearch');
+
 // Contact Submission
 Route::post('contact',function (Request $request) {
     $sender = [$request->get('email'), $request->get('name')];

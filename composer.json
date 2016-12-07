@@ -17,6 +17,7 @@
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*",
         "barryvdh/laravel-debugbar": "^2.1",
+        "laravel/scout": "^1.1",
         "roketid/imagemax": "dev-master",
         "livecms/support": "dev-master",
         "mrofi/laravel-shared-hosting-package": "dev-master",
