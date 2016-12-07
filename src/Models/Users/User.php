@@ -28,6 +28,10 @@ class User extends Model implements
 {
     use Authenticatable, Authorizable, CanResetPassword, UserModelTrait, ImagableTrait, Notifiable;
 
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
     protected $withSuper = true;
 
     protected static $picturePath = 'users';
