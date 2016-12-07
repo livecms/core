@@ -18,6 +18,7 @@ class SetupSeeder extends Seeder
             ['publicable' => true,'key' => 'slug_admin', 'value' => '@'],
             ['publicable' => true,'key' => 'slug_article', 'value' => 'a'],
             ['publicable' => true,'key' => 'slug_staticpage', 'value' => 'p'],
+            ['publicable' => true,'key' => 'slug_search', 'value' => 'search'],
             ['publicable' => true,'key' => 'mailchimp_key', 'value' => ''],
             ['publicable' => true,'key' => 'mailchimp_form_url', 'value' => ''],
             ['publicable' => true,'key' => 'google_analytic_id', 'value' => ''],
