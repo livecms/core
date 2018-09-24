@@ -1,12 +1,16 @@
 # Project LiveCMS - CORE
 
+## Note :
+Only works with Laravel version 5.5 or above.
+
+##For Laravel 5.3, please checkout branch V1
 ##For Laravel 5.2, please checkout branch V0
 
 # How To Install :
 
-1. Create Laravel Project (5.3.*)
+1. Create Laravel Project (5.5.\*)
     ````
-         composer create-project laravel/laravel liveCMS --prefer-dist
+         composer create-project laravel/laravel liveCMS "5.5.*" --prefer-dist
     ````
 
 2. Edit composer.json
@@ -31,111 +35,19 @@
          composer require livecms/core
     ````
 
-4. open file config/app.php
-    Before :
-    ````
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-    ````
-
-    add this :
-    ````
-        Mrofi\LaravelSharedHostingPackage\LaravelSharedHostingPackageServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
-        Yajra\Datatables\DatatablesServiceProvider::class,
-        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-        LiveCMS\Support\LiveCMSSupportServiceProvider::class,
-        RoketId\ImageMax\ImageMaxServiceProvider::class,
-        LiveCMS\Providers\LiveCMSServiceProvider::class,
-    ````
-    and add to 'aliases'
-    ````
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
-        'Datatables' => Yajra\Datatables\Datatables::class,
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
-        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
-        'Thumb' => LiveCMS\Support\Thumbnailer\Facades\Thumb::class,
-        'ImageMax' => RoketId\ImageMax\ImageMaxFacade::class,
-        'Upload' => LiveCMS\Support\Uploader\Facades\Upload::class,
-    ````
-
-4. Publish vendor :
-    ````
-         php artisan vendor:publish --force
-    ````
-
-5. Set folder permissions :
-    ````
-        chmod +w -R public/files/
-        chmod +w -R public/uploads/
-        chmod +w -R public/users/
-    ````
-
-6. Open app/Http/Kernel.php and edit :
-
-    add this line to :
-    ```` 
-        protected $middleware = [
-            ...
-
-            \LiveCMS\Middleware\GlobalParamsMiddleware::class,
-            \LiveCMS\Middleware\HttpsMiddleware::class,
-        ];
-    ````
-
-    change :
-    ````
-        protected $routeMiddleware = [
-            'auth' => \App\Http\Middleware\Authenticate::class,
-            change to :
-            'auth' => \LiveCMS\Middleware\Authenticate::class,
-
-            'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-            change to :
-            'guest' => \LiveCMS\Middleware\RedirectIfAuthenticated::class,
-
-            add this line :
-            'model' => \LiveCMS\Middleware\ModelMiddleware::class,
-        ];
-    ````
-
-7. Open config/auth.php
-    Edit :
-    ````
-        'providers' => [
-            'users' => [
-                'driver' => 'eloquent',
-                'model' => LiveCMS\Models\Users\User::class,
-            ],
-
-        .......
-
-        'passwords' => [
-            'users' => [
-                'provider' => 'users',
-                'email' => 'livecms::auth.emails.password',
-                'table' => 'password_resets',
-                'expire' => 60,
-            ],
-        ],
-    ````
-
-8. Update your .env
+4. Update your .env
     update based on what your site url:
     ````
         APP_URL=yourdomain.com
     ````
 
-9. Artisan Optimize and do Migrate
+5. Artisan Optimize and do Migrate
     ````
         php artisan optimize
         php artisan migrate --seed
     ````
 
-10. Edit your RouteServiceProvider
+6. Edit your RouteServiceProvider
     Update mapWebRoutes() method in your app/Providers/RouteServiceProvider.php
     ````
         protected function mapWebRoutes()
@@ -152,7 +64,7 @@
         }
     ````
 
-11. Login
+8. Login
     visit : http://yourdomain/login
 
     default username / password 

@@ -3,11 +3,28 @@
 namespace LiveCMS\Middleware;
 
 use Closure;
-use LiveCMS\Models\GenericSetting as Setting;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\Factory as Auth;
 
 class RedirectIfAuthenticated
 {
+    /**
+     * The authentication factory instance.
+     *
+     * @var \Illuminate\Contracts\Auth\Factory
+     */
+    protected $auth;
+
+    /**
+     * Create a new middleware instance.
+     *
+     * @param  \Illuminate\Contracts\Auth\Factory  $auth
+     * @return void
+     */
+    public function __construct(Auth $auth)
+    {
+        $this->auth = $auth;
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -16,16 +33,13 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next, $instance = null)
     {
-        if (Auth::guard($guard)->check()) {
-            $user = Auth::guard($guard)->user();
-            $site = $user->site ?: site();
-            $root = $site->getRootUrl();
-            $userSlug = getSlug('userhome');
-
-            $url = $root.'/'.$userSlug;
-            return redirect()->away($url);
+        $guard = config('livecms.guard.name');
+        if ($instance === null || $instance == LC_CurrentInstance()) {
+            if ($this->auth->guard($guard)->check()) {
+                return redirect()->route(LC_BaseRoute().'.index');
+            }
         }
 
         return $next($request);
