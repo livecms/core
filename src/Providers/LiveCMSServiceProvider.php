@@ -165,8 +165,7 @@ class LiveCMSServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        dd(config('auth'));
         $this->mergeConfigFrom($this->baseDir().'/config/livecms.php', 'livecms');
-        // $this->registerGuard();
+        $this->registerGuard();
     }
 }
