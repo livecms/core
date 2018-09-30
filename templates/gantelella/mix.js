@@ -9,6 +9,7 @@ Mix
     templateDir+'/vendors/bootstrap/dist/js/bootstrap.min.js',
     templateDir+'/vendors/fastclick/lib/fastclick.js',
     templateDir+'/vendors/nprogress/nprogress.js',
+    templateDir+'/vendors/sweetalert2/dist/sweetalert2.min.js',
     templateDir+'/src/js/helpers/smartresize.js',
     templateDir+'/src/js/main.js'
 ], 'public/vendor/livecms/'+themeName+'/js/main.js')
