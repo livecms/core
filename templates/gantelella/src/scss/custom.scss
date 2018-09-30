@@ -3,7 +3,7 @@
 }
 .nav-sm .container.body .col-md-3.left_col {
   min-height: 100%;
-  width: 70px;
+  width: 100px;
   padding: 0;
   z-index: 9999;
   position: absolute;
@@ -18,6 +18,9 @@
 }
 .nav-sm .hidden-small {
   visibility: hidden;
+}
+.nav-sm #menu_toggle {
+  margin-left: 30px;
 }
 .nav-sm .container.body .right_col {
   padding: 10px 20px;
@@ -47,7 +50,7 @@
 .nav-sm .nav.side-menu li a {
   text-align: center !important;
   font-weight: 400;
-  font-size: 10px;
+  font-size: 16px;
   padding: 10px 5px;
 }
 .nav-sm .nav.child_menu li.active,
@@ -505,9 +508,10 @@ a:hover, a:focus {
 }
 .nav.side-menu> li > a {
   margin-bottom: 6px;
+  font-size: 18px;
 }
 .nav.side-menu> li > a:hover {
-  color: #F2F5F7 !important;
+  color: #53bc9c !important;
 }
 .nav.side-menu>li>a:hover, .nav>li>a:focus {
   text-decoration: none;
@@ -566,7 +570,8 @@ a:hover, a:focus {
   display: block;
   padding: 13px 15px 12px;
 }
-.nav.side-menu> li.current-page, .nav.side-menu> li.active {
+.nav.side-menu> li.current-page,
+.nav.side-menu> li.active {
   border-right: 5px solid #1ABB9C;
 }
 .nav li.current-page {
@@ -662,7 +667,7 @@ a:hover, a:focus {
 }
 .nav.child_menu > li > a {
   color: rgba(255, 255, 255, 0.75);
-  font-size: 12px;
+  font-size: 14px;
   padding: 9px;
 }
 .panel_toolbox {

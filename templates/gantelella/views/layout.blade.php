@@ -246,6 +246,12 @@
       @if ($success = session('success'))
       Swal('', '{!! $success !!}', 'success');
       @endif
+
+      if (['#login', '#register'].find(function(item) {
+        return item == window.location.hash;
+      })) {
+        window.location.hash = '';
+      }
     </script>
   </body>
 </html>
