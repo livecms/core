@@ -32,49 +32,15 @@ Only works with Laravel version 5.5 or above.
 3. After finish, add livecms core in your project
     ````
          cd liveCMS 
-         composer require livecms/core
+         composer require livecms/core "dev-develop"
     ````
 
 4. Update your .env
     update based on what your site url:
     ````
-        APP_URL=yourdomain.com
+        CMS_URL=http://yourdomain.com/cms
     ````
 
-5. Artisan Optimize and do Migrate
-    ````
-        php artisan optimize
-        php artisan migrate --seed
-    ````
+5. Run
+    visit : http://yourdomain/cms
 
-6. Edit your RouteServiceProvider
-    Update mapWebRoutes() method in your app/Providers/RouteServiceProvider.php
-    ````
-        protected function mapWebRoutes()
-        {
-            Route::group([
-                'middleware' => 'web',
-                'namespace' => $this->namespace,
-            ], function ($router) {
-                liveCMSRouter($router, function ($router, $adminSlug, $subDomain, $subFolder) {
-                    require base_path('routes/web.php');
-                    frontendRoute($router);
-                });
-            });
-        }
-    ````
-
-8. Login
-    visit : http://yourdomain/login
-
-    default username / password 
-    
-    1. Admin :
-        email : admin@livecms.dev
-        password : admin
-
-    2. Super Admin :
-        email : super@livecms.dev
-        password : admin
-
-Visit https://github.com/livecms/LiveCMS for more info.
