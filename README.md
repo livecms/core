@@ -1,10 +1,10 @@
-# Project LiveCMS - CORE
+# Project LiveCMS - Core
 
 ## Note :
 Only works with Laravel version 5.5 or above.
 
-##For Laravel 5.3, please checkout branch V1
-##For Laravel 5.2, please checkout branch V0
+### For Laravel 5.3, please checkout branch V1
+### For Laravel 5.2, please checkout branch V0
 
 # How To Install :
 
@@ -42,5 +42,5 @@ Only works with Laravel version 5.5 or above.
     ````
 
 5. Run
-    visit : http://yourdomain/cms
+    visit : http://yourdomain.com/cms
 
