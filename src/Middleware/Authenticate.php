@@ -5,6 +5,7 @@ namespace LiveCMS\Middleware;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Factory as Auth;
+use Illuminate\Support\Str;
 
 class Authenticate
 {
@@ -26,6 +27,18 @@ class Authenticate
         $this->auth = $auth;
     }
 
+    protected function emailVerificationRoutes($instance)
+    {
+        return ;
+    }
+
+    protected function isNotVerified($request, $instance, $auth)
+    {
+        $routeName = $request->route()->getName();
+        $verificationRoute = 'livecms.'.$instance.'.verification.';
+        return Str::startsWith($routeName, $verificationRoute) && LC_CurrentConfig('verify_email') && ! $auth->user()->hasVerifiedEmail();
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -38,15 +51,27 @@ class Authenticate
      */
     public function handle($request, Closure $next, $instance = null)
     {
-        $guard = config('livecms.guard.name');
+        $guard = LC_GuardName();
         if ($instance === null || $instance == LC_CurrentInstance()) {
-            if ($this->auth->guard($guard)->check()) {
+            $auth = $this->auth->guard($guard);
+            if ($auth->check()) {
+
+                // check verification
+                if ($this->isNotVerified($request, $instance, $auth)) {
+                    return $request->expectsJson()
+                            ? abort(403, 'Your email address is not verified.')
+                            : redirect()->intended(LC_Route('verification.notice'));
+
+                }
+
                 $this->auth->shouldUse($guard);
                 return $next($request);
             }
         }
 
-        return redirect()->route(LC_BaseRoute().'.login');
+        return $request->expectsJson()
+                    ? response()->json(['message' => 'You must login first'], 401)
+                    : redirect()->guest(LC_Route('login'));
     }
 
 }

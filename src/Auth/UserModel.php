@@ -1,13 +1,13 @@
 <?php
 
-namespace LiveCMS\User;
+namespace LiveCMS\Auth;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class UserModel extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, MustVerifyEmail;
 
     protected $table = 'users';
     /**
@@ -16,7 +16,7 @@ class UserModel extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'state',
     ];
 
     /**

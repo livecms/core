@@ -3,11 +3,11 @@
 namespace LiveCMS\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
+use ReflectionClass;
 
 class LiveCMSServiceProvider extends ServiceProvider
 {
-    protected $defer = true;
-
     protected $consoles = [
         \LiveCMS\Commands\TemplateCommand::class,
         //
@@ -18,7 +18,7 @@ class LiveCMSServiceProvider extends ServiceProvider
         return __DIR__ . '/../..';
     }
 
-    protected function loadConsoles()
+    protected function loadConsole()
     {
         if ($this->app->runningInConsole()) {
             $this->commands(
@@ -59,8 +59,6 @@ class LiveCMSServiceProvider extends ServiceProvider
         // $this->publishes([$this->baseDir().'/notifications' => base_path('resources/views/vendor/notifications')], 'notification');
 
 
-        // Helper
-        require $this->baseDir().'/helpers/helper.php';
     }
 
     protected function loadViewsAndAssets()
@@ -96,6 +94,36 @@ class LiveCMSServiceProvider extends ServiceProvider
         $this->publishes($assets, 'public');
     }
 
+    protected function loadMiddleware($instance = null)
+    {
+        $router = $this->app['router'];
+
+        $config = $instance ? 'livecms.instances.'.$instance.'.middleware' : 'livecms.middleware';
+        foreach(config($config, []) as $name => $middlewares) {
+            $name = Str::replaceLast('.middleware', '', $config).'.'.$name;
+            $midName = $instance ? Str::replaceFirst('livecms.', '', $name) : $name;
+            $wrapped = [];
+            foreach ($middlewares as $key => $middleware) {
+                if (!class_exists($middleware)) {
+                    $wrapped[] = $middleware;
+                } else {
+                    $reflectionClass = new ReflectionClass($middleware);
+                    if ($reflectionClass->isInstantiable()) {
+                        $router->aliasMiddleware($md = $midName.'.'.$key, $middleware);
+                        $wrapped[] = $md;
+                    }
+                }
+            }
+            config(['livecms.middleware.wrapped.'.$midName => $wrapped]);
+        }
+
+        if ($instance == null) {
+            foreach (config('livecms.instances') as $name => $instance) {
+                $this->loadMiddleware($name);
+            }
+        }
+    }
+
     /**
      * Bootstrap the application services.
      *
@@ -104,7 +132,7 @@ class LiveCMSServiceProvider extends ServiceProvider
     public function boot()
     {
         // Commands
-        $this->loadConsoles();
+        $this->loadConsole();
 
         // Publish 
         $this->bootPublish();
@@ -143,19 +171,36 @@ class LiveCMSServiceProvider extends ServiceProvider
 
     }
 
-    protected function registerGuard()
+    protected function registerGuard($instance = null)
     {
-        $guardConfig = $this->app['config']->get('livecms.guard', []);
+        $config = $this->app['config'];
+        $key = $instance ? 'livecms.instances.'.$instance.'.guard' : 'livecms.guard';
 
-        $guard = [
-            'driver' => $guardConfig['driver'],
-            'provider' => $providerName = ($guardName = $guardConfig['name']).'-users',
-        ];
+        if ($guardConfig = $config->get($key, null)) {
 
-        $provider = $guardConfig['provider'];
+            if (! (is_string($guardConfig) && array_key_exists($guardConfig, $config->get('auth.guards', [])))) {
 
-        $this->app['config']->set('auth.guards.'.$guardName, $guard);
-        $this->app['config']->set('auth.providers.'.$providerName, $provider);
+                if (array_key_exists($guardConfig['name'], $config->get('auth.guards', []))) {
+                    throw new \Exception("You can not create a new guard that has been existed : {$guardConfig['name']}, in instance : {$instance}. Check your `livecms` config file.", 1);
+                }
+
+                $guard = [
+                    'driver' => $guardConfig['driver'],
+                    'provider' => $providerName = ($guardName = $guardConfig['name']).'-users',
+                ];
+
+                $provider = $guardConfig['provider'];
+
+                $config->set('auth.guards.'.$guardName, $guard);
+                $config->set('auth.providers.'.$providerName, $provider);
+            }
+        }
+
+        if ($instance === null) {
+            foreach ($config->get('livecms.instances', []) as $instance => $value) {
+                $this->registerGuard($instance);
+            }
+        }
     }
 
     /**
@@ -167,5 +212,8 @@ class LiveCMSServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom($this->baseDir().'/config/livecms.php', 'livecms');
         $this->registerGuard();
+        $this->loadMiddleware();
+        // Helper
+        require $this->baseDir().'/helpers/helper.php';
     }
 }

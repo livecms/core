@@ -35,10 +35,10 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $instance = null)
     {
-        $guard = config('livecms.guard.name');
+        $guard = LC_GuardName();
         if ($instance === null || $instance == LC_CurrentInstance()) {
             if ($this->auth->guard($guard)->check()) {
-                return redirect()->route(LC_BaseRoute().'.index');
+                return redirect()->intended(LC_Route('index'));
             }
         }
 
