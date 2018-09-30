@@ -16,6 +16,13 @@
             "LiveCMS\\": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LiveCMS\\Providers\\LiveCMSServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }
