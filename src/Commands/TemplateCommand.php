@@ -91,11 +91,8 @@ var Mix = require('laravel-mix');
 
 Mix
 .options({
-    fileLoaderDirs: {
-        fonts: 'vendor/livecms/fonts'
-    }
-})
-.copyDirectory('public/vendor/livecms/fonts', '{$dir}/fonts');
+    processCssUrls: false
+});
 
 JS;
         file_put_contents(base_path($fileName = 'livecms.webpack.config.js'), $content);
