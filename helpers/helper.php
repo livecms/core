@@ -90,9 +90,9 @@ if (! function_exists('LC_BaseRoute')) {
 }
 
 if (! function_exists('LC_Route')) {
-    function LC_Route($routeName)
+    function LC_Route($routeName, ...$parameters)
     {
-        return route(LC_BaseRoute().'.'.$routeName);
+        return route(LC_BaseRoute().'.'.$routeName, ...$parameters);
     }
 }
 
