@@ -27,4 +27,10 @@ class UserModel extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getInitialAttribute()
+    {
+        preg_match_all("/[A-Z]/", ucwords(strtolower($this->name)), $matches);
+        return strtoupper(implode('', $matches[0]));
+    }
 }
