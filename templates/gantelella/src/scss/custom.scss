@@ -20,11 +20,11 @@
   visibility: hidden;
 }
 .nav-sm #menu_toggle {
-  margin-left: 30px;
+  margin-left: 36px;
 }
 .nav-sm .container.body .right_col {
   padding: 10px 20px;
-  margin-left: 70px;
+  margin-left: 100px;
   z-index: 2;
 }
 .nav-sm .navbar.nav_title {
@@ -664,6 +664,9 @@ a:hover, a:focus {
 }
 .toggle a i {
   font-size: 26px;
+}
+#menu_toggle {
+  margin-left: 6px;
 }
 .nav.child_menu > li > a {
   color: rgba(255, 255, 255, 0.75);

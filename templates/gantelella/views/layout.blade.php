@@ -65,18 +65,12 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
+                    <img src="{{LC_User('avatar', 'https://via.placeholder.com/128/eee/333?text='.LC_User('initial'))}}" alt="{{LC_User('name')}}">
+                    {{LC_User('name')}}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
                     <li><a href="{{ LC_Route('logout') }}"
                           onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
@@ -182,6 +176,7 @@
 
             <div class="clearfix"></div>
 
+            @section('content')
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -210,6 +205,10 @@
                 </div>
               </div>
             </div>
+            @endsection
+
+            @yield('content')
+
           </div>
         </div>
         <!-- /page content -->
