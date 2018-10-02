@@ -80,7 +80,6 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'state' => 'active',
         ]);
     }
 
@@ -106,7 +105,7 @@ class AuthController extends Controller
 
         if (config('livecms.independent_logout', true)) {
             LC_DestroySession();
-            return redirect($this->redirectPath());
+            return redirect($this->redirectPath($request->decodedPath()));
         }
 
         $request->session()->invalidate();
