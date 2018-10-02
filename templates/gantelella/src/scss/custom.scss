@@ -3443,12 +3443,14 @@ a.hiddenanchor {
   opacity: 0;
   width: 100%;
 }
+.login_form,
 .login_form {
   z-index: 22;
 }
 #register:target ~ .login_wrapper .registration_form,
 #login:target ~ .login_wrapper .login_form,
-#reset:target ~ .login_wrapper .reset_form {
+#reset:target ~ .login_wrapper .reset_form,
+#password:target ~ .login_wrapper .password_form {
   z-index: 22;
   -webkit-animation-name: fadeInLeft;
   -moz-animation-name: fadeInLeft;
