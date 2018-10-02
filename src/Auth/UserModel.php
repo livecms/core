@@ -28,6 +28,17 @@ class UserModel extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new Notifications\ResetPassword($token));
+    }
+
     public function getInitialAttribute()
     {
         preg_match_all("/[A-Z]/", ucwords(strtolower($this->name)), $matches);
