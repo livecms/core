@@ -2,9 +2,11 @@
 
 namespace LiveCMS\Auth;
 
+use Illuminate\Auth\Passwords\DatabaseTokenRepository;
+use Illuminate\Auth\Passwords\TokenRepositoryInterface;
+use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -24,6 +26,14 @@ class AuthController extends Controller
     */
 
     use AuthenticatesUsers, SendsPasswordResetEmails, RegistersUsers;
+
+    protected $userModel;
+
+    public function __construct()
+    {
+       parent::__construct();
+       $this->userModel = $this->createUserModel();
+    }
 
     /**
      * Show the application's login form.
@@ -75,22 +85,11 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        $userModel = $this->createUserModel();
-        return $userModel->newQuery()->create([
+        return $this->userModel->newQuery()->create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-    }
-
-    /**
-     * Display the form to request a password reset link.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showLinkRequestForm()
-    {
-        return view('livecms::auth.reset');
     }
 
     /**
