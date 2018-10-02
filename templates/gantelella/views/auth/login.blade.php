@@ -33,7 +33,7 @@
               {!! csrf_field()!!}
               <h1>Login Form</h1>
               <div>
-                <input type="email" name="email" class="form-control" placeholder="{{ __('Email') }}" value="{{old('email')}}" required="" />
+                <input type="email" name="email" class="form-control" placeholder="{{ __('Email') }}" value="{{old('email')}}" required autofocus />
               </div>
               <div>
                 <input type="password" name="password"  class="form-control" placeholder="{{ __('Password') }}" required="" />
@@ -70,7 +70,7 @@
               {!! csrf_field()!!}
               <h1>Forget Form</h1>
               <div>
-                <input type="email" name="email" class="form-control" placeholder="{{ __('Email') }}" required="" />
+                <input type="email" name="email" class="form-control" placeholder="{{ __('Email') }}" required autofocus />
               </div>
               <div>
                 <button type="submit" class="btn btn-default submit">Forget Password</button>
@@ -105,7 +105,7 @@
               {{ csrf_field() }}
               <h1>Create Account</h1>
               <div>
-                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="{{ __('Name') }}" required autofocus>
+                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="{{ __('Name') }}" required autofocus />
                 @if ($errors->has('name'))
                     <span class="help-block">
                         <strong>{{ $errors->first('name') }}</strong>
