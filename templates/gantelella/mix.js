@@ -15,3 +15,14 @@ Mix
 ], 'public/vendor/livecms/'+themeName+'/js/main.js')
 .copy('public/vendor/livecms/'+themeName+'/css/main.css', templateDir+'/assets/css/main.css')
 .copy('public/vendor/livecms/'+themeName+'/js/main.js', templateDir+'/assets/js/main.js');
+
+var Datatables = require('laravel-mix');
+
+Datatables
+.sass(templateDir+'/src/scss/datatables.scss', 'vendor/livecms/'+themeName+'/css')
+.scripts([
+    templateDir+'/vendors/datatables-1.10.16/js/jquery.dataTables.min.js',
+    templateDir+'/vendors/datatables-1.10.16/js/dataTables.bootstrap.min.js',
+], 'public/vendor/livecms/'+themeName+'/js/datatables.js')
+.copy('public/vendor/livecms/'+themeName+'/css/datatables.css', templateDir+'/assets/css/datatables.css')
+.copy('public/vendor/livecms/'+themeName+'/js/datatables.js', templateDir+'/assets/js/datatables.js');
