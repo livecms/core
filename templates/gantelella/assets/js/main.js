@@ -1613,3 +1613,11 @@ if (typeof NProgress != 'undefined') {
         NProgress.done();
     });
 }
+
+
+// CSRF
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});

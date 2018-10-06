@@ -6,11 +6,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ LC_GetTitle() }}</title>
 
     <!-- Custom Theme Style -->
     <link href="{{ LC_Asset() }}/css/main.css" rel="stylesheet">
+    <link href="{{ LC_Asset() }}/css/datatables.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -65,8 +67,8 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="{{LC_User('avatar', 'https://via.placeholder.com/128/eee/333?text='.LC_User('initial'))}}" alt="{{LC_User('name')}}">
-                    {{LC_User('name')}}
+                    <img src="{{LC_User('avatar', 'https://via.placeholder.com/128/fff/333?text='.LC_User('initial'))}}" alt="{{LC_User('name')}}">
+                    Hello, {{LC_User('nickname')}}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -156,7 +158,6 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <div class="">
             <div class="page-title">
               <div class="title_left">
                 <h3>Plain Page</h3>
@@ -209,7 +210,6 @@
 
             @yield('content')
 
-          </div>
         </div>
         <!-- /page content -->
 
@@ -235,6 +235,7 @@
     
     <!-- Custom Theme Scripts -->
     <script src="{{ LC_Asset() }}/js/main.js"></script>
+    <script src="{{ LC_Asset() }}/js/datatables.js"></script>
     <script>
       @if ($errors->count())
       Swal('', '{!! addslashes($errors->first()) !!}', 'error');
@@ -252,5 +253,6 @@
         window.location.hash = '';
       }
     </script>
+    @stack('js-bottom')
   </body>
 </html>
