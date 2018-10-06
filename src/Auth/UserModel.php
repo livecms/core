@@ -44,4 +44,9 @@ class UserModel extends Authenticatable
         preg_match_all("/[A-Z]/", ucwords(strtolower($this->name)), $matches);
         return strtoupper(implode('', $matches[0]));
     }
+
+    public function getNicknameAttribute()
+    {
+        return $this->nickname ?? title_case(array_first(explode(' ', $this->name)));
+    }
 }
