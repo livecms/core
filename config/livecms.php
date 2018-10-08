@@ -12,7 +12,7 @@ return [
             'slogan' => 'Cool CMS For Laravel',
 
             // Theme
-            'theme' => 'gantelella',
+            'theme' => 'gentelella',
 
             // base url
             'base_url' => env('CMS_URL', 'http://localhost'),
@@ -52,7 +52,7 @@ return [
 
             // resources
             'resources' => [
-                'Page' => LiveCMS\Resources\PageResource::class,
+                App\Resources\CountryResource::class,
             ],
         ],
 
