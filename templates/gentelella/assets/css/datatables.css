@@ -6,6 +6,11 @@ table.dataTable.no-footer {
   border-color: #d1d1d3;
 }
 
+table.dataTable thead th,
+table.dataTable thead td {
+  padding: 10px;
+}
+
 .dataTables_wrapper .row .col-sm-12 {
   width: 100%;
 }
@@ -17,4 +22,29 @@ table.dataTable.no-footer {
 
 .paging_full_numbers {
   width: 100%;
+}
+
+.td-actions {
+  text-align: right;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+  color: #777;
+}
+
+.dataTables_paginate a {
+  background: none !important;
+  border: none !important;
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc {
+  background-image: none !important;
+}
+
+.action-buttons {
+  position: absolute;
+  width: 100px;
+  right: 10px;
 }

@@ -252,5 +252,13 @@ if (typeof NProgress != 'undefined') {
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+});
+$( document ).ajaxError(function( event, jqxhr, settings, thrownError ) {
+    console.log(jqxhr);
+    if (jqxhr.status == 419 || jqxhr.status == 401) {
+        location.reload();
+    } else {
+        alert("Error: " + textStatus + ": " + errorThrown);
     }
 });

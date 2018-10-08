@@ -180,7 +180,7 @@
 }
 .nav_menu {
   float: left;
-  background: #EDEDED;
+  background: #fff;
   border-bottom: 1px solid #D9DEE4;
   margin-bottom: 10px;
   width: 100%;
@@ -204,7 +204,8 @@
   position: fixed;
 }
 body .container.body .right_col {
-  background: #F7F7F7;
+  background: #eef1f4;
+  color: #333;
 }
 .nav-md .container.body .right_col {
   padding: 10px 20px 0;
@@ -461,12 +462,17 @@ a:hover, a:focus {
 .navbar-header {
   background: #34495E;
 }
+.top_nav .navbar-left {
+    width: 45%;
+    margin: 0;
+    float: left;
+}
 .navbar-right {
   margin-right: 0;
 }
 .top_nav .navbar-right {
   margin: 0;
-  width: 70%;
+  width: 30%;
   float: right;
 }
 .top_nav .navbar-right li {
@@ -630,7 +636,8 @@ a:hover, a:focus {
   background-color: transparent;
 }
 .top_search {
-  padding: 0;
+  padding: 10px 0 0;
+  margin-bottom: 0!important;
 }
 .top_search .form-control {
   border-right: 0;
@@ -700,7 +707,6 @@ a:hover, a:focus {
   padding: 4px 6px;
 }
 footer {
-  background: #fff;
   padding: 10px 20px;
   display: block;
 }
@@ -853,9 +859,11 @@ h2 {
   position: relative;
   width: 100%;
   margin-bottom: 10px;
-  padding: 10px 17px;
+  padding: 10px;
   display: inline-block;
   background: #fff;
+  color: #666;
+  border-radius: 8px;
   border: 1px solid #E6E9ED;
   -webkit-column-break-inside: avoid;
   -moz-column-break-inside: avoid;
@@ -866,6 +874,19 @@ h2 {
   -webkit-transition: all .2s ease;
   -ms-transition: all .2s ease;
   transition: all .2s ease;
+}
+.x_panel-title {
+  width: 50%;
+  float: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.x_panel-button {
+  width: 50%;
+  float: right;
+  text-align: right;
+  padding-top: 5px;
 }
 .x_title {
   border-bottom: 2px solid #E6E9ED;
