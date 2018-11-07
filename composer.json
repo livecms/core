@@ -21,7 +21,7 @@
         "laravel": {
             "providers": [
                 "LiveCMS\\Providers\\LiveCMSServiceProvider",
-                "LiveCMS\\Resources\\ServiceProvider",
+                "LiveCMS\\Resources\\ServiceProvider"
             ]
         }
     },
