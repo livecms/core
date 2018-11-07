@@ -10,6 +10,7 @@
         }
     ],
     "require": {
+        "livecms/resources": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -19,7 +20,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "LiveCMS\\Providers\\LiveCMSServiceProvider"
+                "LiveCMS\\Providers\\LiveCMSServiceProvider",
+                "LiveCMS\\Resources\\ServiceProvider",
             ]
         }
     },
