@@ -52,7 +52,7 @@ return [
 
             // resources
             'resources' => [
-                App\Resources\CountryResource::class,
+                //
             ],
         ],
 
