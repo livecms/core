@@ -547,6 +547,15 @@
   margin-right: 0;
 }
 
+.form-group label.error {
+  color: #ee8e8a;
+  font-size: 11px;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
 .left_col {
   background: #2A3F54;
 }
@@ -2992,7 +3001,7 @@ legend {
 }
 
 .form-group {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .validate {

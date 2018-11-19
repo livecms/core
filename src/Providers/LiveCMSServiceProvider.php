@@ -33,7 +33,7 @@ class LiveCMSServiceProvider extends ServiceProvider
         $this->loadRoutesFrom($this->baseDir().'/routes/routes.php');
 
         // Template
-        $this->publishes([$this->baseDir().'/livecms/templates/' => resource_path('templates')], 'template');
+        $this->publishes([$this->baseDir().'/templates/' => resource_path('templates')], 'template');
 
         // Publish View and 
         $this->loadViewsAndAssets();
@@ -76,7 +76,6 @@ class LiveCMSServiceProvider extends ServiceProvider
 
     protected function loadAssets($templatePath)
     {
-        $assets = [$templatePath.'/fonts' => public_path('vendor/livecms/fonts')];
         foreach (array_pluck(config('livecms.instances'), 'theme') as $theme) {
             if (!$theme) {
                 continue;

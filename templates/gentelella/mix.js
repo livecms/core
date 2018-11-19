@@ -7,6 +7,8 @@ Mix
 .scripts([
     templateDir+'/vendors/jquery/dist/jquery.min.js',
     templateDir+'/vendors/bootstrap/dist/js/bootstrap.min.js',
+    templateDir+'/vendors/bootstrap-notify/bootstrap-notify.min.js',
+    templateDir+'/vendors/jquery-validation/jquery.validate.min.js',
     templateDir+'/vendors/fastclick/lib/fastclick.js',
     templateDir+'/vendors/nprogress/nprogress.js',
     templateDir+'/vendors/sweetalert2/dist/sweetalert2.min.js',

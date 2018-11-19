@@ -172,15 +172,16 @@
     <!-- Custom Theme Scripts -->
     <script src="{{ LC_Asset() }}/js/main.js"></script>
     <script src="{{ LC_Asset() }}/js/datatables.js"></script>
+
     <script>
-      @if ($errors->count())
-      Swal('', '{!! addslashes($errors->first()) !!}', 'error');
-      @endif
       @if ($status = session('status'))
       Swal('', '{!! $status !!}');
       @endif
       @if ($success = session('success'))
       Swal('', '{!! $success !!}', 'success');
+      @endif
+      @if ($error = session('error'))
+      Swal('', '{!! $error !!}', 'error');
       @endif
 
       if (['#login', '#register'].find(function(item) {

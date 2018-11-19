@@ -5,8 +5,9 @@ return function ($name, $instance) {
         return view('livecms::home');
     })->name('index');
 
-    Route::get('home', function () {
-        return 'sss';
-    });
+    foreach ($instance['resources'] as $resource) {
+        $resource::$baseRoute = 'livecms.'.$name;
+        $resource::register();
+    }
 };
 

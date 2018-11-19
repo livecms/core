@@ -6,12 +6,15 @@ $targetView = 'livecms-templates::'.$source; ?>
 @section('content')
 <div class="row">
     <div class="col-sm-10">
-        <h3 class="x_panel-title">Show</h3>
+        <h3 class="x_panel-title">{{__(':resource_title Details', ['resource_title' => ResAttribute('title')])}}</h3>
         <div class="x_panel-button">
+            <a href="{{ResRoute('index')}}" class="btn btn-default" title="{{__('Back To Index')}}">
+                <i class="fa fa-arrow-left"></i>
+            </a>
             <a href="#" class="btn btn-default">
                 <i class="fa fa-trash-o"></i>
             </a>
-            <a href="#" class="btn btn-primary">
+            <a href="{{ResRoute('edit', ['id' => ResModel()->id])}}" class="btn btn-primary">
                 <i class="fa fa-pencil"></i>
             </a>
         </div>
