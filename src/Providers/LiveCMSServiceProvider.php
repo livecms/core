@@ -102,6 +102,7 @@ class LiveCMSServiceProvider extends ServiceProvider
             $name = Str::replaceLast('.middleware', '', $config).'.'.$name;
             $midName = $instance ? Str::replaceFirst('livecms.', '', $name) : $name;
             $wrapped = [];
+            info($middlewares);
             foreach ($middlewares as $key => $middleware) {
                 if (!class_exists($middleware)) {
                     $wrapped[] = $middleware;
@@ -115,7 +116,6 @@ class LiveCMSServiceProvider extends ServiceProvider
             }
             config(['livecms.middleware.wrapped.'.$midName => $wrapped]);
         }
-
         if ($instance == null) {
             foreach (config('livecms.instances') as $name => $instance) {
                 $this->loadMiddleware($name);
@@ -179,7 +179,7 @@ class LiveCMSServiceProvider extends ServiceProvider
 
             if (! (is_string($guardConfig) && array_key_exists($guardConfig, $config->get('auth.guards', [])))) {
 
-                if (array_key_exists($guardConfig['name'], $config->get('auth.guards', []))) {
+                if (array_key_exists($guardConfig['name'], array_keys($config->get('auth.guards', [])))) {
                     throw new \Exception("You can not create a new guard that has been existed : {$guardConfig['name']}, in instance : {$instance}. Check your `livecms` config file.", 1);
                 }
 
@@ -209,9 +209,12 @@ class LiveCMSServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom($this->baseDir().'/config/livecms.php', 'livecms');
-        $this->registerGuard();
-        $this->loadMiddleware();
+        $config = $this->app['config'];
+        if (!$config->get('livecms.middleware.wrapped')) {
+            $this->mergeConfigFrom($this->baseDir().'/config/livecms.php', 'livecms');
+            $this->registerGuard();
+            $this->loadMiddleware();
+        }
         // Helper
         require $this->baseDir().'/helpers/helper.php';
     }
