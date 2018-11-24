@@ -102,7 +102,6 @@ class LiveCMSServiceProvider extends ServiceProvider
             $name = Str::replaceLast('.middleware', '', $config).'.'.$name;
             $midName = $instance ? Str::replaceFirst('livecms.', '', $name) : $name;
             $wrapped = [];
-            info($middlewares);
             foreach ($middlewares as $key => $middleware) {
                 if (!class_exists($middleware)) {
                     $wrapped[] = $middleware;
@@ -114,8 +113,9 @@ class LiveCMSServiceProvider extends ServiceProvider
                     }
                 }
             }
-            config(['livecms.middleware.wrapped.'.$midName => $wrapped]);
+            config(['livecms.wrapped.middleware.'.$midName => $wrapped]);
         }
+
         if ($instance == null) {
             foreach (config('livecms.instances') as $name => $instance) {
                 $this->loadMiddleware($name);
@@ -210,11 +210,9 @@ class LiveCMSServiceProvider extends ServiceProvider
     public function register()
     {
         $config = $this->app['config'];
-        if (!$config->get('livecms.middleware.wrapped')) {
-            $this->mergeConfigFrom($this->baseDir().'/config/livecms.php', 'livecms');
-            $this->registerGuard();
-            $this->loadMiddleware();
-        }
+        $this->mergeConfigFrom($this->baseDir().'/config/livecms.php', 'livecms');
+        $this->registerGuard();
+        $this->loadMiddleware();
         // Helper
         require $this->baseDir().'/helpers/helper.php';
     }

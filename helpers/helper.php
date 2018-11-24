@@ -62,7 +62,7 @@ if (! function_exists('LC_Middleware')) {
     function LC_Middleware($group, $instance = null)
     {
         $middlewares = [];
-        $wrapped = config('livecms.middleware.wrapped.livecms.'.$group, []);
+        $wrapped = config('livecms.wrapped.middleware.livecms.'.$group, []);
         foreach ($wrapped as $key => $middleware) {
             if (array_last(explode('.', $middleware)) == (string) $key) {
                 $middlewares[] = $middleware.($instance ? ':'.$instance : '');
@@ -72,7 +72,7 @@ if (! function_exists('LC_Middleware')) {
         }
 
         if ($instance) {
-            $wrapped = config('livecms.middleware.wrapped.'.$instance.'.'.$group, []);
+            $wrapped = config('livecms.wrapped.middleware.'.$instance.'.'.$group, []);
             foreach ($wrapped as $middleware) {
                 $middlewares[] = $middleware;
             }
