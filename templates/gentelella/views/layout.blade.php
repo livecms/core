@@ -13,6 +13,9 @@
     <!-- Custom Theme Style -->
     <link href="{{ LC_Asset() }}/css/main.css" rel="stylesheet">
     <link href="{{ LC_Asset() }}/css/datatables.css" rel="stylesheet">
+    <link href="{{ asset('vendor/midia') }}/dropzone.css" rel="stylesheet">
+    <link href="{{ asset('vendor/midia') }}/midia.css" rel="stylesheet">
+
   </head>
 
   <body class="nav-md">
@@ -172,6 +175,32 @@
     <!-- Custom Theme Scripts -->
     <script src="{{ LC_Asset() }}/js/main.js"></script>
     <script src="{{ LC_Asset() }}/js/datatables.js"></script>
+    <script src="{{ asset('vendor/tinymce') }}/tinymce.min.js"></script>
+    <script src="{{ asset('vendor/midia') }}/clipboard.js"></script>
+    <script src="{{ asset('vendor/midia') }}/dropzone.js"></script>
+    <script src="{{ asset('vendor/midia') }}/midia.js"></script>
+    <script type="text/javascript">
+        if (typeof $.fn.midia == 'function') {
+          $.fn.midia.defaultSettings.identifier = 'identifier';
+          $.fn.midia.defaultSettings.tinyMCEUrl = '{{LC_Route('media-library.open', ['editor' => 'tinymce4'])}}';
+          $.fn.midia.defaultSettings.customLoadUrl = function (limit, key) {
+              return '{{LC_Route('index')}}/media-library/image/get/' + limit + '?key=' + key;
+          }
+          $.fn.midia.defaultSettings.customUploadUrl = function () {
+              return '{{LC_Route('index')}}/media-library/image/upload';
+          }
+          $.fn.midia.defaultSettings.customRenameUrl = function (file) {
+              return '{{LC_Route('index')}}/media-library/image/' + file + '/rename';
+          }
+          $.fn.midia.defaultSettings.customDeleteUrl = function (file) {
+              return '{{LC_Route('index')}}/media-library/image/' + file + '/delete';
+          }
+          @if ($maxSizeFileConfig = config('medialibrary.max_file_size'))
+          $.fn.midia.defaultSettings.dropzone.maxFilesize = '{{$maxSizeFileConfig / (1024 * 1024)}}';
+          @endif
+        }
+
+    </script>
 
     <script>
       @if ($status = session('status'))

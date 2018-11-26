@@ -4,10 +4,10 @@ $targetView = 'livecms-templates::'.$source; ?>
 @extends($targetView)
 
 @section('content')
-<h3 class="x_panel-title">{{str_plural(ResAttribute('title'))}}</h3>
+<h3 class="x_panel-title">{{str_plural(ResTitle())}}</h3>
 <div class="x_panel-button">
     <a href="{{ResRoute('create')}}" class="btn btn-primary">
-        Create New
+        Create {{ResTitle()}}
     </a>
 </div>
 <div class="x_panel">
