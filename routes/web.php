@@ -44,8 +44,8 @@ return function ($name, $instance) {
     });
 
     foreach ($instance['resources'] as $resource) {
-        $resource::$baseRoute = 'livecms.'.$name;
-        $resource::register();
+        $baseRoute = 'livecms.'.$name;
+        $resource::register($baseRoute);
     }
 };
 
