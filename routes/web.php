@@ -44,8 +44,11 @@ return function ($name, $instance) {
     });
 
     foreach ($instance['resources'] as $resource) {
-        $baseRoute = 'livecms.'.$name;
-        $resource::register($baseRoute);
+        $resource::register();
     }
+
+    if ($webRoute = $instance['routes']['web'] ?? false) {
+        include($webRoute);
+    } 
 };
 
