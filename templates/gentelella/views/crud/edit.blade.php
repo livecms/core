@@ -16,6 +16,7 @@ $targetView = 'livecms-templates::'.$source; ?>
             <div class="x_content">
                 {!! Form::open(['method' => 'PUT', 'url' => ResRoute('update', ['id' => ResModel()->id]), 'id' => 'resource_form']) !!}
                 {!! Form::render('form') !!}
+                {!! Form::render('buttons') !!}
                 <button type="submit" class="btn btn-primary pull-right">{{__('Save')}}</button>
                 {!! Form::close() !!}
             </div>
