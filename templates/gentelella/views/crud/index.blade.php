@@ -31,11 +31,26 @@ $targetView = 'livecms-templates::'.$source; ?>
 
 @push('js-bottom')
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#datatables').DataTable({!! $dataTablesView !!});
-    });
+    var table = $('#datatables').DataTable({!! $dataTablesView !!});
+
     @if (config('app.debug') == false)
     $.fn.dataTable.ext.errMode = 'none';
     @endif
+
+    $('#datatables').on('click', 'a[data-delete="form"]', function (e) {
+        e.preventDefault();
+        if (confirm('{{__('Are you sure will delete this item ?')}}')) {
+            var url = $(this).attr('href');
+            $.ajax({
+              type: "DELETE",
+              url: url,
+              data: {_token: '{{csrf_token()}}'},
+               success: function (success) {
+                table.draw(false);
+                    swal('{{__('Deleted')}}', '{{__('Item has benn deleted')}}', 'success');
+              },
+            });
+        }
+    });
 </script>
 @endpush
