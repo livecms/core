@@ -190,8 +190,15 @@ class LiveCMSServiceProvider extends ServiceProvider
 
                 $provider = $guardConfig['provider'];
 
+                $password = [
+                    'provider' => $providerName,
+                    'table' => 'password_resets',
+                    'expire' => 60,
+                ];
+
                 $config->set('auth.guards.'.$guardName, $guard);
                 $config->set('auth.providers.'.$providerName, $provider);
+                $config->set('auth.passwords.'.$guardName, $password);
             }
         }
 

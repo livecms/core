@@ -5,6 +5,7 @@ namespace LiveCMS\Auth;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
 use LiveCMS\Controllers\Controller;
 
 class PasswordController extends Controller
@@ -35,6 +36,16 @@ class PasswordController extends Controller
     public function redirectPath()
     {
         return LC_Route('index');
+    }
+
+    /**
+     * Get the broker to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\PasswordBroker
+     */
+    public function broker()
+    {
+        return Password::broker(LC_GuardName());
     }
 
     /**
