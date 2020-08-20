@@ -118,7 +118,7 @@ trait BaseModelTrait
     {
         $this->firstAuthorization();
 
-        $query = parent::newQuery()->withDependencies();
+        $query = parent::newQuery();
 
         if (auth()->check() && $this->selfPost) {
             $query = $query->where('author_id', auth()->user()->id);
